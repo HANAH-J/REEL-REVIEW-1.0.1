@@ -5,7 +5,7 @@ import styles from '../../css/Header/LoginSuccess_header_noneBackground.module.c
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { useUserStore } from "../../stores/index.ts";
-import reel_review_logo from '../../img/users/Reel_Review_logo_white.png';
+import logo from '../../img/Header/Reel_Review_logo_white.png';
 import SignOutAlert from "../users/SignOutAlert";
 
 export default function LoginSuccess_header_noneBackground({ profileData, userData }) {
@@ -58,7 +58,7 @@ export default function LoginSuccess_header_noneBackground({ profileData, userDa
       <div className={styles.navWrapper}>
         <ul className={styles.leftNav}>
           <Link to="/">
-            <img src={reel_review_logo} className={styles.logoSection} />
+            <img src={logo} className={styles.logoSection} />
           </Link>
         </ul>
         <ul className={styles.rightNav}>

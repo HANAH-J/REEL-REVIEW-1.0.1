@@ -5,7 +5,7 @@ import SignIn from "../../components/users/SignIn";
 import SignUp from "../../components/users/SignUp";
 import styles from '../../css/users/Sign.module.css';
 import styles2 from '../../css/Header/Nav.module.css';
-import reel_review_logo from '../../img/users/Reel_Review_logo.png';
+import logo from '../../img/Header/Reel_Review_logo.png';
 
 export default function Header() {
 
@@ -60,7 +60,7 @@ export default function Header() {
         <nav className={styles2.topNav}>
             <div className={styles2.navWrapper}>
                 <ul className={styles2.leftNav}>
-                    <Link to="/"><img src={reel_review_logo} className={styles2.logoSection} /></Link>
+                    <Link to="/"><img src={logo} className={styles2.logoSection} /></Link>
                 </ul>
                 <ul className={styles2.rightNav}>
                     <li className={styles2.findMovies}>

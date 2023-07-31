@@ -3,7 +3,7 @@ import axios from 'axios';
 import OAuth2 from './OAuth2';
 import Terms from './Terms';
 import styles from '../../css/users/Sign.module.css';
-import reel_review_logo from '../../img/users/Reel_Review_logo.png';
+import logo from '../../img/Header/Reel_Review_logo.png';
 
 // [회원] 회원가입 모달창
 export default function SignUp({ setSignInModalState, setSignUpModalState }) {
@@ -157,7 +157,7 @@ export default function SignUp({ setSignInModalState, setSignUpModalState }) {
     return (
         <div className={styles.user_login_modal} style={{ height: `${modalHeight}px` }}>
             <form onSubmit={onSubmitHandler}>
-                <div><img src={reel_review_logo} className={styles.user_login_logo} alt='reel_review_logo'></img></div>
+                <div><img src={logo} className={styles.user_login_logo} alt='reel_review_logo'></img></div>
                 <h2 className={styles.user_login_h2}>회원가입</h2>
 
                 {/* 이름 입력 */}

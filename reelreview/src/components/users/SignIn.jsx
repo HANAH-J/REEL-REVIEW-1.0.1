@@ -6,7 +6,7 @@ import OAuth2 from './OAuth2.jsx';
 import ForgotPw from './ForgotPw';
 import Alert from './Alert.jsx';
 import styles from '../../css/users/Sign.module.css';
-import reel_review_logo from '../../img/users/Reel_Review_logo.png';
+import logo from '../../img/Header/Reel_Review_logo.png';
 
 // [회원] 로그인 모달창
 export default function SignIn({ setSignInModalState, setSignUpModalState }) {
@@ -162,7 +162,7 @@ export default function SignIn({ setSignInModalState, setSignUpModalState }) {
     return (
         <div className={styles.user_login_modal} style={{ height: `${modalHeight}px` }}>
             <form onSubmit={onSubmitHandler}>
-                <div><img src={reel_review_logo} className={styles.user_login_logo} alt='reel_review_logo'></img></div>
+                <div><img src={logo} className={styles.user_login_logo} alt='logo'></img></div>
                 <h2 className={styles.user_login_h2}>로그인</h2>
 
                 {/* 이메일 입력 */}

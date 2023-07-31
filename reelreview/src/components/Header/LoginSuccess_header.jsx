@@ -6,7 +6,7 @@ import axios from 'axios';
 import SignOutAlert from "../users/SignOutAlert";
 import userPFP from '../../img/profile/userProfile/empty_user.svg';
 import styles from '../../css/Header/LoginSuccess_header.module.css';
-import reel_review_logo from '../../img/users/Reel_Review_logo.png';
+import logo from '../../img/Header/Reel_Review_logo.png';
 
 export default function LoginSuccess_header({ profileData, userData }) {
   const userCd = userData ? userData.userCd : null;
@@ -67,7 +67,7 @@ export default function LoginSuccess_header({ profileData, userData }) {
       <div className={styles.navWrapper}>
         <ul className={styles.leftNav}>
           <Link to="/">
-            <img src={reel_review_logo} className={styles.logoSection} />
+            <img src={logo} className={styles.logoSection} />
           </Link>
         </ul>
         <ul className={styles.rightNav}>

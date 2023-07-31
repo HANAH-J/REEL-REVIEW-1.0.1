@@ -5,7 +5,7 @@ import styles2 from '../../css/Header/Header_noneBackground.module.css';
 import SignIn from "../users/SignIn";
 import SignUp from "../users/SignUp";
 import axios from 'axios';
-import reel_review_logo from '../../img/users/Reel_Review_logo_white.png';
+import reel_review_logo from '../../img/Header/Reel_Review_logo_white.png';
 
 export default function Header_noneBackground() {
 
