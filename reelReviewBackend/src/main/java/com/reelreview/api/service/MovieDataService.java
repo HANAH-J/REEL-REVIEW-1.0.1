@@ -34,8 +34,6 @@ import java.util.Optional;
 public class MovieDataService{
 
     @Autowired
-    private ApiMovieUpcommingRepo movieUpcommingRepo;
-    @Autowired
     private ApiMovieDetailRepo movieDetailRepo;
     @Autowired
     private ApiMovieVideosRepo movieVideosRepo;
@@ -273,7 +271,6 @@ public class MovieDataService{
                 detailsDTO.setRelease_date((String) jobj.get("release_date"));
                 detailsDTO.setVote_count((Long) jobj.get("vote_count"));
                 detailsDTO.setVote_average(Double.valueOf(jobj.get("vote_average").toString()));
-                movieUpcommingRepo.save(upcommingDTO);
                 movieDetailRepo.save(detailsDTO);
             }
 

@@ -3,13 +3,10 @@ package com.reelreview.controller;
 //import com.reelreview.Service.MainService;
 import com.reelreview.api.domain.MovieDetailsDTO;
 import com.reelreview.api.domain.MovieUpcommingDTO;
-import com.reelreview.api.service.MovieDataService;
 import com.reelreview.service.MainService;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,12 +27,6 @@ public class MainController {
 
          return MS.getBoxOfficeToday();
      }
-
-    @RequestMapping("api/upcomming")
-    public List<MovieUpcommingDTO> upcommingMovie(){
-
-        return MS.getUpcommingToday();
-    }
 
     @RequestMapping("api/directorSearch")
     public List<MovieDetailsDTO> directorSearch(@RequestParam String name) throws IOException, InterruptedException, ParseException {

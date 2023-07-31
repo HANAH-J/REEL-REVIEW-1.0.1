@@ -32,8 +32,6 @@ public class MainService {
     @Autowired
     private ApiMovieDetailRepo movieDetailRepo;
     @Autowired
-    private ApiMovieUpcommingRepo mUpcomming;
-    @Autowired
     private ApiMovieVideosRepo movieVideosRepo;
     @Autowired
     private ApiMovieImagesRepo movieImagesRepo;
@@ -63,12 +61,6 @@ public class MainService {
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         return currentDate.format(formatter);
-    }
-
-    public List<MovieUpcommingDTO> getUpcommingToday() {
-
-        List<MovieUpcommingDTO> upcommingList = mUpcomming.findByUpcommingDownloadDate(getCurrentDateInStringFormat());
-        return upcommingList;
     }
 
     public List<MovieDetailsDTO> getMovieListFromDirector(String name) throws IOException, InterruptedException, ParseException {

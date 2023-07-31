@@ -92,16 +92,6 @@ export default function MainPage() {
           </div>
         </div>
       </div>
-      <div className={styles.Upcomming_box_wrapper}>
-        <div className={styles.Upcomming_box}>
-          <div className={styles.Upcomming_box_header}>
-            <h3>개봉예정작</h3>
-          </div>
-          <div className={styles.Upcomming_box_info}>
-            <Upcomming />
-          </div>
-        </div>
-      </div>
       {movieList.director && movieList.director.length > 0 && (
         <div className={styles.DirectorMovie_box_wrapper}>
           <div className={styles.DirectorMovie_box}>
