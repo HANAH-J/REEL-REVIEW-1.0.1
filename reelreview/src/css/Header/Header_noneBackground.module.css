@@ -1,0 +1,163 @@
+.topNav {
+    height: 62px;
+    width: 100%;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.navWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+}
+
+.leftNav, .rightNav {
+    display: flex;
+    align-items: center;
+}
+
+.findMovies, .signInBtn, .signUp_li {
+    list-style-type: none;
+}
+
+.rightNav .signInBtn {
+    color: rgba(255, 255, 255, 0.7);
+
+}
+
+.rightNav .signUp_li .signUpBtn {
+    color: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.logoSection {
+    width: 180px;
+    height: 40px;
+    font-size: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.rightNav {
+    margin-right: 50px;
+}
+
+.findMovies {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 60px;
+    margin-right: 25px;
+}
+
+.findWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 40px;
+    background-size: 16px;
+    background-image: url("../../img/Header/search_icon.svg");
+    background-repeat: no-repeat;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background-position: 15px 50%;
+    
+}
+
+.searchInput::placeholder {
+    color: lightgray; 
+  }
+
+.findWrapper input {
+    width: 80%;
+    height: 25px;
+    border: none;
+    background: none;
+    margin-left: 30px;
+    color: lightgray; 
+}
+
+.findWrapper button {
+    display: none;
+}
+
+.findWrapper input:focus {
+    outline: none;
+}
+
+.askReel {
+    color: #4C4C4C;
+    margin-left: 15px;
+    background-color: none;
+    letter-spacing: -0.7px;
+    border: none;
+    cursor: pointer;
+    margin-right: 25px;
+    font-size: 14px;
+}
+
+.signInBtn {
+    color: #4C4C4C;
+    margin-right: 40px;
+    cursor: pointer;
+    letter-spacing: -0.7px;
+    font-size: 14px;
+}
+
+.signUpBtn {
+    line-height: 20px;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 72px;
+    height: 32px;
+    background: transparent;
+    color: #353535;
+    font-size: 14px;
+    border: 1px solid rgba(116,116,123,0.5);
+    border-radius: 6px;
+    margin: 15px 0;
+    letter-spacing: -0.3px;
+    padding: 5px 14px 6px 14px;
+    cursor: pointer;
+}
+
+.askReel_box {
+    text-decoration: none;
+}
+
+@media (max-width: 1000px) {
+    .findWrapper {
+      display: none !important;
+    }
+  }
+
+  @media (max-width: 940px) {
+    .signInBtn {
+        width: 50px;
+      }
+
+      .signUpBtn {
+        width: 90px;
+      }
+  }
+
+  @media (max-width: 840px) {
+    .signInBtn {
+        display: none;
+      }
+
+      .signUpBtn {
+        display: none;
+      }
+  }
+
+ 

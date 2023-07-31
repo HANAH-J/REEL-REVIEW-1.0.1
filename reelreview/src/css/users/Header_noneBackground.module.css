@@ -1,0 +1,235 @@
+/* 모달창 활성화 시 배경 */
+.modalBackground_1 {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 50%;
+  }
+  
+  .modalBackground_2 {
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    opacity: 50%;
+    box-shadow: 0 2px 10px 1px #707070;
+  }
+  
+  /* 모달창 : 화면 중앙. 최상단 노출 */
+  .user_login_modal {
+    width: 300px;
+    padding: 30px;
+    z-index: 1000;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border-radius: 8px;
+  }
+  
+  .user_login_logo {
+    display: block;
+    width: 200px;
+    height: 40px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .user_login_h2 {
+    margin: 20px 0;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 17px;
+    text-align: center;
+  }
+  
+  .user_login_input {
+    outline: 0;
+    border: none;
+    border-radius: 5px;
+    width: 300px;
+    height: 25px;
+    margin-bottom: -15px;
+    padding: 10px;
+    position: relative;
+    margin-left: -10px;
+    background-color: #f5f5f5;
+    font-size: 15px;
+    cursor: text;
+  }
+  
+  .user_login_input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px #f5f5f5 inset ; -webkit-text-fill-color: #000;
+  }
+  
+  .user_login_input:-webkit-autofill, .user_login_input:-webkit-autofill:hover,
+  .user_login_input:-webkit-autofill:focus, .user_login_input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+  }
+  
+  .user_login_input::placeholder {
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #a0a0a0;
+    font-size: 15px;
+  }
+  
+  .user_login_buttonX {
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    margin-top: -22px;
+    right: 85px;
+    background-image: url('../../img/users/buttonX.png');
+    cursor: pointer;
+  }
+  
+  .user_login_btn {
+    border: none;
+    border-radius: 5px;
+    width: 320px;
+    height: 45px;
+    margin: 15px;
+    padding: 10px;
+    position: relative;
+    left: 50%;
+    margin-left: -160px;
+    background-color: #ff2f6e;
+    color: #ffffff;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .user_sign_messageContainer {
+    text-align: center;
+  }
+  
+  .user_login_forgotPw {
+    display: block;
+    margin: 10px;
+    color: #ff2f6e;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  
+  .user_login_helpMessage {
+    position: relative;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    cursor: text;
+  }
+  
+  .user_login_signUp {
+    position: relative;
+    color: #ff2f6e;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+  }
+  
+  .user_login_hr {
+    border: 0px;
+    height: 1px;
+    margin-left: -30px;
+    margin: 30px auto;
+    background: lightgray;
+  }
+  
+  .user_login_hr_2 {
+    border: 0px;
+    height: 1px;
+    margin: 20px auto;
+    background: lightgray;
+  }
+  
+  .signIn_kakao, .signUp_kakao,
+  .signIn_google, .signUp_google,
+  .signIn_facebook, .signUp_facebook,
+  .signIn_naver, .signUp_naver {
+    border-radius: 25px;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    margin-left: 18px;
+    cursor: pointer;
+    list-style: none;
+    float: left;
+  }
+  
+  .signIn_kakao {
+    background-color: #fee500;
+    color: #181600;
+  }
+  
+  .signUp_kakao {
+    margin-top: 10px;
+    background-color: #fee500;
+    color: #181600;
+  }
+  
+  .signIn_google {
+    border: 1px solid lightgray;
+    background-color: #ffffff;
+  }
+  
+  .signUp_google {
+    margin-top: 10px;
+    border: 1px solid lightgray;
+    background-color: #ffffff;
+  }
+  
+  .signIn_facebook {
+    background-color: #1877f2;
+  }
+  
+  .signUp_facebook {
+    margin-top: 10px;
+    background-color: #1877f2;
+  }
+  
+  .signIn_naver {
+    margin-bottom: 10px;
+    background-color: #1fc202;
+    color: #ffffff;
+  }
+  
+  .signUp_naver {
+    margin-top: 10px;
+    background-color: #1fc202;
+    color: #ffffff;
+  }
+  
+  .logo {
+    width: 35px;
+    height: 35px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .user_sign_inputError {
+    border: 1px solid red;
+    background: url('../../img/users/buttonWarn.png') no-repeat 95% 50%;
+    background-color: #fff0f0;
+  }
+  
+  .user_login_error {
+    margin: 5px;
+    color: red;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 0.8em;
+    white-space: pre-line;
+  }
+  
+  .user_sign_inputPass {
+    background: url('../../img/users/buttonPass.png') no-repeat 95% 50%;
+    background-color: #f5f5f5;
+  }

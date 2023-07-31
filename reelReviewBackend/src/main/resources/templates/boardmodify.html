@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>게시판 수정</title>
+</head>
+<style>
+  .layout {
+    width: 500px;
+    margin: 0 auto;
+  }
+  .layout input {
+    width: 100%;
+    box-sizing: border-box;
+    margin-top: 10px;
+  }
+
+  .layout textarea {
+    width: 100%;
+    margin-top: 10px;
+    min-height: 300px;
+  }
+
+</style>
+<body>
+<div class="layout">
+  <form th:action="@{/board/update/{boardCd}(boardCd=${boardDTO.boardCd})}" method="post">
+    제목 : <input name="title" type="text" th:value="${boardDTO.title}">
+    작성자 : <input name="writer" type="text" th:value="${boardDTO.writer}">
+    내용 : <textarea name="content" th:text="${boardDTO.content}"></textarea>
+    첨부이미지 : <img th:if="${boardDTO.filepath}" th:src="@{${boardDTO.filepath}}" alt="첨부 이미지">
+    첨부파일 : <input name="file" type="file" th:src="${boardDTO.filepath}">
+    <button type="submit">수정</button>
+  </form>
+</div>
+</body>
+</html>
+

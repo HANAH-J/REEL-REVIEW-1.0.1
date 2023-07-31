@@ -1,0 +1,113 @@
+.topNav_Dark {
+    height: 62px;
+    width: 100%;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(116,116,123,0);
+}
+
+.topNav_Dark .navWrapper_Dark {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+}
+
+.topNav_Dark .navWrapper_Dark .leftNav_Dark, .topNav_Dark .navWrapper_Dark .rightNav_Dark {
+    display: flex;
+    align-items: center;
+}
+
+.topNav_Dark .navWrapper_Dark .leftNav_Dark li, .topNav_Dark .navWrapper_Dark .rightNav_Dark li {
+    list-style-type: none;
+}
+
+.topNav_Dark .navWrapper_Dark .leftNav_Dark .logoSection_Dark {
+    width: 160px;
+    height: 40px;
+    font-size: 0;
+    background-image: url("../../img/Header/Reel_Review_logo.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: 50px;
+    cursor: pointer;
+}
+
+.topNav_Dark .navWrapper_Dark .rightNav_Dark {
+    margin-right: 50px;
+}
+
+.topNav_Dark .navWrapper_Dark .rightNav_Dark .findMovies_Dark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 60px;
+    margin-right: 25px;
+}
+
+.topNav_Dark .navWrapper_Dark .rightNav_Dark .findMovies_Dark .findWrapper_Dark {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 40px;
+    background-size: 16px;
+    background-image: url("../../img/Header/search_icon.svg");
+    background-repeat: no-repeat;
+    background-color: #F5F5F7;
+    background-position: 3% 50%;
+}
+
+.topNav_Dark .navWrapper_Dark .rightNav_Dark .findMovies_Dark .findWrapper_Dark input {
+    width: 80%;
+    height: 25px;
+    border: none;
+    background: none;
+}
+
+.topNav_Dark .navWrapper_Dark .rightNav_Dark .findMovies_Dark .findWrapper_Dark input:focus {
+    outline: none;
+}
+
+.topNav_Dark .navWrapper_Dark .rightNav_Dark .askReel {
+    color: #4C4C4C;
+    margin-left: 15px;
+    background-color: none;
+    letter-spacing: -0.7px;
+    border: none;
+    cursor: pointer;
+    margin-right: 25px;
+    font-size: 14px;
+}
+
+.topNav_Dark .navWrapper_Dark .rightNav_Dark .loginBtn {
+    color: #4C4C4C;
+    margin-right: 25px;
+    cursor: pointer;
+    letter-spacing: -0.7px;
+    font-size: 14px;
+}
+
+.topNav_Dark .navWrapper_Dark .rightNav_Dark .regBtn {
+    line-height: 20px;
+    box-sizing: border-box;
+    width: auto;
+    min-width: 72px;
+    height: 32px;
+    background: transparent;
+    color: #353535;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid rgba(116,116,123,0.5);
+    border-radius: 6px;
+    margin: 15px 0;
+    letter-spacing: -0.3px;
+    padding: 5px 14px 6px 14px;
+    cursor: pointer;
+}

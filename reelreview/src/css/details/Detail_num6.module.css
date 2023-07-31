@@ -1,0 +1,132 @@
+.wrapper{
+    width: 100%;
+    margin-top: 10px;
+    background-color: white;
+    
+    overflow: hidden;
+    height: auto;
+
+}
+.topHead{
+    margin: 0 auto;
+    width: 1320px;
+    height: 30px;
+}
+.topHead h2{
+    font-size: 24px;
+    font-family: 'Noto Sans Kr';
+    font-weight: 700;
+    line-height: 28px;
+    float: left;
+}
+.topHead h3{
+    font-size: 24px;
+    font-family: 'Noto Sans Kr';
+    font-weight: 300;
+    line-height: 28px;
+    color: red;
+    float: left;
+    margin-left: 10px;
+}
+.gallery{
+    width: 1320px;
+ 
+    height: auto;
+    margin: 30px auto;
+    text-align: center;
+}
+
+.colImgBox{
+    height: 235px;
+    background-color: #cccdcf;
+    border-radius: 5px;
+    margin: 0 10px 0 0;
+    text-align: center;
+    padding-top: 5px;
+
+}
+.colImg{
+    width: 45%;
+    height: 48%;
+    overflow: hidden;
+    margin: 0 3px;
+    border-radius: 5px;
+    display: inline-block;
+}
+.colImg img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.colBox h4{
+    font-size: 15px;
+    word-break: break-all;
+    max-height: 40px;
+    letter-spacing: -0.5px;
+    line-height: 20px;
+    font-weight: 800;
+    text-align: left;
+    margin-top: 5px;
+}
+.colBox p{
+    color: #8c8c8c;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+    line-height: 18px;
+    margin-top: 2px;
+    text-align: left;
+}
+.similar{
+    width: 1320px;    
+    margin: 0 auto;
+}
+.similar_row{
+    width: 100%;
+}
+.similar_col{
+    cursor: pointer;
+    width: 200px;
+    display: inline-block;
+    overflow: hidden;
+    margin: 10px;
+    text-overflow: ellipsis;
+    white-space : nowrap;
+}
+.similar_col a{
+    text-decoration: none;
+}
+.similar_col_img img{
+    width: 200px;
+    height: 294px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+.similar_col_title{
+    margin-top: 10px;
+}
+.similar_col_title h4{
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    line-height: 22px;
+}
+.similar_col_title p{
+    color: rgb(120, 120, 120);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+    line-height: 18px;
+    white-space: nowrap;
+}
+.similar_col_title span{
+    color: rgb(160, 160, 160);
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+    line-height: 16px;
+    white-space: nowrap;
+    margin-top: 1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

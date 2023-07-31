@@ -1,0 +1,145 @@
+.wrapper{
+    background-color: white;
+    width: 100%;
+    overflow: hidden;
+    height: auto;
+}
+.topHead{
+    margin: 70px auto 0 auto;
+    width: 1320px;
+    height: 30px;
+}
+.topHead h2{
+    font-size: 24px;
+    font-family: 'Noto Sans Kr';
+    font-weight: 700;
+    line-height: 28px;
+    float: left;
+}
+.topHead h3{
+    font-size: 24px;
+    font-family: 'Noto Sans Kr';
+    font-weight: 300;
+    line-height: 28px;
+    color: red;
+    float: left;
+    margin-left: 10px;
+}
+.cont{
+    margin: 30px auto;
+    width: 1320px;
+    height: auto;
+    overflow: hidden;
+}
+
+.col{
+    float: left;
+    margin: 0px 10px 10px 0px;
+}
+.card{
+    width: 295px;
+    height: 300px;
+    padding: 0 12px 0 12px;
+    background-color: rgb(242, 242, 242);
+    border-radius: 15px;
+}
+.cardTop{
+    border-bottom: 1px solid rgb(229, 229, 229);
+    height: 57px;
+}
+.cardTopLeft{
+    height: 56px;
+    width: 180px;
+    float: left;
+}
+.cardTopLeft p{
+    height: 100%;
+    display: flex;
+    float: left;
+    align-items: center;
+    color: black;
+    font-family: 'Noto Sans Kr';
+    font-size: 17px;
+    font-weight: 400;
+    letter-spacing: -0.7px;
+    line-height: 22px;
+}
+.cardImg{
+    width: 32px;
+    height: 32px;
+    object-fit: cover;
+    margin: 12px 8px 12px 0px;
+    float: left;
+    border-radius: 5px;
+}
+.cardTopRight{
+    float: right;
+}
+.cardStars{
+    background-color: rgb(255, 255, 255);
+    
+    border: 1px solid rgb(234, 234, 234);
+    border-radius: 13px;
+    margin: 15px 0 0 16px;
+    width: 60px;
+    padding: 0 8px;
+    height: 28px;
+}
+.cardStars p{
+    color: rgb(74, 74, 74);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -0.3px;
+    line-height: 24px;
+    font-family: "Noto Sans KR",  sans-serif;
+    float: right;
+}
+.stars{
+    margin-top: 3px;
+    float: left;
+}
+.cardMiddle{
+    height: 195px;
+    overflow: hidden;
+}
+.cardMiddle a{
+    text-decoration: none;
+}
+.comment{
+    margin: 12px 0 12px 0;
+
+
+    
+}
+.comment p{
+    font-size: 15px;
+    font-family: "Noto Sans KR",  sans-serif;
+    line-height: 24px;
+    font-weight: 400;
+    letter-spacing: -0.2px;
+    color: black;
+}
+
+
+.cardBottom{
+    height: 30px;
+    border-top: 1px solid rgb(229, 229, 229);
+    align-items: center;
+    display: flex;
+    color: rgb(120, 120, 120);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: -0.3px;
+    margin-top: 10px;
+    font-family: "Noto Sans KR",  sans-serif;
+}
+.cardBottom span{
+    margin-right: 7px;
+}
+.cardBottom p{
+    margin-right: 20px;
+    line-height: 20px;
+}
+.colby{
+    margin-bottom: 10px;
+}

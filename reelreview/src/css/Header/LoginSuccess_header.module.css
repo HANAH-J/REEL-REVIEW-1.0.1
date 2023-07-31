@@ -1,0 +1,116 @@
+.topNav {
+    height: 62px;
+    width: 100%;
+    z-index: 99999;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #ffffff;
+}
+
+.topNav .navWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+}
+
+.topNav .navWrapper .leftNav, .topNav .navWrapper .rightNav {
+    display: flex;
+    align-items: center;
+}
+
+.topNav .navWrapper .leftNav li, .topNav .navWrapper .rightNav li {
+    list-style-type: none;
+    text-decoration: none;
+}
+
+.topNav .navWrapper .leftNav .logoSection {
+    width: 180px;
+    height: 40px;
+    font-size: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.topNav .navWrapper .rightNav {
+    margin-right: 50px;
+}
+
+.topNav .navWrapper .rightNav .findMovies {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
+    height: 60px;
+    margin-right: 25px;
+}
+
+.findWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 220px;
+    height: 40px;
+    background-size: 16px;
+    background-image: url("../../img/Header/search_icon.svg");
+    background-repeat: no-repeat;
+    background-color: #F5F5F7;
+    background-position: 15px 50%;
+}
+
+.findWrapper input {
+    width: 80%;
+    height: 25px;
+    border: none;
+    background: none;
+    margin-left: 30px;
+}
+
+.findWrapper input:focus {
+    outline: none;
+}
+
+
+.csMainPage li {
+    text-decoration: none;
+}
+  
+.userProfile_box {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin-left: 30px;
+  }
+
+  .icon {
+    width: 35px;
+    height: 35px;
+    color: black;
+    border: solid 1px rgba(0,0,0,0.08);
+    border-radius: 50%;
+    background: #fff;
+  }
+
+  .nameLi {
+    font-size: 14px;
+    color: #4C4C4C;
+    margin-right: 20px;
+    cursor: pointer;
+  }
+
+  @media (max-width: 770px) {
+    .topNav .navWrapper .rightNav .findMovies .findWrapper {
+      display: none;
+    }
+  }
+  
+

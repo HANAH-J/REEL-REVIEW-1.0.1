@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Roboto&display=swap');
+
+.UserProfile {
+    margin: auto 0;
+    padding-top: 150px;
+    padding-bottom: 50px;
+    width: 100%;
+    height: 100vh;
+    background-color: #F8F8F8;
+    display: flex;
+    flex-direction: column;
+}
+
+.UserProfile .profileContainer {
+    width: 638px;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    margin: 0 auto;
+    flex-grow: 1;
+    margin-bottom: 40px;
+    font-family: 'Noto Sans KR', sans-serif;
+    letter-spacing: -0.8px;
+    text-align: center;
+}
+
+.UserProfile .profileContainer .profileBg {
+    position: relative;
+    width: 638px;
+    height: 204px;
+    background-image: url("../../img/profile/userProfile/userprofile_bg.jpg");
+    background-size: 25%;
+    background-position: 50% 45%;
+    background-repeat: repeat;
+    border-radius: 5px 5px 0 0;
+  }
+
+.UserProfile .profileContainer .profileBg .profileShadow {
+    display: block;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    height: 50px;
+    background-image: linear-gradient(-180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0) 100%);
+    border-radius: 5px;
+}
+
+.userInfo {
+    position: relative;
+    top: -20px;
+    width: 640px;
+    height: 545px;
+    margin: 0 auto;
+}
+
+.userInfo .profilePic {
+    display: flex;
+    align-items: center;
+    background: none;
+    outline: none;
+    cursor: pointer;
+    border: none;
+}
+
+.userInfo .profilePic img {
+    width: 58px;
+    height: 58px;
+    /* border: 1px solid black; */
+    border-radius: 50%;
+    margin-left: 30px;
+}
+
+.userInfo .profilePic:hover .profilePicHover {
+    opacity: 0.5;
+}
+
+.userInfo .profilePic .profilePicHover {
+    position: absolute;
+    margin-left: 30px;
+    opacity: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition: opacity 0.5s;
+}
+
+.userInfo ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.UserProfile .userInfo .name {
+    text-align: left;
+    padding-left: 30px;
+    padding-bottom: 5px;
+}
+
+.UserProfile .userInfo .msg {
+    text-align: left;
+    padding-left: 30px;
+    font-size: 14px;
+    margin-top: -5px;
+}
+
+.movieListText {
+    width:100%;
+    height: 50px;
+}
+
+.userProfile_HR {
+    height: 1px;
+    background: #e3e3e3;
+    border: 0;
+    width: 100%;
+}
+
+.UserProfile .userInfo .topHR hr {
+    margin: 20px auto 5px; 
+}
+
+.UserProfile .userInfo .bottomHR hr {
+    margin: 5px auto 0; 
+}
+
+.movieListText img {
+    vertical-align: middle;
+}
+
+.movieListText h4 {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 10px; 
+}
+
+.movieList .noContent {
+    color: #A0A0A0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.movieList .noMovie {
+    margin-top: 122px;
+}
+
+.movieList .goRate {
+    width: 100px;
+    margin-bottom: 122px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: color 0.3s ease;
+}
+
+.movieList .goRate:hover {
+    color: #FF0558;
+}
+
+.movieList .card {
+    max-width: 320px;
+    margin: auto 1rem;
+    text-align: center;
+}
+
+.movieList .card h5, .movieList .card h4 {
+    text-align: left;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.movieList .card h5 {
+    color: #ffa136;
+    font-weight: normal;
+}
+
+.movieList .movieListPoster {
+    width: 155px;
+    height: 210px;
+    object-fit: cover;
+    border: 1px solid #e3e3e3;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.movieList .movieListTitle {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.movieListMore p {
+    color: #FF0558;
+    font-size: 0.9em;
+    text-align: right;
+    padding-right: 24px;
+    margin-top: 10px;
+    cursor: pointer;
+    width: 60px;
+    margin-left: 550px;
+}
+
+.UserProfile .userInfo .movieCollection h4, .UserProfile .userInfo .userComment h4 {
+    margin-top: 4px;
+}
+
+.movieToWatch, .movieCollection, .userComment {
+    cursor: pointer;
+}
+
+.PFPFooter {
+    margin-bottom: 0;
+}

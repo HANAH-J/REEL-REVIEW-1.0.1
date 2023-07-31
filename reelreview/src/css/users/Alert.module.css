@@ -1,0 +1,181 @@
+/* 모달창 활성화 시 배경 - 비밀번호 */
+.modalBackground {
+    border-radius: 8px;
+    width: 415px;
+    height: 380px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 30%;
+    box-shadow: 0 2px 10px 1px #707070;
+    z-index: 1001;
+}
+
+/* 모달창 활성화 시 배경 - 로그아웃 */
+.modalBackground2 {
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 30%;
+    box-shadow: 0 2px 10px 1px #707070;
+    z-index: 1001;
+}
+
+.modalBackground3 {
+    border-radius: 12px;
+    width: 290px;
+    height: 270px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 30%;
+    box-shadow: 0 2px 10px 1px #707070;
+    z-index: 1001;
+}
+
+/* 임시 비밀번호 발급 알림창 - 일반 */
+.forgotPw_alert {
+    border-radius: 12px;
+    width: 250px;
+    height: 110px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 15px;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    font-family: 'Noto Sans KR', sans-serif;
+    text-align: center;
+    box-shadow: 0 2px 10px 1px #707070;
+    z-index: 1002;
+}
+
+/* 임시 비밀번호 발급 알림창 - 소셜 */
+.forgotPw_alert2 {
+    border-radius: 12px;
+    width: 250px;
+    height: 130px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 15px;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    font-family: 'Noto Sans KR', sans-serif;
+    text-align: center;
+    box-shadow: 0 2px 10px 1px #707070;
+    z-index: 1002;
+}
+
+.forgotPw_alert3 {
+    border-radius: 12px;
+    width: 250px;
+    height: 110px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    padding: 15px;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    font-family: 'Noto Sans KR', sans-serif;
+    text-align: center;
+    z-index: 1002;
+}
+
+/* 로그아웃 확인 알림창 - header */
+.signOut_alert {
+    border-radius: 12px;
+    width: 250px;
+    height: 110px;
+    position: absolute;
+    top: 650%;
+    left: 50%;
+    margin-left: -125px;
+    padding: 15px;
+    background-color: #ffffff;
+    font-family: 'Noto Sans KR', sans-serif;
+    text-align: center;
+    box-shadow: 0 2px 10px 1px #707070;
+    z-index: 1002;
+}
+
+/* 로그아웃 확인 알림창 - profile */
+.signOut_alert2 {
+    border-radius: 12px;
+    width: 250px;
+    height: 110px;
+    position: absolute;
+    top: 120px;
+    left: 50%;
+    margin-left: -140px;
+    padding: 15px;
+    background-color: #ffffff;
+    font-family: 'Noto Sans KR', sans-serif;
+    text-align: center;
+    box-shadow: 0 2px 10px 1px #707070;
+    z-index: 1002;
+}
+
+/* 공통 사용 클래스 */
+.alert_h2 {
+    font-size: 17px;
+}
+
+.alert_p {
+    position: relative;
+    margin-top: 10px;
+    margin-bottom: 22px;
+    left: 5px;
+    font-size: 15px;
+    white-space: pre-line;
+}
+
+.alert_hr {
+    border:1px;
+    height:1px;
+    background-color: lightgray;
+}
+
+hr {
+    border:1px;
+    height:1px;
+    background-color: lightgray;
+}
+
+.alert_btn {
+    border: none;
+    width: 100%;
+    height: 35px;
+    position: relative;
+    top: 5px;
+    background-color: #ffffff;
+    color: #ff2f6e;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.alert_dualBtn1, .alert_dualBtn2 {
+    border: none;
+    width: 50%;
+    height: 30px;
+    position: relative;
+    top: 8px;
+    background-color: #ffffff;
+    color: #ff2f6e;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.alert_dualBtn1 {
+    border-right: 1px solid lightgray;
+}
