@@ -595,10 +595,22 @@
   height: 400px;
 }
 
-
-
-
-
-
 /* 검색 결과 페이지 끝 */
 
+/* 검색 페이지 CSS */
+.search_input {
+  border: none;
+  outline: none;
+  width: 220px;
+  height: 20px;
+  padding: 10px;
+  background-color: #f5f5f7;
+}
+
+.search_button {
+  border: none;
+  width: 40px;
+  height: 40px;
+  background-color: #ff2f6e;
+  color: #ffffff;
+}

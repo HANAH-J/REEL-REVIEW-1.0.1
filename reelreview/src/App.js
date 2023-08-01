@@ -36,7 +36,6 @@ function App() {
       
       <Routes>
         <Route path="/" Component={MainPage}/>
-        <Route path="/mainPage" Component={MainPage}/>
         <Route path="/csMain" Component={CsMain}/>
         <Route path="/csFaq" Component={CsFaq}/>
         <Route path="/csQna" Component={CsQna}/>
@@ -53,7 +52,7 @@ function App() {
         <Route path='/csBoardDetail/:boardCd' element={<CsBoardDetail/>}/>
         <Route path="/mainPage_loginSuccess" element={<MainPage_loginSuccess/>} />
         <Route path="/userScoreCollection" element={<UserScoreCollection/>} />
-        <Route path="/mainPage_admin" element={<MainPage_admin/>}/>
+        <Route path="/admin/main" element={<MainPage_admin/>}/>
         <Route path="/movieToWatch" element={<MovieToWatch/>} />
         <Route path="/collection/:collectionCd" element={<CollectionDetail/>}/>
         <Route path="/userComment" element={<UserComment/>}/>

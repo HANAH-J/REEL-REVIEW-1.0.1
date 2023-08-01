@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 세션 기반 인증 : Session 기반 인증을 사용하지 않기 때문에 비활성화
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
                 // '/', '/api/auth' 모듈에 대해서는 모두 허용 : 인증없이 사용가능
-                .authorizeRequests().antMatchers("/**", "/api/auth/**").permitAll()
+                .authorizeRequests().antMatchers("/admin/**").hasAnyAuthority("role_admin")
                 // 나머지 Request에 대해서는 모두 인증되지 않은 사용자도 사용가능
                 .anyRequest().permitAll().and()
                 // 소셜 로그인 설정

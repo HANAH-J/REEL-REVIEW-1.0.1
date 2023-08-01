@@ -138,26 +138,6 @@ export default function MainPage() {
 
     <div className={styles.MainPage_box}>
       {cookies.token ? <LoginSuccess_header /> : <Header />}
-      {/* <div className={styles.BoxOffice_box_wrapper}>
-        <div className={styles.BoxOffice_box}>
-          <div className={styles.BoxOffice_box_header}>
-            <h3>박스오피스 순위</h3>
-          </div>
-          <div className={styles.BoxOffice_box_info}>
-            <BoxOffice /> 
-          </div>
-        </div>
-      </div>
-      <div className={styles.Upcomming_box_wrapper}>
-        <div className={styles.Upcomming_box}>
-          <div className={styles.Upcomming_box_header}>
-            <h3>개봉예정작</h3>
-          </div>
-          <div className={styles.Upcomming_box_info}>
-             <Upcomming /> 
-          </div>
-        </div>
-      </div> */}
       <div className={styles.DirectorMovie_box_wrapper}>
         <div className={styles.DirectorMovie_box}>
           <div className={styles.DirectorMovie_box_header}>
@@ -165,8 +145,8 @@ export default function MainPage() {
           </div>
           <div className={styles.DirectorMovie_box_info}>
             <form onSubmit={handleSubmit}>
-              <input type="text" name='name' onChange={handleChange} />
-              <button type='submit'>감독</button>
+              <input type="text" name='name' onChange={handleChange} className={styles.search_input} autoComplete='off'/>
+              <button type='submit' className={styles.search_button}>검색</button>
             </form>
             <DirectorMovie movieList={movieList}/>
           </div>
@@ -179,8 +159,8 @@ export default function MainPage() {
           </div>
           <div className={styles.ActorMovie_box_info}>
           <form onSubmit={handleSubmit1}>
-              <input type="text" name1='name1' onChange={handleChange1} />
-              <button type='submit'>배우</button>
+              <input type="text" name1='name1' onChange={handleChange1} className={styles.search_input} autoComplete='off'/>
+              <button type='submit' className={styles.search_button}>검색</button>
             </form>
             <ActorMovie movieList={movieListActor}/>
           </div>
@@ -193,8 +173,8 @@ export default function MainPage() {
           </div>
           <div className={styles.Genre_box_info}>
             <form onSubmit={handleSubmit2}>
-              <input type="text" name2='name2' onChange={handleChange2} />
-              <button type='submit'>장르</button>
+              <input type="text" name2='name2' onChange={handleChange2} className={styles.search_input} autoComplete='off'/>
+              <button type='submit' className={styles.search_button}>검색</button>
             </form>
             <Genre movieList={movieListGenre}/>
           </div>
