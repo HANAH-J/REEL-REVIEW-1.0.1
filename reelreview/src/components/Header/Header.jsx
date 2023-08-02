@@ -13,6 +13,7 @@ export default function Header() {
     const reload = () => {
         window.location.href = 'http://localhost:3000';
     }
+    
     const [movieList, setMovieList] = useState([]);
     const [name, setName] = useState('');
 

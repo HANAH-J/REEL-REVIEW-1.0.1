@@ -79,6 +79,15 @@ public class JwtTokenProvider {
         return claims.getSubject();
     }
 
+    // JWT 권한 디코딩
+    public String getAuthority(String token) {
+        // 매개변수로 받은 토큰을 키를 사용하여 복호화(디코딩)
+        Claims claims = Jwts.parser().setSigningKey(SECURITY_KEY).parseClaimsJws(token).getBody();
+
+        // 복호화된 토큰의 payload에서 제목 수신
+        return claims.get("role").toString();
+    }
+
     // 리프레시 토큰 저장
     public void saveRefreshToken(String userId, String refreshToken) {
         String key = getRefreshTokenKey(userId);
