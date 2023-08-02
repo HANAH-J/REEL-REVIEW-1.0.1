@@ -5,7 +5,7 @@ import styles from '../../../css/csMain/CsMain.module.css';
 import { Link, useNavigate } from "react-router-dom";
 import CsFooter from '../../../components/Footer/CsFooter';
 import CsHeader from '../../../components/Header/CsHeader';
-import { BiChevronLeft } from "react-icons/bi";
+import { BiChevronRight } from "react-icons/bi";
 import { useCookies } from 'react-cookie';
 
 function CsQna() {
@@ -99,7 +99,7 @@ function CsQna() {
                 <a>릴리뷰 문의센터</a>
               </Link>
             </div>
-            <div className={styles.CsQna_box_body_header_icon}><BiChevronLeft /></div>
+            <div className={styles.CsQna_box_body_header_icon}><BiChevronRight /></div>
             <div>문의 하기</div>
           </div>
           <div className={styles.CsQna_box_box_body2}>

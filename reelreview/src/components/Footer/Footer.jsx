@@ -19,11 +19,11 @@ export default function Footer(props) {
               </li>
               <br/><br/>
               <li className="footerText">
-                고객센터&nbsp; |&nbsp; cs@reelreview.co.kr, 031-123-4567
+                고객센터&nbsp; |&nbsp; reelreviewcs@gmail.com, 031-123-4567
               </li>
               <br/>
               <li className="footerText">
-                제휴 및 대외 협력 &nbsp;| &nbsp;https://reelreview.team/contact
+                제휴 및 대외 협력 &nbsp;| &nbsp; reelreviewcs@gmail.com
               </li>
               <br/>
               <li className="footerText">

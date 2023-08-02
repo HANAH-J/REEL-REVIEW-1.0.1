@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import styles from '../../../css/csMain/CsMain.module.css';
 import CsFooter from '../../../components/Footer/CsFooter';
 import CsHeader from '../../../components/Header/CsHeader';
-import { BiChevronLeft } from "react-icons/bi";
+import { BiChevronRight } from "react-icons/bi";
 import { Link } from "react-router-dom";
 
 function CsFaq() {
@@ -15,7 +15,7 @@ function CsFaq() {
     const faqData = [
         {
             question: '페이스북 로그인 버튼이 보이지 않아요',
-            answer: '페이스북 로그인 연동은 종료되었습니다. 페이스북으로 왓챠피디아를 시작하셨다면, 왓챠피디아 이메일 계정은 페이스북 이메일 계정과 동일힙니다'
+            answer: '페이스북 로그인 연동은 종료되었습니다.'
         },
         {
             question: 'TV 프로그램은 없나요?',
@@ -38,7 +38,7 @@ function CsFaq() {
                 <div className={styles.CsFaq_box_body}>
                     <div className={styles.CsFaq_box_body_header}>
                         <div><Link to="/user/csMain">릴리뷰 문의센터</Link></div>
-                        <div className={styles.CsFaq_box_body_header_icon}><BiChevronLeft /></div>
+                        <div className={styles.CsFaq_box_body_header_icon}><BiChevronRight /></div>
                         <div>자주 묻는 질문</div>
                     </div>
                     <div className={styles.CsFaq_box_box_body2}>

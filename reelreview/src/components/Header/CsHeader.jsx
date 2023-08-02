@@ -14,7 +14,6 @@ export default function CsHeader() {
   const [profileData, setProfileData] = useState({});
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [userName, setUserName] = useState('');
   const [cookies] = useCookies(['token']);
 
   const handleClick = () => {
