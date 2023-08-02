@@ -1,6 +1,6 @@
 import styles from '../../css/details/CommentDetail.module.css'
 import Header from "../../components/Header/Header";
-import LoginSuccess_header from "../../components/Header/LoginSuccess_header";
+import LoginSuccessHeader from "../../components/Header/LoginSuccessHeader";
 import {FaRegThumbsUp} from "react-icons/fa";
 import {ImBubble, ImShare2} from "react-icons/im";
 import {BsThreeDotsVertical} from "react-icons/bs";
@@ -209,7 +209,7 @@ export default function CommentDetail(props){
     },[]);
     return(
         <div className={styles.movieCollection_Wrapper}>
-            {cookies.token ? <LoginSuccess_header profileData={profileData} userData={userData} /> : <Header />}
+            {cookies.token ? <LoginSuccessHeader profileData={profileData} userData={userData} /> : <Header />}
             <div className={styles.collection_container}>
                 <section className={styles.collection_title_container}>
                     <div className={styles.commentTitle}>

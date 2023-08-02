@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Header from "../../components/Header/Header";
-import LoginSuccess_header from "../../components/Header/LoginSuccess_header";
+import LoginSuccessHeader from "../../components/Header/LoginSuccessHeader";
 import Footer from "../../components/Footer/Footer";
 import BoxOffice from "../../components/Main_Body/BoxOffice";
 import Upcomming from "../../components/Main_Body/Upcomming"
@@ -22,8 +22,9 @@ export default function MainPage() {
   const [userCd, setUserCd] = useState(null);
   const [userData, setUserData] = useState(null);
   const [profileData, setProfileData] = useState(null);
-  const {number,setNumber} = useContext(NumberContext);
+  const { number, setNumber } = useContext(NumberContext);
   setNumber(movieList.number);
+  
   // JWT 토큰
   const getMain = async (token) => {
     const requestData = {
@@ -81,7 +82,7 @@ export default function MainPage() {
 
   return (
     <div className={styles.MainPage_box}>
-      {cookies.token ? <LoginSuccess_header profileData={profileData} userData={userData} /> : <Header />}
+      {cookies.token ? <LoginSuccessHeader profileData={profileData} userData={userData} /> : <Header />}
       <div className={styles.BoxOffice_box_wrapper}>
         <div className={styles.BoxOffice_box}>
           <div className={styles.BoxOffice_box_header}>
@@ -96,7 +97,7 @@ export default function MainPage() {
         <div className={styles.DirectorMovie_box_wrapper}>
           <div className={styles.DirectorMovie_box}>
             <div className={styles.DirectorMovie_box_header}>
-              <h3> {movieList.director[0].directorName} 감독 모음</h3>
+              <h3>화제의 감독 {movieList.director[0].directorName}의 작품</h3>
             </div>
             <div className={styles.DirectorMovie_box_info}>
               <DirectorMovie movieList={movieList.director} />
@@ -109,7 +110,7 @@ export default function MainPage() {
         <div className={styles.ActorMovie_box_wrapper}>
           <div className={styles.ActorMovie_box}>
             <div className={styles.ActorMovie_box_header}>
-              <h3>화제의 배우 {movieList.actor[0].actorName} 모음</h3>
+              <h3>화제의 배우 {movieList.actor[0].actorName}의 작품</h3>
             </div>
             <div className={styles.ActorMovie_box_info}>
               <ActorMovie movieList={movieList.actor} />
@@ -122,7 +123,7 @@ export default function MainPage() {
         <div className={styles.Genre_box_wrapper}>
           <div className={styles.Genre_box}>
             <div className={styles.Genre_box_header}>
-              <h3>추천하는 {movieList.todayGenre} 모음</h3>
+              <h3>#{movieList.todayGenre}</h3>
             </div>
             <div className={styles.Genre_box_info}>
               <Genre movieList={movieList.genre} />
@@ -130,7 +131,7 @@ export default function MainPage() {
           </div>
         </div>
       )}
-      <Footer/>
+      <Footer />
     </div>
   )
 }

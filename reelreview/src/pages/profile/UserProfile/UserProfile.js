@@ -4,7 +4,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import styles from '../../../css/profile/UserProfile.module.css'
 import PFPModal from "../Modal/PFPModal";
-import LoginSuccess_header from "../../../components/Header/LoginSuccess_header";
+import LoginSuccessHeader from "../../../components/Header/LoginSuccessHeader";
 import Footer from "../../../components/Footer/Footer";
 import userPFP from '../../../img/profile/userProfile/empty_user.svg';
 import userPFPHover from '../../../img/profile/userProfile/userGear2.png'
@@ -108,7 +108,7 @@ function UserProfile() {
 
     return (
     <div className={styles.UserProfile}>
-      <LoginSuccess_header profileData={profileData} userData={userData} />
+      <LoginSuccessHeader profileData={profileData} userData={userData} />
       <div className={styles.profileContainer}>
 
             {profileData.bgImage === 'defaultBgImage' ? (

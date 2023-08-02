@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../../../css/profile/MovieToWatch.module.css'
 import Header from "../../../components/Header/Header";
-import LoginSuccess_header from "../../../components/Header/LoginSuccess_header";
+import LoginSuccessHeader from "../../../components/Header/LoginSuccessHeader";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useCookies } from 'react-cookie';
@@ -82,7 +82,7 @@ function MovieToWatch() {
   return (
     <div className={styles.movieToWatch_Wrapper}>
       {loggedIn ? (
-        <LoginSuccess_header profileData={profileData} userData={userData} />
+        <LoginSuccessHeader profileData={profileData} userData={userData} />
       ) : (
         <Header />
       )}

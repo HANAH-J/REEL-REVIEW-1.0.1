@@ -1,19 +1,58 @@
 import React, { useState, useEffect } from 'react';
-import LoginSuccess_header from "../../components/Header/LoginSuccess_header";
+import Header from "../../components/Header/Header";
+import LoginSuccessHeader from "../../components/Header/LoginSuccessHeader";
 import Footer from "../../components/Footer/Footer";
-import styles from '../../css/main/Mainpage.module.css';
 import BoxOffice from "../../components/Main_Body/BoxOffice";
 import Upcomming from "../../components/Main_Body/Upcomming"
 import ActorMovie from '../../components/Main_Body/ActorMovie';
 import DirectorMovie from '../../components/Main_Body/DirectorMovie';
 import Genre from '../../components/Main_Body/Genre';
+import styles from '../../css/main/Mainpage.module.css';
 import axios from 'axios';
+import { useCookies } from 'react-cookie';
+import { useUserStore } from '../../stores/index.ts';
+import { config } from 'react-transition-group';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function MainPage() {
-
   const [movieList, setMovieList] = useState([]); 
   const [name, setName] = useState('');
+  const navigate = useNavigate();
+  const [mainResponse, setMainResponse] = useState('');
+  const [cookies] = useCookies(['token']);
+  const { user } = useUserStore();
+
+  // JWT 토큰
+  const getMain = async(token: string) => {
+    const requestData = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    };
+    await axios.post('http://localhost:8085/api/auth/main', requestData).then((response) => {
+      setMainResponse(response.data);
+    }).catch((error) => '');
+  }
+
+  useEffect(() => {
+    const token = cookies.token;
+    if(token) getMain(token);
+    else setMainResponse('');
+  
+    // const config = {
+    //   headers: {
+    //     Authorization: `Bearer ${token}`
+    //   }
+    // };
+    // axios.get("http://localhost:8085/admin/checkadmin",config).then((response)=>{
+    //   if(response.data=true){
+
+    //   }else{
+    //     navigate('/');
+    //   }
+    // })
+  }, [cookies.token]);
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -55,7 +94,7 @@ export default function MainPage() {
     formData.append('name', name1);
 
     // 데이터 전송
-    axios.post("http://localhost:8085/api/directorSearch", formData)
+    axios.post("http://localhost:8085/api/actorSearch", formData)
       .then((response) => {
         // 요청에 대한 성공 처리
         console.log(response.data);
@@ -98,33 +137,17 @@ export default function MainPage() {
   return (
 
     <div className={styles.MainPage_box}>
-       <LoginSuccess_header /> 
-      <div className={styles.BoxOffice_box_wrapper}>
-        <div className={styles.BoxOffice_box}>
-          <div className={styles.BoxOffice_box_header}>
-            <h3>박스오피스 순위</h3>
-          </div>
-          <div className={styles.BoxOffice_box_info}>
-            <BoxOffice />
-          </div>
-        </div>
-      </div>
-      <div className={styles.Upcomming_box_wrapper}>
-        <div className={styles.Upcomming_box}>
-          <div className={styles.Upcomming_box_header}>
-            <h3>개봉예정작</h3>
-          </div>
-          <div className={styles.Upcomming_box_info}>
-            <Upcomming />
-          </div>
-        </div>
-      </div>
+      {cookies.token ? <LoginSuccessHeader /> : <Header />}
       <div className={styles.DirectorMovie_box_wrapper}>
         <div className={styles.DirectorMovie_box}>
           <div className={styles.DirectorMovie_box_header}>
-            <h3>이상용 감독 모음</h3>
+            <h3>감독 작품 검색</h3>
           </div>
           <div className={styles.DirectorMovie_box_info}>
+            <form onSubmit={handleSubmit}>
+              <input type="text" name='name' onChange={handleChange} className={styles.search_input} autoComplete='off'/>
+              <button type='submit' className={styles.search_button}>검색</button>
+            </form>
             <DirectorMovie movieList={movieList}/>
           </div>
         </div>
@@ -132,20 +155,28 @@ export default function MainPage() {
       <div className={styles.ActorMovie_box_wrapper}>
         <div className={styles.ActorMovie_box}>
           <div className={styles.ActorMovie_box_header}>
-            <h3>Margot Robbie 모음</h3>
+            <h3>배우 작품 검색</h3>
           </div>
           <div className={styles.ActorMovie_box_info}>
-            <ActorMovie movieListActor={movieListActor}/>
+          <form onSubmit={handleSubmit1}>
+              <input type="text" name1='name1' onChange={handleChange1} className={styles.search_input} autoComplete='off'/>
+              <button type='submit' className={styles.search_button}>검색</button>
+            </form>
+            <ActorMovie movieList={movieListActor}/>
           </div>
         </div>
       </div>
       <div className={styles.Genre_box_wrapper}>
         <div className={styles.Genre_box}>
           <div className={styles.Genre_box_header}>
-            <h3>요즘 핫한 애니메이션</h3>
+            <h3>장르</h3>
           </div>
           <div className={styles.Genre_box_info}>
-            <Genre movieListGenre={movieListGenre}/>
+            <form onSubmit={handleSubmit2}>
+              <input type="text" name2='name2' onChange={handleChange2} className={styles.search_input} autoComplete='off'/>
+              <button type='submit' className={styles.search_button}>검색</button>
+            </form>
+            <Genre movieList={movieListGenre}/>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styles from '../../../css/profile/UserScoreCollection.module.css'
 import Header from "../../../components/Header/Header";
-import LoginSuccess_header from "../../../components/Header/LoginSuccess_header";
+import LoginSuccessHeader from "../../../components/Header/LoginSuccessHeader";
 import { Link } from 'react-router-dom';
 import axios from "axios";
 import { useCookies } from 'react-cookie';
@@ -15,7 +15,7 @@ function UserScoreCollection() {
   const [ratings, setRatings] = useState([]);
   const [movieDetails, setMovieDetails] = useState([]);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [cookies, setCookie, removeCookie] = useCookies(['token']);
+  const [cookies] = useCookies(['token']);
   const [profileData, setProfileData] = useState({});
 
   const navigate = useNavigate();
@@ -91,7 +91,7 @@ function UserScoreCollection() {
   return (
     <div className={styles.userScoreCollection_Wrapper}>
       {loggedIn ? (
-        <LoginSuccess_header profileData={profileData} userData={userData} />
+        <LoginSuccessHeader profileData={profileData} userData={userData} />
       ) : (
         <Header />
       )}

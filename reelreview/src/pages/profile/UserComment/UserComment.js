@@ -1,6 +1,6 @@
 import React, { useState, useEffect }  from "react";
 import styles from '../../../css/profile/UserComment.module.css';
-import LoginSuccess_header from "../../../components/Header/LoginSuccess_header";
+import LoginSuccessHeader from "../../../components/Header/LoginSuccessHeader";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useCookies } from 'react-cookie';
@@ -80,7 +80,7 @@ function UserComment() {
     
     return(
       <div className={styles.userComment}>
-        <LoginSuccess_header profileData={profileData} userData={userData} />
+        <LoginSuccessHeader profileData={profileData} userData={userData} />
         <div className={styles.userComment_PageHeader}>
           <Link to="/userProfiles"><div className={styles.userComment_Header_Arrow}></div></Link>
           <div className={styles.userComment_Title}> <h2> {userData.username} 님의 코멘트</h2> </div>

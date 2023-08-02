@@ -9,7 +9,7 @@ import Detailnum4 from "../../components/details/Detail_num4";
 import Detailnum5 from "../../components/details/Detail_num5";
 import Detailnum6 from "../../components/details/Detail_num6";
 import Footer from "../../components/Footer/Footer";
-import LoginSuccess_header from "../../components/Header/LoginSuccess_header";
+import LoginSuccessHeader from "../../components/Header/LoginSuccessHeader";
 import LoginSuccess_header_noneBackground from "../../components/Header/LoginSuccess_header_noneBackground";
 import { useEffect, useState } from "react";
 import { useCookies } from 'react-cookie';
@@ -54,7 +54,7 @@ function Details() {
             if (loggedIn) {
               return (
                 <div style={{ ...headerStyle, ...transitionStyle }}>
-                  <LoginSuccess_header profileData={profileData} userData={userData} />
+                  <LoginSuccessHeader profileData={profileData} userData={userData} />
                 </div>
               );
             } else {

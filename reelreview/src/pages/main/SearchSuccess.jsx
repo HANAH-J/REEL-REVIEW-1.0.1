@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import LoginSuccess_header from '../../components/Header/LoginSuccess_header'
+import LoginSuccessHeader from '../../components/Header/LoginSuccessHeader'
 import Footer from '../../components/Footer/Footer'
 import styles from '../../css/main/Mainpage.module.css'
 import axios from 'axios';
@@ -65,7 +65,7 @@ export default function SearchSuccess() {
     return (
         <div className={styles.SearchSuccess_wrapper}>
             <div>
-                {cookies.token ? <LoginSuccess_header profileData={profileData} userData={userData} handleLogout={handleLogout} /> : <Header />}
+                {cookies.token ? <LoginSuccessHeader profileData={profileData} userData={userData} handleLogout={handleLogout} /> : <Header />}
             </div>
             <div className={styles.SearchSuccess_result_wrapper}>
                 <div className={styles.SearchSuccess_result_boxing}>
