@@ -9,6 +9,10 @@ import logo from '../../img/Header/Reel_Review_logo.png';
 
 export default function Header() {
 
+    // 메인 로고 클릭 이벤트
+    const reload = () => {
+        window.location.href = 'http://localhost:3000';
+    }
     const [movieList, setMovieList] = useState([]);
     const [name, setName] = useState('');
 
@@ -59,8 +63,8 @@ export default function Header() {
     return (
         <nav className={styles2.topNav}>
             <div className={styles2.navWrapper}>
-                <ul className={styles2.leftNav}>
-                    <Link to="/"><img src={logo} className={styles2.logoSection} /></Link>
+                <ul className={styles2.leftNav} onClick={reload}>
+                    <img src={logo} className={styles2.logoSection} />
                 </ul>
                 <ul className={styles2.rightNav}>
                     <li className={styles2.findMovies}>
