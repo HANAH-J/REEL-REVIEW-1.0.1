@@ -25,9 +25,9 @@ function UserProfile() {
         mobile: {breakpoint: { max: 464, min: 0 },items: 1}
     };
 
-    const userMovieToWatch = () => { navigate('/MovieToWatch'); }
-    const userComment = () => { navigate('/userComment'); }
-    const userScoreCollection = () => { navigate('/UserScoreCollection'); }
+    const userMovieToWatch = () => { navigate('/user/MovieToWatch'); }
+    const userComment = () => { navigate('/user/userComment'); }
+    const userScoreCollection = () => { navigate('/user/UserScoreCollection'); }
     const goToMain = () => { navigate('/'); }
 
     const goToMovie = (movieDetails) => {

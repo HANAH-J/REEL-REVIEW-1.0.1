@@ -96,7 +96,7 @@ function UserScoreCollection() {
         <Header />
       )}
       <div className={styles.userScoreCollection_Header}>
-        <Link to="/userProfiles"><div className={styles.userScoreCollection_Header_Arrow}></div></Link>
+        <Link to="/user/userProfiles"><div className={styles.userScoreCollection_Header_Arrow}></div></Link>
         <div className={styles.userScoreCollection_Wrapper_Title}> <h2>평가한 작품들</h2> </div>
       </div>
     

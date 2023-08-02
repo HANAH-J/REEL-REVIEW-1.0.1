@@ -80,7 +80,7 @@ function CsQna() {
 
 
     axios.post('http://localhost:8085/api/board/writepro', data).then((response) => {
-      alert('작성 완료!!'); navigate('/CsBoard');
+      alert('작성 완료!!'); navigate('/user/CsBoard');
     }).catch((error) => {
       console.log('React-axios : 데이터 전송 실패');
     })
@@ -95,7 +95,7 @@ function CsQna() {
         <div className={styles.CsQna_box_body}>
           <div className={styles.CsQna_box_body_header}>
             <div>
-              <Link to="/csMain">
+              <Link to="/user/csMain">
                 <a>릴리뷰 문의센터</a>
               </Link>
             </div>

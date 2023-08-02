@@ -87,7 +87,7 @@ function MovieToWatch() {
         <Header />
       )}
       <div className={styles.movieToWatch_Header}>
-        <Link to="/userProfiles"><div className={styles.movieToWatch_Header_Arrow}></div></Link>
+        <Link to="/user/userProfiles"><div className={styles.movieToWatch_Header_Arrow}></div></Link>
         <div className={styles.movieToWatch_Wrapper_Title}> <h2>보고싶어요</h2> </div>
       </div>
     

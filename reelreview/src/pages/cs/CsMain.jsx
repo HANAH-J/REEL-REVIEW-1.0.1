@@ -15,10 +15,10 @@ export default function CsMain(){
           <div className={styles.CsMain_body}>
             <div className={styles.CsMain_body_inbox}>
               <div className={styles.CsMain_body_faq}>
-                <Link to="/CsFaq"><strong>자주 묻는 질문</strong></Link>
+                <Link to="/user/CsFaq"><strong>자주 묻는 질문</strong></Link>
               </div>
               <div className={styles.CsMain_body_qna}>
-                <Link to="/CsQna"><strong>문의등록</strong></Link>
+                <Link to="/user/CsQna"><strong>문의등록</strong></Link>
               </div>
             </div>
           </div>

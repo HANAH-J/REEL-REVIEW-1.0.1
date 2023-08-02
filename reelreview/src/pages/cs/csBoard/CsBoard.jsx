@@ -118,7 +118,7 @@ function CsBoard() {
                                         <tr key={data.boardCd}>
                                             <td>{data.boardCd}</td>
                                             <td className={styles.CsBoard_hover}>
-                                                <Link to={`/CsBoardDetail/${data.boardCd}`}>
+                                                <Link to={`/user/CsBoardDetail/${data.boardCd}`}>
                                                     {data.title}
                                                 </Link>
                                             </td>

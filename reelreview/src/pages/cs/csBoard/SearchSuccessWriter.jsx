@@ -105,7 +105,7 @@ export default function SearchSuccessWriter() {
                                             <tr key={board.boardCd}>
                                                 <td>{board.boardCd}</td>
                                                 <td className={styles.CsBoard_hover}>
-                                                    <Link to={`/CsBoardDetail/${board.boardCd}`}>{board.title}</Link>
+                                                    <Link to={`/user/CsBoardDetail/${board.boardCd}`}>{board.title}</Link>
                                                 </td>
                                                 <td>{formattedDate}</td>
                                                 <td>{board.writer}</td>

@@ -82,7 +82,7 @@ function UserComment() {
       <div className={styles.userComment}>
         <LoginSuccessHeader profileData={profileData} userData={userData} />
         <div className={styles.userComment_PageHeader}>
-          <Link to="/userProfiles"><div className={styles.userComment_Header_Arrow}></div></Link>
+          <Link to="/user/userProfiles"><div className={styles.userComment_Header_Arrow}></div></Link>
           <div className={styles.userComment_Title}> <h2> {userData.username} 님의 코멘트</h2> </div>
         </div>
 
@@ -118,7 +118,7 @@ function UserComment() {
                   <ul className={styles.userComment_commentContainer}>
                     <li className={styles.userComment_movieTitle} onClick={() => goToMovie(movieDetails[index])}> {movieDetails[index].title} </li>
                     <li className={styles.userComment_commentContent}>
-                      <Link to="/commentDetail" state={{"comment":comment}}>  
+                      <Link to="/user/commentDetail" state={{"comment":comment}}>  
                         {comment.commentContent}
                       </Link>
                     </li>

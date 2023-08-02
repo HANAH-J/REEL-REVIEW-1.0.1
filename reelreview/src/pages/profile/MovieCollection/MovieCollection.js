@@ -18,7 +18,7 @@ function MovieCollection() {
     <div className={styles.movieCollection_Wrapper}>
       <Header/>
       <div className={styles.movieCollection_Header}>
-        <Link to="/userProfiles"><div className={styles.movieCollection_Header_Arrow}></div></Link>
+        <Link to="/user/userProfiles"><div className={styles.movieCollection_Header_Arrow}></div></Link>
         <div className={styles.movieCollection_Wrapper_Title}> <h2>[NAME]님의 컬렉션</h2> </div>
       </div>
 

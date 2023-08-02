@@ -37,7 +37,7 @@ function CsFaq() {
             <div className={styles.CsFaq_box_wrapper}>
                 <div className={styles.CsFaq_box_body}>
                     <div className={styles.CsFaq_box_body_header}>
-                        <div><Link to="/csMain">릴리뷰 문의센터</Link></div>
+                        <div><Link to="/user/csMain">릴리뷰 문의센터</Link></div>
                         <div className={styles.CsFaq_box_body_header_icon}><BiChevronLeft /></div>
                         <div>자주 묻는 질문</div>
                     </div>

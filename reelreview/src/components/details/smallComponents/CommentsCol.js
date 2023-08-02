@@ -76,7 +76,7 @@ function CommentsCol(props) {
                     </div>
                 </div>
                 <div className={styles.cardMiddle}>
-                    <Link to="/commentDetail" state={{"comment":comment}}>  
+                    <Link to="/user/commentDetail" state={{"comment":comment}}>  
                         <div className={styles.comment}>
                             <p>
                                 {comment.commentContent} {/* cCommentcount로 넣어주면 못불러옴 */}

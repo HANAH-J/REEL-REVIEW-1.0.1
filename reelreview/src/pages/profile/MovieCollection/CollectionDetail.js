@@ -8,7 +8,7 @@ function CollectionDetail() {
         <div className={styles.collectionDetail_Wrapper}>
           <Header/>
           <div className={styles.collectionDetail_Header}>
-            <Link to="/userProfiles"><div className={styles.collectionDetail_Header_Arrow}></div></Link>
+            <Link to="/user/userProfiles"><div className={styles.collectionDetail_Header_Arrow}></div></Link>
             <div className={styles.collectionDetail_Wrapper_Title}> <h2> [CollectionTitle] </h2> </div>
           </div>
 
