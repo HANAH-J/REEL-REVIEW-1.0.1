@@ -1,56 +1,47 @@
 .wrapper{
     background-color: white;
     width: 100%;
-    height: 100%;
+    height: 300px;
 }
-
 .topHead{
-    width: 100%;
+
+    width: 1320px;
     margin: 30px auto;
 }
-
 .topHead h2{
     font-size: 24px;
     font-family: 'Noto Sans Kr';
     font-weight: 700;
     line-height: 28px;
 }
-
 .cont{
-    width: 100%;
-    height: 100%;
+    width: 1320px;
     margin-top: 30px;
+    
     margin: 0 auto;
 }
-
 .people1{
     width: 100%;
 }
-
 .people1_1{
     width: 23%;
-    height: 100%;
     float: left;
     margin: 10px;
     
 }
-
 .people_link{
     width: 100%;
     height: 76px;
 }
-
 .people_img{
   float: left;
 }
-
 .people_img_img{
     width: 56px;
     height: 56px;
     object-fit: cover;
     border-radius: 5px;
 }
-
 .people_details{
     width: 220px;
     height: 60px;
@@ -59,7 +50,6 @@
     border-bottom: 1px solid rgb(240, 240, 240);
     
 }
-
 .people_details h5{
     font-family: 'Noto Sans Kr';
     font-weight: 400;
@@ -69,7 +59,6 @@
     letter-spacing: 0px;
     margin-top: 5px;
 }
-
 .people_details p{
     font-family: 'Noto Sans Kr';
     font-weight: 400;

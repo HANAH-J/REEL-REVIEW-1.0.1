@@ -5,36 +5,52 @@
     width: 100%;
     height: 750px;
     background-color: #f8f8f8;
+
 }
 
 .smallSizeWrapper {
-    width: 100%;
+    width: 1320px;
     display: flex;
     margin: 0 auto;
+
 }
 
 .leftSide {
+
     width: 20%;
     padding-right: 20px;
+
 }
 
 .leftTop {
     position: relative;
+    /* 이미지를 포함한 div를 상대적으로 배치합니다. */
     overflow: hidden;
+    /* div 내부의 넘치는 이미지 부분을 숨깁니다. */
+
+
 }
 
 .leftTop .image {
     width: 100%;
+    /* 이미지를 포함한 div의 가로 폭을 100%로 설정합니다. */
     padding-bottom: 150%;
+    /* 이미지가 포함된 div의 높이를 이미지 가로 폭의 150%로 설정합니다. */
     position: relative;
+    /* 이미지를 포함한 div를 상대적으로 배치합니다. */
 }
 
 .leftTop img {
     position: absolute;
+    /* 이미지를 절대적으로 배치합니다. */
     top: 0;
+    /* 위에서부터 위치를 조정합니다. */
     left: 0;
+    /* 왼쪽에서부터 위치를 조정합니다. */
     width: 100%;
+    /* 이미지의 가로 폭을 100%로 설정하여 div에 맞춥니다. */
     height: auto;
+    /* 이미지의 높이는 자동으로 조정됩니다. */
 }
 
 .leftBottomTypo {
@@ -87,7 +103,11 @@
     font-weight: 600;
     color: #8c8c8c;
     font-size: 12px;
+
 }
+
+
+
 
 
 
@@ -102,13 +122,15 @@
     height: 100px;
     border-bottom: 1px solid dimgray;
     overflow: hidden;
+
 }
 
 .right_top_left {
     float: left;
+
 }
 
-.right_top_left_p {
+.right_top_left p {
     font-size: 12px;
     margin-left: 10px;
     font-family: 'Apple SD Gothic Neo';
@@ -125,6 +147,8 @@
 
 }
 
+.right_bottom {}
+
 .right_top_left_stars {
     margin-left: 0px;
 }
@@ -135,11 +159,13 @@
 
 .right_top_middle {
     flex-grow: 1;
+
 }
 
 .right_top_middle_avg {
     font-size: 36px;
     line-height: 42px;
+
     font-family: 'Apple SD Gothic Neo';
     color: dimgray;
     letter-spacing: 0px;
@@ -160,22 +186,26 @@
 .right_top_right {
     display: flex;
     align-items: center;
+
     margin-left: 33px;
     margin-top: 10px;
+
     font-weight: 700;
     color: #8c8c8c;
 }
 
-.right_top_right_p {
+.right_top_right p {
     font-size: 12px;
     font-family: 'Apple SD Gothic Neo';
     color: #8c8c8c;
+
     margin-top: 5px;
 }
 
 .right_top_right_wantToSee {
     float: left;
     margin-right: 29px;
+
     cursor: pointer;
 }
 
@@ -190,12 +220,15 @@
 
 .right_top_right_wantToSee p {
     margin-left: -5px;
+
+
 }
 
 .right_top_right_comment {
     float: left;
     margin-right: 40px;
     cursor: pointer;
+
 }
 
 .right_top_right_comment :hover {
@@ -219,21 +252,23 @@
     margin-right: 40px;
 }
 
-
+/* 오른쪽 상세 내용 */
 
 .right_bottom {
     margin-top: 30px;
     width: 100%;
     height: 500px;
+
+
 }
 
 .right_bottom p {
-    color: #8c8c8c;
-    font-family: 'Apple SD Gothic Neo';
-    font-size: 13.5px;
-    font-weight: bold;
-    line-height: 0.7;
     letter-spacing: 0px;
+    font-family: 'Apple SD Gothic Neo';
+    font-size: 12px;
+    font-weight: 700;
+    color: #8c8c8c;
+    line-height: 22px;
     white-space: pre-wrap;
 }
 
@@ -244,12 +279,16 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent black background */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
+    /* Ensure the modal is on top of other content */
+
 }
 
+/* Step 5: Add styles for the modal container */
 .modal {
     width: 450px;
     height: 450px;
@@ -258,10 +297,15 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     max-width: 90%;
+    /* Limit the modal's maximum width */
     position: fixed;
+    /* Keep the modal fixed on the screen */
     top: 50%;
+    /* Position the modal vertically at 50% from the top */
     left: 50%;
+    /* Position the modal horizontally at 50% from the left */
     transform: translate(-50%, -50%);
+    /* Center the modal */
     font-family: 'Noto Sans KR', sans-serif;
 }
 
@@ -299,6 +343,7 @@
     display: flex;
     bottom: 10px;
     right: 10px;
+    /* Move the button to the right */
 }
 
 .closeButton {

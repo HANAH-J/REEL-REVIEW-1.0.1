@@ -4,13 +4,11 @@
     overflow: hidden;
     height: auto;
 }
-
 .topHead{
     margin: 70px auto 0 auto;
-    width: 100%;
+    width: 1320px;
     height: 30px;
 }
-
 .topHead h2{
     font-size: 24px;
     font-family: 'Noto Sans Kr';
@@ -18,7 +16,6 @@
     line-height: 28px;
     float: left;
 }
-
 .topHead h3{
     font-size: 24px;
     font-family: 'Noto Sans Kr';
@@ -28,10 +25,9 @@
     float: left;
     margin-left: 10px;
 }
-
 .cont{
     margin: 30px auto;
-    width: 100%;
+    width: 1320px;
     height: auto;
     overflow: hidden;
 }
@@ -40,7 +36,6 @@
     float: left;
     margin: 0px 10px 10px 0px;
 }
-
 .card{
     width: 295px;
     height: 300px;
@@ -48,18 +43,15 @@
     background-color: rgb(242, 242, 242);
     border-radius: 15px;
 }
-
 .cardTop{
     border-bottom: 1px solid rgb(229, 229, 229);
     height: 57px;
 }
-
 .cardTopLeft{
     height: 56px;
     width: 180px;
     float: left;
 }
-
 .cardTopLeft p{
     height: 100%;
     display: flex;
@@ -72,7 +64,6 @@
     letter-spacing: -0.7px;
     line-height: 22px;
 }
-
 .cardImg{
     width: 32px;
     height: 32px;
@@ -81,11 +72,9 @@
     float: left;
     border-radius: 5px;
 }
-
 .cardTopRight{
     float: right;
 }
-
 .cardStars{
     background-color: rgb(255, 255, 255);
     
@@ -96,7 +85,6 @@
     padding: 0 8px;
     height: 28px;
 }
-
 .cardStars p{
     color: rgb(74, 74, 74);
     font-size: 14px;
@@ -106,25 +94,23 @@
     font-family: "Noto Sans KR",  sans-serif;
     float: right;
 }
-
 .stars{
     margin-top: 3px;
     float: left;
 }
-
 .cardMiddle{
     height: 195px;
     overflow: hidden;
 }
-
 .cardMiddle a{
     text-decoration: none;
 }
-
 .comment{
     margin: 12px 0 12px 0;
-}
 
+
+    
+}
 .comment p{
     font-size: 15px;
     font-family: "Noto Sans KR",  sans-serif;
@@ -133,6 +119,7 @@
     letter-spacing: -0.2px;
     color: black;
 }
+
 
 .cardBottom{
     height: 30px;
@@ -146,16 +133,13 @@
     margin-top: 10px;
     font-family: "Noto Sans KR",  sans-serif;
 }
-
 .cardBottom span{
     margin-right: 7px;
 }
-
 .cardBottom p{
     margin-right: 20px;
     line-height: 20px;
 }
-
 .colby{
     margin-bottom: 10px;
 }
