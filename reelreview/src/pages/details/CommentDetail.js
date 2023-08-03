@@ -256,9 +256,9 @@ export default function CommentDetail(props){
                     <h1>댓글</h1>
                 </div>
                     {cComment &&(
-                        cComment.map((item,index)=>{
+                        cComment.map((item, index)=>{
                             return(
-                              <div className={styles.commentcommentBox}>
+                              <div className={styles.commentcommentBox} key={item.ccommentId}>
                             <React.Fragment key={index}>
                             <div className={styles.ccImgBox}>
                               <div>
