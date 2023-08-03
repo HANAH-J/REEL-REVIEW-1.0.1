@@ -80,17 +80,16 @@ function App() {
               <Route path="userComment" element={<UserComment />} />
               <Route path='commentDetail' element={<CommentDetail />} />
             </Routes>
-            : (<><Alert resultMessage={'로그인이.'} navigate={navigate} />
+            : (<><Alert navigate={navigate} resultMessage={'로그인이 필요해요.'} />
               <div className={styles.modalBackground_1} style={{ backgroundColor: 'black' }} /></>)}
           />
 
           <Route path="/admin/*" element={decodedToken && decodedToken.role === 'ROLE_ADMIN'
             ? <MainPageAdmin />
-            : (<><Alert resultMessage={'접근할 수 없는 페이지입니다.'} navigate={navigate} />
+            : (<><Alert navigate={navigate} resultMessage={'접근할 수 없는 페이지입니다.'} />
               <div className={styles.modalBackground_1} style={{ backgroundColor: 'black' }} /></>)}
           />
 
-          {/* "Not Found" 페이지 */}
           <Route path="/*" element={<NotFound/>} />
         </Routes>
 

@@ -355,13 +355,13 @@ function PFPModal({ setOpenModal, userCd, userEmail, removeUser }) {
       )}
 
       {showWithdrawCompleteModal ?
-        <Alert resultMessage={'계정이 탈퇴되었습니다.'}
-          setShowWithdrawCompleteModal={setShowWithdrawCompleteModal} goMain={goMain}/> : null}
+        <Alert setShowWithdrawCompleteModal={setShowWithdrawCompleteModal} goMain={goMain}
+          resultMessage={'계정이 탈퇴되었습니다.'} /> : null}
 
       {showWithdrawFailureModal ?
-        <Alert resultMessage={`소셜 사이트에서 연동을 해제해주세요.`}
-          setShowWithdrawFailureModal={setShowWithdrawFailureModal}
-          setShowWithdrawModal={setShowWithdrawModal} /> : null}
+        <Alert setShowWithdrawFailureModal={setShowWithdrawFailureModal}
+          setShowWithdrawModal={setShowWithdrawModal}
+          resultMessage={`소셜 사이트에서 연동을 해제해주세요.`} /> : null}
 
     </div>
   );
