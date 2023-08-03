@@ -61,7 +61,8 @@ public class UserController {
     public String signOutForever(@RequestBody EmailCheckDto requestBody) {
         String userEmail = String.valueOf(requestBody.getUserEmail());
         // System.out.println("탈퇴 메일 : " + userEmail);
-        userService.updateDeleteDate(userEmail);
-        return "";
+        boolean result = userService.updateDeleteDate(userEmail);
+        if(result == true) return "true";
+        else return "false";
     }
 }

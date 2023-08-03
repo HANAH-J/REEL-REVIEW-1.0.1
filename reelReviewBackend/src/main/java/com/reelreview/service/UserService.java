@@ -8,7 +8,6 @@ import com.reelreview.domain.user.*;
 import com.reelreview.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,7 +16,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import javax.servlet.http.HttpServletRequest;
 import java.sql.Timestamp;
 import java.util.Date;
 
@@ -156,7 +154,7 @@ public class UserService {
             int randomIdx = (int) (Math.random() * charSet.length);
             refreshTokenBuilder.append(charSet[randomIdx]);
         }
-        if(refreshTokenBuilder.toString() != null) System.out.println("리프레시 토큰 생성!");
+        if (refreshTokenBuilder.toString() != null) System.out.println("리프레시 토큰 생성!");
         return refreshTokenBuilder.toString();
     }
 
@@ -265,20 +263,26 @@ public class UserService {
     }
 
     // [회원탈퇴]
-    public void updateDeleteDate(String userEmail) {
+    public boolean updateDeleteDate(String userEmail) {
         UserEntity userEntity = userRepository.findByUserEmail(userEmail);
         if (userEntity != null) {
-            userEntity.setDeleteDate(new Timestamp(System.currentTimeMillis()));    // 회원탈퇴 날짜 저장
-            userEntity.setUsername(null);
-            userEntity.setUserPassword(null);
-            userEntity.setRole(null);
-            userEntity.setProvider(null);
-            userEntity.setProviderCd(null);
-            userRepository.save(userEntity);
-            // System.out.println("회원탈퇴 완료!");
+            if (userEntity.getProvider() != null) {
+                // System.out.println("회원탈퇴 불가!");
+                return false;
+            } else {
+                userEntity.setDeleteDate(new Timestamp(System.currentTimeMillis()));    // 회원탈퇴 날짜 저장
+                userEntity.setUsername(null);
+                userEntity.setUserPassword(null);
+                userEntity.setRole(null);
+                userEntity.setProvider(null);
+                userEntity.setProviderCd(null);
+                userRepository.save(userEntity);
+                // System.out.println("회원탈퇴 완료!");
+            }
         } else {
             // System.out.println("회원을 찾을 수 없습니다!");
         }
+        return true;
     }
 
     // [프로필] userCd를 통해 userEntity 조회 (J)

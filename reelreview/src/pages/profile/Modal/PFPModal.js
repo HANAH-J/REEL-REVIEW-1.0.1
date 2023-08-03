@@ -3,6 +3,7 @@ import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import ChangePw from '../../../components/users/ChangePw';
 import SignOutAlert from "../../../components/users/SignOutAlert";
+import Alert from '../../../components/users/Alert';
 import styles from '../../../css/profile/PFPModal.module.css';
 import styles2 from '../../../css/users/Alert.module.css';
 
@@ -49,6 +50,9 @@ function PFPModal({ setOpenModal, userCd, userEmail, removeUser }) {
   // 회원탈퇴 완료 모달창
   const [showWithdrawCompleteModal, setShowWithdrawCompleteModal] = useState(false);
 
+  // 회원탈퇴 실패 모달창
+  const [showWithdrawFailureModal, setShowWithdrawFailureModal] = useState(false);
+
   // 로그아웃 로직
   const signOutHandler = () => {
     setCookies('token', '', { expires: new Date() });
@@ -67,18 +71,25 @@ function PFPModal({ setOpenModal, userCd, userEmail, removeUser }) {
 
   // 회원탈퇴
   const signOutForeverHandler = (e) => {
+    e.preventDefault();
+
     axios.post('http://localhost:8085/api/auth/signOutForever', {
       userEmail: userEmail
-    }).then(() => {
-      setShowWithdrawCompleteModal(true);
-      setCookies('token', '', { expires: new Date() });
-      removeUser();
+    }).then((result) => {
+      if (result.data === true) {
+        setShowWithdrawCompleteModal(true);
+      } else {
+        setShowWithdrawFailureModal(true);
+      }
+
     }).catch((error) => {
       console.log('데이터 전송 실패 : ', error);
     })
   };
 
   const goMain = () => {
+    setCookies('token', '', { expires: new Date() });
+    removeUser();
     window.location.href = 'http://localhost:3000';
   }
 
@@ -166,8 +177,8 @@ function PFPModal({ setOpenModal, userCd, userEmail, removeUser }) {
       },
     })
       .then(response => {
-        setShowEditPFPModal(false); 
-        setOpenModal(false); 
+        setShowEditPFPModal(false);
+        setOpenModal(false);
         window.location.reload();
       })
       .catch(error => {
@@ -183,9 +194,9 @@ function PFPModal({ setOpenModal, userCd, userEmail, removeUser }) {
       imageValue: "defaultPfImage",
     })
       .then(response => {
-        setShowEditPFPModal(false); 
-        setOpenModal(false); 
-        window.location.reload(); 
+        setShowEditPFPModal(false);
+        setOpenModal(false);
+        window.location.reload();
         //console.log("user PFP updated to default image");
       })
       .catch(error => {
@@ -219,9 +230,9 @@ function PFPModal({ setOpenModal, userCd, userEmail, removeUser }) {
       },
     })
       .then(response => {
-        setShowEditPFBModal(false); 
-        setOpenModal(false); 
-        window.location.reload(); 
+        setShowEditPFBModal(false);
+        setOpenModal(false);
+        window.location.reload();
       })
       .catch(error => {
         console.error('Error updating PFB:', error);
@@ -237,9 +248,9 @@ function PFPModal({ setOpenModal, userCd, userEmail, removeUser }) {
       imageValue: "defaultBgImage",
     })
       .then(response => {
-        setShowEditPFBModal(false); 
-        setOpenModal(false); 
-        window.location.reload(); 
+        setShowEditPFBModal(false);
+        setOpenModal(false);
+        window.location.reload();
         //console.log("user PFB updated to default image");
       })
       .catch(error => {
@@ -343,14 +354,14 @@ function PFPModal({ setOpenModal, userCd, userEmail, removeUser }) {
         </div>
       )}
 
-      {showWithdrawCompleteModal === true && (
-        <div className={styles2.forgotPw_alert3}>
-          <h2 className={styles2.alert_h2}>알림</h2>
-          <p className={styles2.alert_p}>계정이 탈퇴되었습니다.</p>
-          <hr className={styles2.user_alert_hr} />
-          <button className={styles2.alert_btn} onClick={goMain}>확인</button>
-        </div>
-      )}
+      {showWithdrawCompleteModal ?
+        <Alert resultMessage={'계정이 탈퇴되었습니다.'}
+          setShowWithdrawCompleteModal={setShowWithdrawCompleteModal} goMain={goMain}/> : null}
+
+      {showWithdrawFailureModal ?
+        <Alert resultMessage={`소셜 사이트에서 연동을 해제해주세요.`}
+          setShowWithdrawFailureModal={setShowWithdrawFailureModal}
+          setShowWithdrawModal={setShowWithdrawModal} /> : null}
 
     </div>
   );
