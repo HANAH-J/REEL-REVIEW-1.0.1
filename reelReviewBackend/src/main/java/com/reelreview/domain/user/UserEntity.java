@@ -2,7 +2,6 @@ package com.reelreview.domain.user;
 
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
