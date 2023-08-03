@@ -9,6 +9,7 @@ export default function Alert({
     setChangePasswordAlert, signOutHandler,                                 // 비밀번호 변경
     setShowWithdrawCompleteModal, goMain,                                   // 회원탈퇴
     setShowWithdrawFailureModal, setShowWithdrawModal,                      // 소셜 회원탈퇴
+    setShowNeedSignIn,                                                      // 비 로그인
     alertHeight, navigate, resultMessage }) {
 
     const confirmHandler = () => {
@@ -34,6 +35,8 @@ export default function Alert({
         } else if (typeof setShowWithdrawFailureModal === 'function') { // 소셜 회원탈퇴
             setShowWithdrawFailureModal(false);
             setShowWithdrawModal(false);
+        } else if (typeof setShowNeedSignIn === 'function') {           // 비 로그인
+            setShowNeedSignIn(false);
         } else {
             navigate('/');
         }
