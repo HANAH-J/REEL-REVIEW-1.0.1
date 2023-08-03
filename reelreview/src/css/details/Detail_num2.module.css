@@ -1,56 +1,71 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap');
 
-.wrapper{
+.wrapper {
     padding-top: 30px;
     width: 100%;
     height: 750px;
     background-color: #f8f8f8;
-    
+
 }
-.smallSizeWrapper{
+
+.smallSizeWrapper {
     width: 1320px;
     display: flex;
     margin: 0 auto;
-    
+
 }
-.leftSide{
+
+.leftSide {
 
     width: 20%;
     padding-right: 20px;
-    
+
 }
+
 .leftTop {
-  position: relative; /* 이미지를 포함한 div를 상대적으로 배치합니다. */
-  overflow: hidden; /* div 내부의 넘치는 이미지 부분을 숨깁니다. */
-  
-  
+    position: relative;
+    /* 이미지를 포함한 div를 상대적으로 배치합니다. */
+    overflow: hidden;
+    /* div 내부의 넘치는 이미지 부분을 숨깁니다. */
+
+
 }
 
 .leftTop .image {
-  width:100%; /* 이미지를 포함한 div의 가로 폭을 100%로 설정합니다. */
-  padding-bottom: 150%; /* 이미지가 포함된 div의 높이를 이미지 가로 폭의 150%로 설정합니다. */
-  position: relative; /* 이미지를 포함한 div를 상대적으로 배치합니다. */
+    width: 100%;
+    /* 이미지를 포함한 div의 가로 폭을 100%로 설정합니다. */
+    padding-bottom: 150%;
+    /* 이미지가 포함된 div의 높이를 이미지 가로 폭의 150%로 설정합니다. */
+    position: relative;
+    /* 이미지를 포함한 div를 상대적으로 배치합니다. */
 }
 
 .leftTop img {
-  position: absolute; /* 이미지를 절대적으로 배치합니다. */
-  top: 0; /* 위에서부터 위치를 조정합니다. */
-  left: 0; /* 왼쪽에서부터 위치를 조정합니다. */
-  width: 100%; /* 이미지의 가로 폭을 100%로 설정하여 div에 맞춥니다. */
-  height: auto; /* 이미지의 높이는 자동으로 조정됩니다. */
+    position: absolute;
+    /* 이미지를 절대적으로 배치합니다. */
+    top: 0;
+    /* 위에서부터 위치를 조정합니다. */
+    left: 0;
+    /* 왼쪽에서부터 위치를 조정합니다. */
+    width: 100%;
+    /* 이미지의 가로 폭을 100%로 설정하여 div에 맞춥니다. */
+    height: auto;
+    /* 이미지의 높이는 자동으로 조정됩니다. */
 }
 
-.leftBottomTypo{
+.leftBottomTypo {
     font-family: 'Apple SD Gothic Neo';
     font-weight: 700;
     color: #8c8c8c;
     font-size: 12px;
     margin-top: 30px;
 }
-.leftBottomTypo p{
+
+.leftBottomTypo p {
     margin-bottom: 10px;
 }
-.numPeople{
+
+.numPeople {
     font-family: 'Apple SD Gothic Neo';
     font-weight: 700;
     color: #8c8c8c;
@@ -59,24 +74,28 @@
     line-height: 30px;
     margin-left: 10px;
 }
-.leftBottomTypo span{
+
+.leftBottomTypo span {
     font-family: 'Apple SD Gothic Neo';
     font-weight: 700;
     color: black;
     font-size: 18px;
     float: left;
 }
-.leftBottom_chart{
+
+.leftBottom_chart {
     width: 280px;
     height: 110px;
 
 }
-.leftBottom_chartNum{
+
+.leftBottom_chartNum {
     width: 280px;
     height: 150px;
     margin-left: 40px;
 }
-.leftBottom_chartNum p{
+
+.leftBottom_chartNum p {
     float: left;
     margin-right: 48.3px;
     margin-top: 30px;
@@ -84,7 +103,7 @@
     font-weight: 600;
     color: #8c8c8c;
     font-size: 12px;
-   
+
 }
 
 
@@ -93,22 +112,25 @@
 
 
 /* 오른쪽 별점 보고싶어요등 */
-.rightSide{
-    flex-grow:1;
-    margin-left: 20px;   
+.rightSide {
+    flex-grow: 1;
+    margin-left: 20px;
 }
-.right_top{
+
+.right_top {
     width: 100%;
     height: 100px;
     border-bottom: 1px solid dimgray;
     overflow: hidden;
-    
+
 }
-.right_top_left{
+
+.right_top_left {
     float: left;
-    
+
 }
-.right_top_left p{
+
+.right_top_left p {
     font-size: 12px;
     margin-left: 10px;
     font-family: 'Apple SD Gothic Neo';
@@ -116,30 +138,34 @@
     color: #8c8c8c;
 }
 
-.right_top_middle{
+.right_top_middle {
     float: left;
 }
-.right_top_right{
+
+.right_top_right {
     float: right;
-    
-}
-.right_bottom{
-  
-}
-.right_top_left_stars{
-    margin-left: 0px;
-}
-.rating_result{
-    padding-top: 10px;
-}
-.right_top_middle{
-    flex-grow:1;
 
 }
-.right_top_middle_avg{
+
+.right_bottom {}
+
+.right_top_left_stars {
+    margin-left: 0px;
+}
+
+.rating_result {
+    padding-top: 10px;
+}
+
+.right_top_middle {
+    flex-grow: 1;
+
+}
+
+.right_top_middle_avg {
     font-size: 36px;
     line-height: 42px;
-    
+
     font-family: 'Apple SD Gothic Neo';
     color: dimgray;
     letter-spacing: 0px;
@@ -147,7 +173,8 @@
     margin-left: 120px;
     margin-top: 10px;
 }
-.right_top_middle_avg_typo{
+
+.right_top_middle_avg_typo {
     font-size: 12px;
     margin-left: 103px;
     margin-top: 10px;
@@ -156,75 +183,86 @@
     color: #8c8c8c;
 }
 
-.right_top_right{
+.right_top_right {
     display: flex;
     align-items: center;
-    
+
     margin-left: 33px;
     margin-top: 10px;
-    
+
     font-weight: 700;
     color: #8c8c8c;
 }
-.right_top_right p{
+
+.right_top_right p {
     font-size: 12px;
     font-family: 'Apple SD Gothic Neo';
     color: #8c8c8c;
- 
+
     margin-top: 5px;
 }
-.right_top_right_wantToSee{
+
+.right_top_right_wantToSee {
     float: left;
     margin-right: 29px;
 
     cursor: pointer;
 }
+
 .wantToSee_icon {
-    transition: color 0.5s; 
-  }
-.wantToSee_icon_hovered {
-    color: orange; 
-    cursor: pointer;
-  }
-.right_top_right_wantToSee p{
-    margin-left: -5px;
-    
-    
+    transition: color 0.5s;
 }
-.right_top_right_comment{
+
+.wantToSee_icon_hovered {
+    color: orange;
+    cursor: pointer;
+}
+
+.right_top_right_wantToSee p {
+    margin-left: -5px;
+
+
+}
+
+.right_top_right_comment {
     float: left;
     margin-right: 40px;
     cursor: pointer;
-    
+
 }
-.right_top_right_comment :hover{
+
+.right_top_right_comment :hover {
     transition: color 1s;
     cursor: pointer;
     color: orange;
 }
+
 .wantToSee_icon_hovered {
-    color: orange; 
+    color: orange;
     cursor: pointer;
-  }
-.right_top_right_watching{
+}
+
+.right_top_right_watching {
     float: left;
     margin-right: 40px;
 }
-.right_top_right_more{
+
+.right_top_right_more {
     float: left;
     margin-right: 40px;
 }
 
 /* 오른쪽 상세 내용 */
 
-.right_bottom{
+.right_bottom {
     margin-top: 30px;
     width: 100%;
     height: 500px;
-    
-  
+
+
 }
-.right_bottom p{
+
+.right_bottom p {
     letter-spacing: 0px;
     font-family: 'Apple SD Gothic Neo';
     font-size: 12px;
@@ -240,64 +278,78 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Semi-transparent black background */
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; /* Ensure the modal is on top of other content */
+    z-index: 9999;
+    /* Ensure the modal is on top of other content */
 
-  }
-  
-  /* Step 5: Add styles for the modal container */
-  .modal {
-    background-color: #fff;
+}
+
+/* Step 5: Add styles for the modal container */
+.modal {
+    width: 450px;
+    height: 450px;
+    background-color: #ffffff;
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    max-width: 90%; /* Limit the modal's maximum width */
-    position: fixed; /* Keep the modal fixed on the screen */
-    top: 50%; /* Position the modal vertically at 50% from the top */
-    left: 50%; /* Position the modal horizontally at 50% from the left */
-    transform: translate(-50%, -50%); /* Center the modal */
-  }
-  .modalContent {
+    max-width: 90%;
+    /* Limit the modal's maximum width */
+    position: fixed;
+    /* Keep the modal fixed on the screen */
+    top: 50%;
+    /* Position the modal vertically at 50% from the top */
+    left: 50%;
+    /* Position the modal horizontally at 50% from the left */
+    transform: translate(-50%, -50%);
+    /* Center the modal */
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.modalContent {
     text-align: center;
-  }
-  
-  .modalContent h2 {
+}
+
+.modalContent h2 {
     margin-bottom: 10px;
     font-size: 20px;
     text-align: left;
-  }
-  
-  .modalContent form {
+}
+
+.modalContent form {
     display: flex;
     flex-direction: column;
     align-items: center;
-  }
-  
-  .modalContent textarea {
+}
+
+.modalContent textarea {
+    border: none;
+    outline: none;
     width: 100%;
-    height: 500px;
-    max-width: 400px;
+    height: 340px;
+    padding: 5px;
     margin-bottom: 40px;
     resize: vertical;
-    padding: 5px;
-    border: none;
     resize: none;
-  }
-  
-  .submitButtonContainer {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-size: 17px;
+}
+
+.submitButtonContainer {
     position: absolute;
     display: flex;
     bottom: 10px;
-    right: 10px; /* Move the button to the right */
-  }
-  
-  .closeButton {
+    right: 10px;
+    /* Move the button to the right */
+}
+
+.closeButton {
     display: flex;
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     width: 30px;
     height: 30px;
@@ -309,16 +361,18 @@
     color: #555;
     font-size: 20px;
     cursor: pointer;
-    
-  }
-  
-  .submitButton {
-    background-color: #007bff;
-    color: #fff;
+}
+
+.submitButton {
     border: none;
-    padding: 8px 20px;
-    cursor: pointer;
     border-radius: 4px;
-  }
-  
-  
+    width: 100px;
+    position: relative;
+    bottom: 10px;
+    right: 10px;
+    padding: 8px 20px;
+    background-color: #ff2f6e;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Noto Sans KR', sans-serif;
+}

@@ -383,13 +383,12 @@ function Detailnum2(props) {
                 <textarea
                   value={commentValue}
                   onChange={handleCommentChange}
-                  rows={4}
-                  cols={50}
+                  placeholder='이 작품에 대한 생각을 자유롭게 표현해주세요.'
                 />
                 <div className={styles.submitButtonContainer}>
 
                   <button type="submit" className={styles.submitButton} onClick={sendFormData}>
-                    작성하기
+                    저장
                   </button>
                 </div>
               </form>
