@@ -93,7 +93,7 @@ function UserComment() {
           </div>
         ) : (
           comments.map((comment, index) => (
-            <div className={styles.userComment_container}>
+            <div className={styles.userComment_container} key={comment.commentId}>
               <ul className={styles.userComment_movie}>
                 <ul className={styles.userComment_movieHeader}>
                   <li>
