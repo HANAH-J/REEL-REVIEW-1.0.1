@@ -126,7 +126,7 @@ export default function BoxOffice() {
           </div>
           <div className={styles.BoxOffice_bottoms}>
             <h3>평균 ★ : {item.vote_average}</h3>
-            <h3>예매율 : {item.salesShare}% 누적관객 : {item.audiAcc} 만명</h3>
+            <h3>예매율 : {item.salesShare}% · 누적관객 : {item.audiAcc} 만명</h3>
             <h3></h3>
           </div>
         </div>

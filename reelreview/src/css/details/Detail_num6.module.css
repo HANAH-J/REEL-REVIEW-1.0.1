@@ -99,7 +99,7 @@
 .similar_col_img img{
     width: 200px;
     height: 294px;
-    border-radius: 10px;
+    border-radius: 5px;
     object-fit: cover;
 }
 .similar_col_title{

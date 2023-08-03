@@ -108,7 +108,7 @@ export default function Genre(props) {
               </div>
               <div className={styles.Genre_bottom}>
                 <h3>{item.title}</h3>
-                <h3>평점 : {item.vote_average}</h3>
+                <h3 className={styles.Genre_bottom_h3}>평점 : {item.vote_average}</h3>
               </div>
             </div>
           ))}
