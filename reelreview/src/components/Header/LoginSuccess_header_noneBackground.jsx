@@ -42,7 +42,6 @@ export default function LoginSuccess_header_noneBackground({ profileData, userDa
 
     axios.post("http://localhost:8085/api/movieSearch", formData)
       .then((response) => {
-        console.log(response.data);
         setMovieList(response.data);
         navigate('/searchSuccess', { state: { movieList: response.data, searchedName: name } });
       })

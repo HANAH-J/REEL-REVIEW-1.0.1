@@ -41,7 +41,6 @@ function CsBoardDetail() {
       setLoggedIn(true);
       setLoggedInToken(token);
       fetchUserData(token); // 토큰이 유효하다면 사용자 데이터를 가져오는 함수 호출
-      console.log(token);
     } else {
       setLoggedIn(false);
     }
@@ -72,7 +71,6 @@ function CsBoardDetail() {
 
         setUserData(userDTO);
         setProfileData(profileDTO);
-        console.log(userDTO.username + ' is logged in');
       })
       .catch(error => {
         console.error('Error fetching data:', error);
@@ -85,7 +83,6 @@ function CsBoardDetail() {
       axios
         .get(`http://localhost:8085/api/board/delete`, { params: { boardCd: boardCd } })
         .then((response) => {
-          console.log('글 삭제 성공');
           window.alert('게시글이 삭제되었습니다');
           // Optionally, you can navigate to a different page after successful deletion
           navigate('/CsBoard');
@@ -109,7 +106,6 @@ function CsBoardDetail() {
     axios
       .post('http://localhost:8085/api/board/addComment', data)
       .then((response) => {
-        console.log('댓글 데이터 전송 성공');
         // 전송 성공 시, 받아온 댓글 데이터를 상태에 저장
         fetchData();
         setCommentValue('');
@@ -129,7 +125,6 @@ function CsBoardDetail() {
       .get(`http://localhost:8085/api/board/boardList`, { params: { boardCd: boardCd } })
       .then((response) => {
         setBoardData(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.log('데이터 가져오기 실패');
@@ -140,7 +135,6 @@ function CsBoardDetail() {
       .then((response) => {
         setCommentContent(response.data);
         setCommentWriter(response.data);
-        console.log(response.data);
       })
       .catch((error) => {
         console.log('댓글 데이터 가져오기 실패');

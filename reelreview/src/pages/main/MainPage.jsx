@@ -51,7 +51,6 @@ export default function MainPage() {
         };
         setUserData(userDTO);
         setProfileData(profileDTO);
-        console.log(userDTO.username + ' is logged in');
       })
       .catch((error) => '');
   }
@@ -67,13 +66,10 @@ export default function MainPage() {
   useEffect(() => {
     axios.post("http://localhost:8085/api/directorNactorNgenreSearchByDate")
       .then((response) => {
-        // 요청에 대한 성공 처리
-        console.log(response.data);
         setMovieList(response.data);
 
       })
       .catch((error) => {
-        // 요청에 대한 실패 처리
         console.error(error);
       });
   }, [])

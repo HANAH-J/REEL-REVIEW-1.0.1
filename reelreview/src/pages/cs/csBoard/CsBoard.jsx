@@ -32,7 +32,6 @@ function CsBoard() {
             }
           })
           .then((response) => {
-            console.log(response.data);
             const sortedBoardList = response.data.sort((a, b) => b.boardCd - a.boardCd);
             setBoardList(response.data);
             navigate('/searchSuccessWriter', { state: { boardList: response.data, searchedName: boardWriter } });

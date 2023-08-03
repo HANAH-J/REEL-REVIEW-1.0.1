@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 function MovieCollection() {
   
   const navigate = useNavigate();
-  console.log('유저 무비컬렉션');
 
   const collection_Detail = () => {
     navigate('/collection/:collectionCd');

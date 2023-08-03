@@ -51,7 +51,6 @@ export default function LoginSuccess_header({ profileData, userData }) {
 
     axios.post("http://localhost:8085/api/movieSearch", formData)
       .then((response) => {
-        console.log(response.data);
         setMovieList(response.data);
         navigate('/searchSuccess', { state: { movieList: response.data, searchedName: name } });
       })

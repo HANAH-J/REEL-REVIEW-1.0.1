@@ -24,34 +24,18 @@ export default function MainPage() {
   const { user } = useUserStore();
 
   // JWT 토큰
-  const getMain = async(token: string) => {
+  const getMain = async(token) => {
     const requestData = {
       headers: {
         Authorization: `Bearer ${token}`
       }
     };
-    await axios.post('http://localhost:8085/api/auth/main', requestData).then((response) => {
-      setMainResponse(response.data);
-    }).catch((error) => '');
   }
 
   useEffect(() => {
     const token = cookies.token;
     if(token) getMain(token);
     else setMainResponse('');
-  
-    // const config = {
-    //   headers: {
-    //     Authorization: `Bearer ${token}`
-    //   }
-    // };
-    // axios.get("http://localhost:8085/admin/checkadmin",config).then((response)=>{
-    //   if(response.data=true){
-
-    //   }else{
-    //     navigate('/');
-    //   }
-    // })
   }, [cookies.token]);
 
   const handleChange = (event) => {
@@ -70,7 +54,6 @@ export default function MainPage() {
     axios.post("http://localhost:8085/api/directorSearch", formData)
       .then((response) => {
         // 요청에 대한 성공 처리
-        console.log(response.data);
         setMovieList(response.data);
         // 받은 데이터에 대한 추가 처리
       })
@@ -97,7 +80,6 @@ export default function MainPage() {
     axios.post("http://localhost:8085/api/actorSearch", formData)
       .then((response) => {
         // 요청에 대한 성공 처리
-        console.log(response.data);
         setMovieListActor(response.data);
         // 받은 데이터에 대한 추가 처리
       })
@@ -124,7 +106,6 @@ export default function MainPage() {
     axios.post("http://localhost:8085/api/genreSearch", formData)
       .then((response) => {
         // 요청에 대한 성공 처리
-        console.log(response.data);
         setMovieListGenre(response.data);
         // 받은 데이터에 대한 추가 처리
       })

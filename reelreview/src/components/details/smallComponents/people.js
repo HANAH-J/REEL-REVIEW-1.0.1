@@ -5,7 +5,6 @@ import styles from "../../../css/details/Detail_num3.module.css";
 function MoviePeople(props) {
     const castData = props.castData || [];
     const IMG_BASE_URL = "https://image.tmdb.org/t/p/original/";
-    console.log(castData);
     return (
         <div className={styles.people1}>
             {castData.map((cast, index) => (

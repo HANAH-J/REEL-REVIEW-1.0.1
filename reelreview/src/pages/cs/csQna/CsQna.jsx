@@ -31,7 +31,6 @@ function CsQna() {
     if (token) {
       setLoggedIn(true);
       fetchUserData(token); // 토큰이 유효하다면 사용자 데이터를 가져오는 함수 호출
-      console.log(token);
     } else {
       setLoggedIn(false);
     }
@@ -62,7 +61,6 @@ function CsQna() {
 
         setUserData(userDTO);
         setProfileData(profileDTO);
-        console.log(userDTO.username + ' is logged in');
       })
       .catch(error => {
         console.error('Error fetching data:', error);

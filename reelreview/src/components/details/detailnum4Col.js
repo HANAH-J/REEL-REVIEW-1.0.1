@@ -13,8 +13,6 @@ import axios from 'axios';
 function CommentsCol(props) {
     const comment = props.comment;
     const userCd = comment.userCd;
-    console.log(comment);
-    console.log(userCd);
 
     const [userData,setUserData] = useState([]);
     useEffect(()=>{

@@ -100,7 +100,6 @@ export default function BoxOffice() {
     axios.get("http://localhost:8085/api/popular_movielist").then((response)=>
     {
       setBoxofficeList(response.data);
-      console.log(response.data);
       
     }).catch((error)=>{console.log(error)})
      

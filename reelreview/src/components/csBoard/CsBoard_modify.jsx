@@ -45,7 +45,6 @@ export default function CsBoard_modify() {
         axios
             .post(`http://localhost:8085/api/board/update/${boardCd}`, data)
             .then((response) => {
-                console.log('게시글 수정 성공');
                 window.alert('게시글 수정 완료');
                 // 수정이 완료되면 게시판 세부 페이지로 이동
                 navigate(`/CsBoardDetail/${boardCd}`);

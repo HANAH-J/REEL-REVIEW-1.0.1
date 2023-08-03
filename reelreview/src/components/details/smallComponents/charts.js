@@ -3,7 +3,6 @@ import { BarChart, Bar, ResponsiveContainer, XAxis } from 'recharts';
 
 export default function Charts(props) {
   const data = props.ratingData; // ratingData prop을 바로 사용합니다
-  console.log(data);
   
   const rateCountMap = {};
   
