@@ -23,7 +23,6 @@ export default function MainPage() {
   const [userData, setUserData] = useState(null);
   const [profileData, setProfileData] = useState(null);
   const { number, setNumber } = useContext(NumberContext);
-  setNumber(movieList.number);
   
   // JWT 토큰
   const getMain = async (token) => {
@@ -62,6 +61,7 @@ export default function MainPage() {
     if (cookies.token) {
       getMain(cookies.token);
     }
+    setNumber(movieList.number);
 
   }, [cookies.token]);
   useEffect(() => {
