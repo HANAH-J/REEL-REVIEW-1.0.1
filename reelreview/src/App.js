@@ -1,6 +1,6 @@
+import React, { useEffect, useState } from "react";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import MainPage from "./pages/main/MainPage";
-import "./App.css";
-import { Route, Routes } from "react-router-dom";
 import Details from "./pages/details/Details";
 import UserProfile from './pages/profile/UserProfile/UserProfile';
 import UserScoreCollection from './pages/profile/UserScoreCollection/UserScoreCollection';
@@ -21,16 +21,19 @@ import SearchSuccess from "./pages/main/SearchSuccess";
 import SearchSuccessWriter from "./pages/cs/csBoard/SearchSuccessWriter";
 import Imagefileshow from "./components/csBoard/Imagefileshow";
 import NumberContext from "./pages/details/NumberContext";
-import { useState } from "react";
 import { useCookies } from 'react-cookie';
 import { useUserStore } from '../src/stores/index.ts';
-import base64 from 'base-64'; // base-64 라이브러리 임포트
+import base64 from 'base-64';
+import "./App.css";
+import styles from './css/users/Sign.module.css';
+import Alert from "./components/users/Alert";
+import NotFound from "./pages/NotFound";
 
 function App() {
   const [number, setNumber] = useState(0);
   const { role } = useUserStore();
   const [cookies] = useCookies(['token']);
-  console.log('초기 권한' + role);
+  const navigate = useNavigate();
 
   // 토큰 디코딩 함수
   const decodeToken = (token) => {
@@ -47,10 +50,6 @@ function App() {
   const token = cookies.token; // 쿠키에서 토큰을 가져옵니다.
   const decodedToken = token ? decodeToken(token) : null;
 
-  if (decodedToken && decodedToken.role) {
-    console.log('디코딩된 역할:', decodedToken.role);
-  }
-
 
 
   return (
@@ -62,31 +61,37 @@ function App() {
           <Route path="/searchSuccess" element={<SearchSuccess />} />
           <Route path="/searchSuccessWriter" element={<SearchSuccessWriter />} />
 
-          {decodedToken && (decodedToken.role === 'ROLE_USER' || decodedToken.role === 'ROLE_ADMIN') && (
-            <>
-              <Route path="/user/csMain" element={<CsMain />} />
-              <Route path="/user/csFaq" element={<CsFaq />} />
-              <Route path="/user/csQna" element={<CsQna />} />
-              <Route path="/user/csBoard" element={<CsBoard />} />
-              <Route path="/user/csBoard_modify/:boardCd" element={<ModifyBtn />} />
-              <Route path='/user/csBoardDetail/:boardCd' element={<CsBoardDetail />} />
-              <Route path="/user/userProfiles" element={<UserProfile />} />
-              <Route path='/user/files/:filepath' element={<Imagefileshow />} />
-              <Route path="/user/userScoreCollection" element={<UserScoreCollection />} />
-              <Route path='/user/colDetail' element={<ColDetail />} />
-              <Route path="/user/collection/:collectionCd" element={<CollectionDetail />} />
-              <Route path="/user/movieCollection" element={<MovieCollection />} />
-              <Route path="/user/movieToWatch" element={<MovieToWatch />} />
-              <Route path="/user/userComment" element={<UserComment />} />
-              <Route path='/user/commentDetail' element={<CommentDetail />} />
-            </>
-          )}
+          <Route path="/user/*" element={decodedToken && (decodedToken.role === 'ROLE_USER' || decodedToken.role === 'ROLE_ADMIN')
+            ? <Routes>
+              <Route path="" element={<NotFound />} />
+              <Route path="csMain" element={<CsMain />} />
+              <Route path="csFaq" element={<CsFaq />} />
+              <Route path="csQna" element={<CsQna />} />
+              <Route path="csBoard" element={<CsBoard />} />
+              <Route path="csBoard_modify/:boardCd" element={<ModifyBtn />} />
+              <Route path='csBoardDetail/:boardCd' element={<CsBoardDetail />} />
+              <Route path="userProfiles" element={<UserProfile />} />
+              <Route path='files/:filepath' element={<Imagefileshow />} />
+              <Route path="userScoreCollection" element={<UserScoreCollection />} />
+              <Route path='colDetail' element={<ColDetail />} />
+              <Route path="collection/:collectionCd" element={<CollectionDetail />} />
+              <Route path="movieCollection" element={<MovieCollection />} />
+              <Route path="movieToWatch" element={<MovieToWatch />} />
+              <Route path="userComment" element={<UserComment />} />
+              <Route path='commentDetail' element={<CommentDetail />} />
+            </Routes>
+            : (<><Alert resultMessage={'로그인이.'} navigate={navigate} />
+              <div className={styles.modalBackground_1} style={{ backgroundColor: 'black' }} /></>)}
+          />
 
-          {decodedToken && decodedToken.role === 'ROLE_ADMIN' && (
-            <>
-              <Route path="/admin/main" element={<MainPageAdmin />} />
-            </>
-          )}
+          <Route path="/admin/*" element={decodedToken && decodedToken.role === 'ROLE_ADMIN'
+            ? <MainPageAdmin />
+            : (<><Alert resultMessage={'접근할 수 없는 페이지입니다.'} navigate={navigate} />
+              <div className={styles.modalBackground_1} style={{ backgroundColor: 'black' }} /></>)}
+          />
+
+          {/* "Not Found" 페이지 */}
+          <Route path="/*" element={<NotFound/>} />
         </Routes>
 
       </div>

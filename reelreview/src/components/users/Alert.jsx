@@ -9,7 +9,7 @@ export default function Alert({
     setChangePasswordAlert, signOutHandler,                                 // 비밀번호 변경
     setShowWithdrawCompleteModal, goMain,                                   // 회원탈퇴
     setShowWithdrawFailureModal, setShowWithdrawModal,                      // 소셜 회원탈퇴
-    alertHeight, resultMessage }) {
+    alertHeight, navigate, resultMessage }) {
 
     const confirmHandler = () => {
         if (typeof setNoExistEmailAlert === 'function') {               // 로그인 : 가입되지 않은 이메일
@@ -34,6 +34,8 @@ export default function Alert({
         } else if (typeof setShowWithdrawFailureModal === 'function') { // 소셜 회원탈퇴
             setShowWithdrawFailureModal(false);
             setShowWithdrawModal(false);
+        } else {
+            navigate('/');
         }
     };
 
