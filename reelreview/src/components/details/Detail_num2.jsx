@@ -1,4 +1,3 @@
-import styles from '../../css/details/Detail_num2.module.css';
 import React, { useContext, useEffect, useState } from 'react'
 import { Rating } from 'react-simple-star-rating'
 import Charts from './smallComponents/charts';
@@ -7,13 +6,15 @@ import { BiSolidPencil, BiDotsHorizontalRounded } from "react-icons/bi";
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import UserContext from '../../pages/details/UserContext';
+import Alert from '../../components/users/Alert'; import styles from '../../css/details/Detail_num2.module.css';
+import styles2 from '../../css/users/Sign.module.css';
 
 
 const IMG_BASE_URL = "https://image.tmdb.org/t/p/original/";
 
 function Detailnum2(props) {
   const [loading, setLoading] = useState(true);
-  const [comment,setComment] = useState([]);
+  const [comment, setComment] = useState([]);
   const { commentss, setCommentss } = useContext(UserContext);
   useEffect(() => {
     const token = cookies.token;
@@ -66,11 +67,11 @@ function Detailnum2(props) {
   }, []);
 
   const [rate, setRating] = useState(0);
-  const [ratingData,setRatingData] = useState(props.movieData.ratings);
+  const [ratingData, setRatingData] = useState(props.movieData.ratings);
   console.log(ratingData);
   const sum = ratingData.reduce((total, rateObject) => total + rateObject.rate, 0);
   const avg = ratingData.length === 0 ? 0 : sum / ratingData.length;
-  
+
   const avgs = avg.toFixed(1);
 
 
@@ -81,6 +82,16 @@ function Detailnum2(props) {
   const [hovered, setHovered] = useState(false);
   const [showCommentForm, setShowCommentForm] = useState(false);
   const [commentValue, setCommentValue] = useState('');
+
+  // 비 로그인 모달창
+  const [showNeedSignIn, setShowNeedSignIn] = useState(false);
+
+  // 비 로그인 모달창 스크롤 제어
+  useEffect(() => {
+    if (showNeedSignIn) { document.body.style.overflow = "hidden"; }
+    else { document.body.style.overflow = "auto"; }
+  }, [showNeedSignIn]);
+
   const showModalHandler = () => {
     setShowCommentForm(!showCommentForm);
   };
@@ -97,38 +108,38 @@ function Detailnum2(props) {
     setShowCommentForm(false);
   };
 
-  const sendFormData = () => {
-    setShowCommentForm(false);
-    console.log(commentValue);
+  // 커멘트 비 로그인 확인
+  const commentHandler = () => {
     const token = cookies.token;
     if (token) {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          withCredentials: true,
-        },
-      };
       setLoggedIn(true);
-      const data = new URLSearchParams();
-      data.append('commentContent', commentValue);
-      data.append('movieId', movie.movieId);
-      axios.post("http://localhost:8085/details/commentSave", data, config)
-        .then((response) => {
-          console.log(response.data);
-          setCommentss(response.data);
-          
-        })
-        .catch((error) => {
-          console.error('Error fetching data:', error);
-        });
+      setShowCommentForm(true);
     } else {
       setLoggedIn(false);
-      console.log('not logged in');
-      console.log('token' + token);
-      alert('로그인을 해주세요.');
-      // 로그인 콘솔 띄우기
+      setShowNeedSignIn(true);
     }
   };
+
+  // 커멘트 작성
+  const sendFormData = () => {
+    const token = cookies.token;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        withCredentials: true,
+      },
+    };
+    const data = new URLSearchParams();
+    data.append('commentContent', commentValue);
+    data.append('movieId', movie.movieId);
+    axios.post("http://localhost:8085/details/commentSave", data, config)
+      .then((response) => {
+        setCommentss(response.data);
+      })
+      .catch((error) => {
+        console.error('Error fetching data:', error);
+      });
+  }
 
 
   // 보고싶어요 클릭시 서버로 보고싶어요 데이터 보내서 정보저장
@@ -153,7 +164,7 @@ function Detailnum2(props) {
           .post("http://localhost:8085/details/wantToSee", data, config)
           .then((response) => {
             console.log(response.data);
-            
+
             setWantTo(true);
           })
           .catch((error) => {
@@ -177,7 +188,7 @@ function Detailnum2(props) {
       setLoggedIn(false);
       console.log('not logged in');
       console.log('token' + token);
-      alert("로그인하세요");
+      setShowNeedSignIn(true);
     }
   }
 
@@ -214,7 +225,7 @@ function Detailnum2(props) {
       setLoggedIn(false);
       console.log('not logged in');
       console.log('token' + token);
-      alert('로그인하세요');
+      setShowNeedSignIn(true);
     }
   }
   const tooltipArray = ["0.5", "1", "1.5", "2", "2.5", "3", "3.5", "4", "4.5", "5"];
@@ -223,9 +234,9 @@ function Detailnum2(props) {
 
   // 상세보기 영화 내용 요약본 글 줄맞춤
   const addLineBreaks = (text) => {
-    if(text==null){
-      
-    }else{
+    if (text == null) {
+
+    } else {
       const sentences = text.split('.');
       let result = [];
 
@@ -255,10 +266,10 @@ function Detailnum2(props) {
         </React.Fragment>
       ));
     }
-    };
-    if (loading) {
-      return <div>Loading...</div>;
-    }
+  };
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
 
     <div className={styles.wrapper}>
@@ -330,7 +341,7 @@ function Detailnum2(props) {
                 </>
                 )}
                 <div
-                  className={styles.right_top_right_comment} onClick={()=>setShowCommentForm(true)}>
+                  className={styles.right_top_right_comment} onClick={commentHandler}>
                   <div className={styles.wantToSee_icon}>
                     <BiSolidPencil size={40} strokeWidth={0} />
                   </div>
@@ -352,7 +363,7 @@ function Detailnum2(props) {
             </div>
             <div className={styles.right_bottom}>
               <p>{addLineBreaks(props.item.overview)}</p>
-              
+
             </div>
             <div className={styles.right_bottom_ad}></div>
 
@@ -386,6 +397,10 @@ function Detailnum2(props) {
           </div>
         </div>
       )}
+      {showNeedSignIn
+        ? (<><Alert setShowNeedSignIn={setShowNeedSignIn} resultMessage={'로그인이 필요한 기능이에요.'} />
+          <div className={styles2.modalBackground_1} style={{ backgroundColor: 'black' }} /></>)
+        : null}
     </div>
   );
 }
