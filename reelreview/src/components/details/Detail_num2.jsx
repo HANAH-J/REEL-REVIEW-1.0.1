@@ -300,7 +300,7 @@ function Detailnum2(props) {
 
                   </div>
                 </div>
-                <p>평가하기</p>
+                <p className={styles.right_top_left_p}>평가하기</p>
               </div>
               <div className={styles.right_top_middle}>
                 <div className={styles.right_top_middle_avg}>
@@ -323,7 +323,7 @@ function Detailnum2(props) {
                       <div className={styles.wantToSee_icon}>
                         <AiOutlineLine size={40} strokeWidth={20} />
                       </div>
-                      <p>보고싶어요</p>
+                      <p className={styles.right_top_right_p}>보고싶어요</p>
                     </div>
                   </>
                 ) : (<>
@@ -336,7 +336,7 @@ function Detailnum2(props) {
                     <div className={styles.wantToSee_icon}>
                       <AiOutlinePlus size={40} strokeWidth={20} />
                     </div>
-                    <p>보고싶어요</p>
+                    <p className={styles.right_top_right_p}>보고싶어요</p>
                   </div>
                 </>
                 )}
@@ -345,25 +345,24 @@ function Detailnum2(props) {
                   <div className={styles.wantToSee_icon}>
                     <BiSolidPencil size={40} strokeWidth={0} />
                   </div>
-                  <p>커멘트</p>
+                  <p className={styles.right_top_right_p}>커멘트</p>
                 </div>
                 <div className={styles.right_top_right_watching}>
                   <div className={styles.wantToSee_icon}>
                     <AiFillEye size={40} />
                   </div>
-                  <p>보는중</p>
+                  <p className={styles.right_top_right_p}>보는중</p>
                 </div>
                 <div className={styles.right_top_right_more}>
                   <div className={styles.wantToSee_icon}>
                     <BiDotsHorizontalRounded size={40} />
                   </div>
-                  <p>더보기</p>
+                  <p className={styles.right_top_right_p}>더보기</p>
                 </div>
               </div>
             </div>
             <div className={styles.right_bottom}>
-              <p>{addLineBreaks(props.item.overview)}</p>
-
+              <p className={styles.right_bottom_p}>{addLineBreaks(props.item.overview)}</p>
             </div>
             <div className={styles.right_bottom_ad}></div>
 
