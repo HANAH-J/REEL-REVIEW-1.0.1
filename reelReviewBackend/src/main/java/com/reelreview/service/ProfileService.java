@@ -169,9 +169,11 @@ public class ProfileService {
         }
 
         // 파일의 확장자 추출 ... 이미지 타입 설정
-        String fileExtension = getFileExtension(filePath);
+        String fileExtension = filePath.substring(filePath.lastIndexOf(".") + 1);
         MediaType mediaType;
-        if("jpg".equalsIgnoreCase(fileExtension) || "jpeg".equalsIgnoreCase(fileExtension)) {
+        if ("defaultPfImage".equalsIgnoreCase(fileExtension)) {
+            return ResponseEntity.ok().contentType(MediaType.parseMediaType("image/svg+xml")).body(new FileSystemResource("C:/Users/lhana/OneDrive/바탕 화면/REEL-REVIEW/REEL-REVIEW-1.0.1/reelReviewBackend/src/main/resources/static/empty_user.svg"));
+        } else if ("jpg".equalsIgnoreCase(fileExtension) || "jpeg".equalsIgnoreCase(fileExtension)) {
             mediaType = MediaType.IMAGE_JPEG;
         } else if ("png".equalsIgnoreCase(fileExtension)) {
             mediaType = MediaType.IMAGE_PNG;
