@@ -5,13 +5,14 @@ import styles from '../../css/users/Alert.module.css';
 
 // [회원] 로그아웃 확인 알림창
 export default function SignOutAlert({ setShowSignOutAlert, SignOutHeader }) {
-    const [cookies, setCookies] = useCookies();
+    const [cookies, setCookies, removeCookies] = useCookies();
     const { user, removeUser } = useUserStore();
 
     // 로그아웃 로직
     const signOutHandler = () => {
         setCookies('token', '', { expires: new Date() });
         removeUser();
+        removeCookies('token');
         window.location.href = 'http://localhost:3000';
     }
 
