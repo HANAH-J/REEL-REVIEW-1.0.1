@@ -4,8 +4,7 @@ import CommentsCol from './smallComponents/CommentsCol';
 import { useContext, useEffect, useState } from 'react';
 import UserContext from '../../pages/details/UserContext';
 
-function Detailnum4(props) {
-    const movieData = props.movieData;
+function Detailnum4() {
     const {commentss} = useContext(UserContext);
    
     return(
