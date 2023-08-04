@@ -99,8 +99,6 @@ function CsBoardDetail() {
     const data = new FormData();
     data.append('commentValue', commentValue);
 
-    data.append('commentWriter', userData.username);
-
     data.append('boardcd', boardCd);
 
     axios
@@ -109,7 +107,6 @@ function CsBoardDetail() {
         // 전송 성공 시, 받아온 댓글 데이터를 상태에 저장
         fetchData();
         setCommentValue('');
-        setCommentWriter('');
       })
       .catch((error) => {
         console.log('React-axios: 데이터 전송 실패');
@@ -192,8 +189,7 @@ function CsBoardDetail() {
                   {boardData && <input type="hidden" name="boardCd" value={boardData.boardCd} />}
                   <input type="hidden"
                     name="commentWriter"
-                    required value={userData.username}
-                    onChange={(e) => setCommentWriter(e.target.value)} />
+                    defaultValue={userData.username} />
                   <textarea
                     name="commentValue"
                     value={commentValue}
