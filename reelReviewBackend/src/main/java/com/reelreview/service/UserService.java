@@ -133,30 +133,19 @@ public class UserService {
         Authentication authentication = new UsernamePasswordAuthenticationToken(new PrincipalDetails(userEntity), null, null);
         String accessToken = jwtTokenProvider.create(authentication);
         int exprTime = 3600000; // 엑세스 토큰 만료 시간 (1시간)
-        System.out.println("액세스 토큰 생성!" + accessToken);
+        // System.out.println("액세스 토큰 생성!" + accessToken);
 
         // 리프레시 토큰 생성
-        String refreshToken = generateRefreshToken();
+        String refreshToken = jwtTokenProvider.generateRefreshToken();
         jwtTokenProvider.saveRefreshToken(String.valueOf(userEntity.getUserCd()), refreshToken);
-        System.out.println("리프레시 토큰!" + refreshToken);
+        // System.out.println("리프레시 토큰!" + refreshToken);
 
         SignInResponseDto signInResponseDto = new SignInResponseDto(accessToken, exprTime, userEntity);
 
         return ResponseDto.setSuccess("로그인 성공", signInResponseDto);
     }
 
-    // 리프레시 토큰 생성
-    private String generateRefreshToken() {
-        char[] charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
-        StringBuilder refreshTokenBuilder = new StringBuilder();
 
-        for (int i = 0; i < 32; i++) {
-            int randomIdx = (int) (Math.random() * charSet.length);
-            refreshTokenBuilder.append(charSet[randomIdx]);
-        }
-        if (refreshTokenBuilder.toString() != null) System.out.println("리프레시 토큰 생성!");
-        return refreshTokenBuilder.toString();
-    }
 
     // [이메일 중복 검사]
     public boolean emailCheck(EmailCheckDto dto) {

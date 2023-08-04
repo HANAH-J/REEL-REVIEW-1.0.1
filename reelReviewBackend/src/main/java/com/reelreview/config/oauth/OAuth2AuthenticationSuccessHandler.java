@@ -33,13 +33,14 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         String token = principalDetails.getJwtToken();
         // System.out.println("소셜 로그인 성공! jwt 토큰 리액트로 전송! : " + token);
 
-        // JWT 토큰을 헤더에 포함하여 클라이언트에게 전달
-//        response.setHeader("Authorization", "Bearer " + token);
+        // 리프레시 토큰 생성 및 저장
+        String refreshToken = jwtTokenProvider.generateRefreshToken();
+        jwtTokenProvider.saveRefreshToken(String.valueOf(principalDetails.getUserEntity().getUserCd()), refreshToken);
 
-//        // JWT 토큰을 쿠키에 저장
+        // JWT 토큰을 쿠키에 저장
         Cookie tokenCookie = new Cookie("token", token);
         tokenCookie.setPath("/");       // 모든 경로에서 쿠키에 접근할 수 있도록 설정
-//        tokenCookie.setHttpOnly(true);  // JavaScript로 쿠키에 접근을 막음 (XSS 방지) 나중에 보안 처리
+//        tokenCookie.setHttpOnly(true);  // JavaScript로 쿠키에 접근을 막음 (XSS 방지)
         tokenCookie.setMaxAge(3600);    // 쿠키 유효 기간 (초 단위, 1시간으로 설정)
 
         // 쿠키를 클라이언트로 전송

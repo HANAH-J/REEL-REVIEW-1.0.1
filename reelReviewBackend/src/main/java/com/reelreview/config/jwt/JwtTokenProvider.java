@@ -50,7 +50,7 @@ public class JwtTokenProvider {
         // System.out.println("토큰 userEntity" + principalDetails.getUserEntity());
 
         UserEntity userInfo = userRepository.findByUserEmail(userEmail);
-        
+
         Map<String, Object> claims = new HashMap<>();
         claims.put("username", userInfo.getUsername());
         claims.put("role", userInfo.getRole());
@@ -86,6 +86,19 @@ public class JwtTokenProvider {
 
         // 복호화된 토큰의 payload에서 제목 수신
         return claims.get("role").toString();
+    }
+
+    // 리프레시 토큰 생성
+    public String generateRefreshToken() {
+        char[] charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
+        StringBuilder refreshTokenBuilder = new StringBuilder();
+
+        for (int i = 0; i < 32; i++) {
+            int randomIdx = (int) (Math.random() * charSet.length);
+            refreshTokenBuilder.append(charSet[randomIdx]);
+        }
+        if (refreshTokenBuilder.toString() != null); // System.out.println("리프레시 토큰 생성!");
+        return refreshTokenBuilder.toString();
     }
 
     // 리프레시 토큰 저장
