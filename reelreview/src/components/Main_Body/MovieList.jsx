@@ -99,7 +99,7 @@ export default function MovieList(props) {
     return (
         <Slider {...settings}>
           {props.movieList.map((item, index) => (
-            <div className={styles.Genre_mainBox}>
+            <div className={styles.Genre_mainBox} key={item}>
               <div className={styles.Genre_poster} onClick={()=>{onClickDetailPage(item)}}>
                 <div className={styles.Genre_content}>
                     <span className={styles.ActorMovie_number}>{index + 1}</span>
