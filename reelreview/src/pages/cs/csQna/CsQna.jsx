@@ -94,7 +94,7 @@ function CsQna() {
           <div className={styles.CsQna_box_body_header}>
             <div>
               <Link to="/user/csMain">
-                <a>릴리뷰 문의센터</a>
+                <p>릴리뷰 문의센터</p>
               </Link>
             </div>
             <div className={styles.CsQna_box_body_header_icon}><BiChevronRight /></div>
