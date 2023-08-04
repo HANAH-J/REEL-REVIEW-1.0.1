@@ -49,14 +49,16 @@ public class MainService {
     private TodayGenreRepository todayGenreRepo;
     @Autowired
     private RatingDataRepository ratingDataRepo;
+
     public List<MovieDetailsDTO> getBoxOfficeToday() {
         List<Integer> ranky = new ArrayList<>();
-        for(int i = 1 ; i < 11 ; i++){
+        for (int i = 1; i < 11; i++) {
             ranky.add(i);
         }
-        List<MovieDetailsDTO> todaylist =  movieDetailRepo.findByRankIn(ranky);
+        List<MovieDetailsDTO> todaylist = movieDetailRepo.findByRankIn(ranky);
         return todaylist;
     }
+
     public static String getCurrentDateInStringFormat() {
         LocalDate currentDate = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
@@ -64,10 +66,10 @@ public class MainService {
     }
 
     public List<MovieDetailsDTO> getMovieListFromDirector(String name) throws IOException, InterruptedException, ParseException {
-        String query = URLEncoder.encode(name,"UTF-8");
+        String query = URLEncoder.encode(name, "UTF-8");
         System.out.println(query);
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.themoviedb.org/3/search/person?query="+query+"&include_adult=false&language=ko"))
+                .uri(URI.create("https://api.themoviedb.org/3/search/person?query=" + query + "&include_adult=false&language=ko"))
                 .header("accept", "application/json")
                 .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZmZhYTU1NDc2ZTRjYTdjNzI3Nzg4ZjlmOTMwZDY0NCIsInN1YiI6IjY0OTk0OWQ1NjJmMzM1MDEyNzQ3MzI2YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FiFcp5Wrby8LZtoc_h9tQ2v6yOKyKwO2B8pqzavLsW0")
                 .method("GET", HttpRequest.BodyPublishers.noBody())
@@ -81,13 +83,13 @@ public class MainService {
         JSONArray jary = (JSONArray) jobj.get("results");
         //임시로 0번만
         JSONObject data = (JSONObject) jary.get(0);
-        Long personId = (Long)data.get("id");
+        Long personId = (Long) data.get("id");
 
 
         // 인물 아이디로 검색해서 리스트받아오기
 
         HttpRequest request2 = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.themoviedb.org/3/person/"+personId+"/movie_credits?language=ko"))
+                .uri(URI.create("https://api.themoviedb.org/3/person/" + personId + "/movie_credits?language=ko"))
                 .header("accept", "application/json")
                 .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZmZhYTU1NDc2ZTRjYTdjNzI3Nzg4ZjlmOTMwZDY0NCIsInN1YiI6IjY0OTk0OWQ1NjJmMzM1MDEyNzQ3MzI2YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FiFcp5Wrby8LZtoc_h9tQ2v6yOKyKwO2B8pqzavLsW0")
                 .method("GET", HttpRequest.BodyPublishers.noBody())
@@ -102,15 +104,15 @@ public class MainService {
 
         TMDBMovieDataManager TDM = new TMDBMovieDataManager();
 
-        for(int i = 0 ; i < jary2.size() ; i++){
-            JSONObject moviesSearchByDirector = (JSONObject)jary2.get(i);
+        for (int i = 0; i < jary2.size(); i++) {
+            JSONObject moviesSearchByDirector = (JSONObject) jary2.get(i);
             TMDBMovieDataManager t = new TMDBMovieDataManager();
             JSONObject jData = t.TMDBMovieJsonObjectToNeededDataJsonObject(moviesSearchByDirector);
             MovieDetailsDTO m = t.JSONObjectToMovieDetailsDTO(jData);
-            DirectorMovieDTO d = t.movieDetailsToDirectorMovieDTO(m,name,Integer.valueOf(String.valueOf(personId)));
+            DirectorMovieDTO d = t.movieDetailsToDirectorMovieDTO(m, name, Integer.valueOf(String.valueOf(personId)));
             directorMovieRepo.save(d);
 
-            if(!movieDetailRepo.existsById(m.getMovieId())){
+            if (!movieDetailRepo.existsById(m.getMovieId())) {
                 movieDetailRepo.save(m);
             }
             boolean isDuplicate = false;
@@ -130,38 +132,38 @@ public class MainService {
         JSONArray fulldata = apiDataUnwrap.searchFromTMDBWithMovieId(movieIds);
         JSONArray imageData = apiDataUnwrap.searchFromTMDBImagesWithMovieId(movieIds);
 
-        for(Object movie : fulldata){
-            JSONObject joject = (JSONObject)movie;
-            ActorMovieDTO d = TDM.movieDetailsToActorMovieDTO(TDM.JSONObjectToMovieDetailsDTO(joject),name,Integer.valueOf(String.valueOf(personId)));
+        for (Object movie : fulldata) {
+            JSONObject joject = (JSONObject) movie;
+            ActorMovieDTO d = TDM.movieDetailsToActorMovieDTO(TDM.JSONObjectToMovieDetailsDTO(joject), name, Integer.valueOf(String.valueOf(personId)));
             actorMovieRepo.save(d);
-            if(!movieDetailRepo.existsById(((Long)joject.get("id")).intValue())){
+            if (!movieDetailRepo.existsById(((Long) joject.get("id")).intValue())) {
                 movieDetailRepo.save(TDM.JSONObjectToMovieDetailsDTO(joject));
             }
             List<MovieVideosDTO> videoData = TDM.getVideoData(joject);
-            for (MovieVideosDTO m : videoData){
+            for (MovieVideosDTO m : videoData) {
                 movieVideosRepo.save(m);
             }
             // 장르 데이터만 추려서 genreData에 추가하기
 
             List<MovieGenresDTO> genreDTO = TDM.getGenreData(joject);
-            for(MovieGenresDTO m : genreDTO){
+            for (MovieGenresDTO m : genreDTO) {
                 movieGenresRepo.save(m);
             }
             // 영화 참가 배우데이터만 추려서 DTO 저장
             List<CastDataDTO> castDataDTOS = TDM.getCastData(joject);
-            for(CastDataDTO m : castDataDTOS){
+            for (CastDataDTO m : castDataDTOS) {
                 castDataRepo.save(m);
             }
             // 영화 참가 관계자 데이터만 추려서 crewData에 추가하기
             List<CrewDataDTO> crewDataDTOS = TDM.getCrewData(joject);
-            for(CrewDataDTO m : crewDataDTOS){
+            for (CrewDataDTO m : crewDataDTOS) {
                 crewDataRepo.save(m);
             }
         }
-        for(int i = 0 ; i < imageData.size() ; i++){
+        for (int i = 0; i < imageData.size(); i++) {
             MovieImagesDTO imagesDTO = new MovieImagesDTO();
-            JSONObject image = (JSONObject)imageData.get(i) ;
-            imagesDTO.setMovieCd(Long.valueOf((Integer)image.get("movieCd")));
+            JSONObject image = (JSONObject) imageData.get(i);
+            imagesDTO.setMovieCd(Long.valueOf((Integer) image.get("movieCd")));
             imagesDTO.setBackdropPath((String) image.get("backdropPath"));
 
             movieImagesRepo.save(imagesDTO);
@@ -185,21 +187,23 @@ public class MainService {
         }
         Comparator<MovieDetailsDTO> comparator = Comparator.comparing(MovieDetailsDTO::getRelease_date, Comparator.nullsLast(Comparator.reverseOrder()));
         Collections.sort(listMovie, comparator);
-        List<MovieDetailsDTO> finalList = getLimitedList(listMovie,20);
+        List<MovieDetailsDTO> finalList = getLimitedList(listMovie, 20);
 
         return finalList;
     }
+
     private static <E> List<E> getLimitedList(List<E> dataList, int maxSize) {
         int size = dataList.size();
         int fromIndex = Math.max(0, size - maxSize);
-        int toIndex = Math.min(size, fromIndex+maxSize);
+        int toIndex = Math.min(size, fromIndex + maxSize);
         return new ArrayList<>(dataList.subList(fromIndex, toIndex));
     }
+
     public List<MovieDetailsDTO> getMovieListFromActor(String name) throws ParseException, IOException, InterruptedException {
-        String query = URLEncoder.encode(name,"UTF-8");
+        String query = URLEncoder.encode(name, "UTF-8");
         System.out.println(query);
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.themoviedb.org/3/search/person?query="+query+"&include_adult=false&language=ko"))
+                .uri(URI.create("https://api.themoviedb.org/3/search/person?query=" + query + "&include_adult=false&language=ko"))
                 .header("accept", "application/json")
                 .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZmZhYTU1NDc2ZTRjYTdjNzI3Nzg4ZjlmOTMwZDY0NCIsInN1YiI6IjY0OTk0OWQ1NjJmMzM1MDEyNzQ3MzI2YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FiFcp5Wrby8LZtoc_h9tQ2v6yOKyKwO2B8pqzavLsW0")
                 .method("GET", HttpRequest.BodyPublishers.noBody())
@@ -213,12 +217,12 @@ public class MainService {
         JSONArray jary = (JSONArray) jobj.get("results");
         //임시로 0번만
         JSONObject data = (JSONObject) jary.get(0);
-        Long personId = (Long)data.get("id");
+        Long personId = (Long) data.get("id");
 
         // 인물 아이디로 검색해서 리스트받아오기
 
         HttpRequest request2 = HttpRequest.newBuilder()
-                .uri(URI.create("https://api.themoviedb.org/3/person/"+personId+"/movie_credits?language=ko"))
+                .uri(URI.create("https://api.themoviedb.org/3/person/" + personId + "/movie_credits?language=ko"))
                 .header("accept", "application/json")
                 .header("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1ZmZhYTU1NDc2ZTRjYTdjNzI3Nzg4ZjlmOTMwZDY0NCIsInN1YiI6IjY0OTk0OWQ1NjJmMzM1MDEyNzQ3MzI2YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.FiFcp5Wrby8LZtoc_h9tQ2v6yOKyKwO2B8pqzavLsW0")
                 .method("GET", HttpRequest.BodyPublishers.noBody())
@@ -234,7 +238,7 @@ public class MainService {
         ApiDataUnwrap apiDataUnwrap = new ApiDataUnwrap();
 
         TMDBMovieDataManager TDM = new TMDBMovieDataManager();
-        for(int i = 0 ; i < jary2.size() ; i++) {
+        for (int i = 0; i < jary2.size(); i++) {
             JSONObject moviesSearchByActor = (JSONObject) jary2.get(i);
             JSONObject jData = TDM.TMDBMovieJsonObjectToNeededDataJsonObject(moviesSearchByActor);
             MovieDetailsDTO m = TDM.JSONObjectToMovieDetailsDTO(jData);
@@ -254,38 +258,38 @@ public class MainService {
         JSONArray fulldata = apiDataUnwrap.searchFromTMDBWithMovieId(movieIds);
         JSONArray imageData = apiDataUnwrap.searchFromTMDBImagesWithMovieId(movieIds);
 
-        for(Object movie : fulldata){
-            JSONObject joject = (JSONObject)movie;
-            ActorMovieDTO d = TDM.movieDetailsToActorMovieDTO(TDM.JSONObjectToMovieDetailsDTO(joject),name,Integer.valueOf(String.valueOf(personId)));
+        for (Object movie : fulldata) {
+            JSONObject joject = (JSONObject) movie;
+            ActorMovieDTO d = TDM.movieDetailsToActorMovieDTO(TDM.JSONObjectToMovieDetailsDTO(joject), name, Integer.valueOf(String.valueOf(personId)));
             actorMovieRepo.save(d);
-            if(!movieDetailRepo.existsById(((Long)joject.get("id")).intValue())){
+            if (!movieDetailRepo.existsById(((Long) joject.get("id")).intValue())) {
                 movieDetailRepo.save(TDM.JSONObjectToMovieDetailsDTO(joject));
             }
             List<MovieVideosDTO> videoData = TDM.getVideoData(joject);
-            for (MovieVideosDTO m : videoData){
+            for (MovieVideosDTO m : videoData) {
                 movieVideosRepo.save(m);
             }
             // 장르 데이터만 추려서 genreData에 추가하기
 
             List<MovieGenresDTO> genreDTO = TDM.getGenreData(joject);
-            for(MovieGenresDTO m : genreDTO){
+            for (MovieGenresDTO m : genreDTO) {
                 movieGenresRepo.save(m);
             }
             // 영화 참가 배우데이터만 추려서 DTO 저장
             List<CastDataDTO> castDataDTOS = TDM.getCastData(joject);
-            for(CastDataDTO m : castDataDTOS){
+            for (CastDataDTO m : castDataDTOS) {
                 castDataRepo.save(m);
             }
             // 영화 참가 관계자 데이터만 추려서 crewData에 추가하기
             List<CrewDataDTO> crewDataDTOS = TDM.getCrewData(joject);
-            for(CrewDataDTO m : crewDataDTOS){
+            for (CrewDataDTO m : crewDataDTOS) {
                 crewDataRepo.save(m);
             }
         }
-        for(int i = 0 ; i < imageData.size() ; i++){
+        for (int i = 0; i < imageData.size(); i++) {
             MovieImagesDTO imagesDTO = new MovieImagesDTO();
-            JSONObject image = (JSONObject)imageData.get(i) ;
-            imagesDTO.setMovieCd(Long.valueOf((Integer)image.get("movieCd")));
+            JSONObject image = (JSONObject) imageData.get(i);
+            imagesDTO.setMovieCd(Long.valueOf((Integer) image.get("movieCd")));
             imagesDTO.setBackdropPath((String) image.get("backdropPath"));
 
             movieImagesRepo.save(imagesDTO);
@@ -308,26 +312,34 @@ public class MainService {
         List<DirectorMovieDTO> d = directorMovieRepo.findByDirectorDownDate(l.toString());
         List<ActorMovieDTO> a = actorMovieRepo.findByActorDownDate(l.toString());
         Optional<TodayGenreDTO> tgd = todayGenreRepo.findById(l.toString());
-        List<MovieDetailsDTO> g = getMovieListFromGenre(tgd.orElseThrow().getGenreName());
-        List<RatingDataDto> ratingList = ratingDataRepo.findAll();
-        int number = ratingList.size();
-        JSONObject j = new JSONObject();
-        d.removeIf(movie -> movie.getRelease_date() == null);
-        g.removeIf(movie -> movie.getRelease_date() == null);
-        a.removeIf(movie -> movie.getRelease_date() == null);
-        Collections.sort(d, Comparator.comparing(DirectorMovieDTO::getRelease_date).reversed());
-        Collections.sort(g, Comparator.comparing(MovieDetailsDTO::getRelease_date).reversed());
-        Collections.sort(a, Comparator.comparing(ActorMovieDTO::getRelease_date).reversed());
-        d = d.stream().limit(20).collect(Collectors.toList());
-        a = a.stream().limit(20).collect(Collectors.toList());
-        g = g.stream().limit(20).collect(Collectors.toList());
-        j.put("director",d);
-        j.put("actor",a);
-        j.put("genre",g);
-        j.put("todayGenre",tgd.orElseThrow().getGenreName());
-        j.put("number",number);
 
-        return j;
+        if (tgd.isPresent()) {
+            TodayGenreDTO genreDTO = tgd.get();
+            List<MovieDetailsDTO> g = getMovieListFromGenre(genreDTO.getGenreName());
+
+            List<RatingDataDto> ratingList = ratingDataRepo.findAll();
+            int number = ratingList.size();
+            JSONObject j = new JSONObject();
+            d.removeIf(movie -> movie.getRelease_date() == null);
+            g.removeIf(movie -> movie.getRelease_date() == null);
+            a.removeIf(movie -> movie.getRelease_date() == null);
+            Collections.sort(d, Comparator.comparing(DirectorMovieDTO::getRelease_date).reversed());
+            Collections.sort(g, Comparator.comparing(MovieDetailsDTO::getRelease_date).reversed());
+            Collections.sort(a, Comparator.comparing(ActorMovieDTO::getRelease_date).reversed());
+            d = d.stream().limit(20).collect(Collectors.toList());
+            a = a.stream().limit(20).collect(Collectors.toList());
+            g = g.stream().limit(20).collect(Collectors.toList());
+            j.put("director", d);
+            j.put("actor", a);
+            j.put("genre", g);
+            j.put("todayGenre", genreDTO.getGenreName());
+            j.put("number", number);
+
+            return j;
+        } else {
+            JSONObject emptyResponse = new JSONObject();
+            return emptyResponse; // 빈 JSON 객체를 반환
+        }
     }
 
     public void saveTodayGenre(String genre) {
