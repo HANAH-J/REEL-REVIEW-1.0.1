@@ -14,7 +14,6 @@ import { useUserStore } from '../../stores/index.ts';
 import NumberContext from '../details/NumberContext';
 
 export default function MainPage() {
-  const [movieList, setMovieList] = useState([]);
   const [name, setName] = useState('');
   const [mainResponse, setMainResponse] = useState('');
   const [cookies, setCookie] = useCookies(['token']);
@@ -22,8 +21,7 @@ export default function MainPage() {
   const [userCd, setUserCd] = useState(null);
   const [userData, setUserData] = useState(null);
   const [profileData, setProfileData] = useState(null);
-  const { number, setNumber } = useContext(NumberContext);
-  
+
   // JWT 토큰
   const getMain = async (token) => {
     const requestData = {
@@ -32,6 +30,7 @@ export default function MainPage() {
         withCredentials: true,
       }
     };
+
     await axios.get('http://localhost:8085/userProfiles', requestData)
       .then((response) => {
         const responseData = response.data;
@@ -56,22 +55,22 @@ export default function MainPage() {
   }
 
   useEffect(() => {
-    const token = cookies.token;
     if (cookies.token) {
       getMain(cookies.token);
     }
-    setNumber(movieList.number);
 
   }, [cookies.token]);
+
+  // 총 별점 수
+  const [movieList, setMovieList] = useState([]);
+  const { number, setNumber } = useContext(NumberContext);
+
+  useEffect(() => { setNumber(movieList.number); })
+
   useEffect(() => {
     axios.post("http://localhost:8085/api/directorNactorNgenreSearchByDate")
-      .then((response) => {
-        setMovieList(response.data);
-
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+      .then((response) => { setMovieList(response.data); })
+      .catch((error) => { console.error(error); });
   }, [])
 
 
