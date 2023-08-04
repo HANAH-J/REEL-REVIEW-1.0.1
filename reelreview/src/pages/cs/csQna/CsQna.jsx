@@ -93,9 +93,7 @@ function CsQna() {
         <div className={styles.CsQna_box_body}>
           <div className={styles.CsQna_box_body_header}>
             <div>
-              <Link to="/user/csMain">
-                <p>릴리뷰 문의센터</p>
-              </Link>
+              <Link to="/user/csMain">릴리뷰 문의센터</Link>
             </div>
             <div className={styles.CsQna_box_body_header_icon}><BiChevronRight /></div>
             <div>문의 하기</div>
@@ -109,7 +107,9 @@ function CsQna() {
               <div className={styles.CsQna_box_body4}>
                 <div>문의 제목</div>
                 <div className={styles.CsQna_box_body4_title}>
-                  <input type="text" name="title" required value={title} onChange={(e) => setTitle(e.target.value)} />
+                  <input type="text" name="title" 
+                  required value={title} 
+                  onChange={(e) => setTitle(e.target.value)} />
                 </div>
               </div>
               <div className={styles.CsQna_hidden}>
@@ -117,7 +117,7 @@ function CsQna() {
                 <div className={styles.CsQna_box_body4_writer}></div>
                 <input type="text"
                   name="writer"
-                  required value={userData.username}
+                  required value={userData.username || ''}
                   onChange={(e) => setWriter(e.target.value)} />
               </div>
               <div className={styles.CsQna_box_body3}>
