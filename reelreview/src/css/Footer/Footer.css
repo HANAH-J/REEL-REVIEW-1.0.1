@@ -40,17 +40,12 @@
 }
 
 .footer-sns {
-  height: 180px;
   width: 20%;
+  height: 180px;
   display: flex;
   align-items: center;
   justify-content: right;
-  margin-right: 20px;
-}
-
-.footer-sns a {
-  margin-right: 10px;
-  border-radius: 30px;
+  margin-right: 5px;
 }
 
 .footerText {
@@ -66,20 +61,44 @@
   background-color: aqua;
 }
 
-.notion_logo {
-  background-image: url("../../img/Footer_sns/notion.svg");
-  width: 30px;
-  height: 30px;
-  background-size: 30px;
+.github_team {
+  background-image: url("../../img/Footer/github_team.png");
+  width: 18%;
+  height: 20%;
+  position: relative;
+  background-size: contain;
   background-repeat: no-repeat;
+  background-position: center;
+  margin-right: 1%;
 }
 
-.github_logo {
-  background-image: url("../../img/Footer_sns/github.svg");
-  width: 30px;
-  height: 30px;
+.github_personal {
+  background-image: url("../../img/Footer/github_personal.png");
+  width: 18%;
+  height: 25%;
   position: relative;
   background-size: 50px;
+  background-size: contain;
   background-repeat: no-repeat;
-  background-position: -9.5px -10.5px;
+  background-position: center;
+}
+
+.notion_team {
+  background-image: url("../../img/Footer/notion_team.png");
+  width: 18%;
+  height: 25%;
+  background-size: 30px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.notion_personal {
+  background-image: url("../../img/Footer/notion_personal.png");
+  width: 18%;
+  height: 25%;
+  background-size: 30px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }

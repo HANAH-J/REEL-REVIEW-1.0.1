@@ -52,8 +52,10 @@ export default function Footer() {
           </ul>
         </div>
         <div className="footer-sns">
-          <a href="http://github.com/HANAH-J/REEL-REVIEW" target='blank' className='github_logo'></a>
-          <a href="http://project-team-3.notion.site/REEL-REVIEW-eb057e560ac741fdaa5f3767858e8449?pvs=4" target='blank' className='notion_logo'></a>
+          <a href="https://github.com/HANAH-J/REEL-REVIEW-1.0.0" target='blank' className='github_team'></a>
+          <a href="https://github.com/HANAH-J/REEL-REVIEW-1.0.1" target='blank' className='github_personal'></a>
+          <a href="http://project-team-3.notion.site/REEL-REVIEW-eb057e560ac741fdaa5f3767858e8449?pvs=4" target='blank' className='notion_team'></a>
+          <a href="https://hanahj-portfolio.notion.site/4b0e2d10ea954d9a8712fabd00d66f7c?pvs=4" target='blank' className='notion_personal'></a>
         </div>
       </div>
     </div>
