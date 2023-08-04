@@ -225,7 +225,7 @@ export default function SignIn({ setSignInModalState, setSignUpModalState }) {
             <OAuth2 />
 
             {/* 임시 비밀번호 발급 모달창 활성화 시 배경화면 색상 변경 */}
-            {forgotPwModalState && <div className={styles.modalBackground_2} style={{ backgroundColor: 'black' }} />}
+            {(noExistEmailAlert || deletedUserAlert || wrongPasswordAlert || forgotPwModalState) && <div className={styles.modalBackground_2} style={{ backgroundColor: 'black' }} />}
         </div>
     )
 }

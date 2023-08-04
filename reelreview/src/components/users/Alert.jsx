@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import { useCookies } from 'react-cookie';
+import { useUserStore } from "../../stores/index.ts";
 import styles from '../../css/users/Alert.module.css';
 
 // [회원] 알림창
@@ -6,11 +8,22 @@ export default function Alert({
     setNoExistEmailAlert, setDeletedUserAlert, setWrongPasswordAlert,       // 로그인
     signUpAlert, setSignUpAlert, setTermsModalState, setSignUpModalState,   // 회원가입
     setAlertModalState, setTempPasswordResult,                              // 임시 비밀번호 발급
-    setChangePasswordAlert, signOutHandler,                                 // 비밀번호 변경
+    setChangePasswordAlert,                                                 // 비밀번호 변경
     setShowWithdrawCompleteModal, goMain,                                   // 회원탈퇴
     setShowWithdrawFailureModal, setShowWithdrawModal,                      // 소셜 회원탈퇴
     setShowNeedSignIn,                                                      // 비 로그인
     alertHeight, navigate, resultMessage }) {
+
+    const [cookies, setCookies, removeCookies] = useCookies();
+    const { user, removeUser } = useUserStore();
+
+    // 로그아웃 로직
+    const signOutHandler = () => {
+        setCookies('token', '', { expires: new Date() });
+        removeUser();
+        removeCookies('token');
+        window.location.href = 'http://localhost:3000';
+    }
 
     const confirmHandler = () => {
         if (typeof setNoExistEmailAlert === 'function') {               // 로그인 : 가입되지 않은 이메일
@@ -42,7 +55,7 @@ export default function Alert({
         }
     };
 
-    // 약관동의 모달창 스크롤 제어
+    // 모달창 스크롤 제어
     useEffect(() => {
         if (signUpAlert) { document.body.style.overflow = 'hidden'; }
     }, [signUpAlert]);

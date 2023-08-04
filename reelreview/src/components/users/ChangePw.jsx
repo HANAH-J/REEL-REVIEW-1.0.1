@@ -4,7 +4,7 @@ import Alert from './Alert';
 import styles from '../../css/users/Password.module.css';
 
 // [회원] 비밀번호 변경 모달창
-export default function ChangePw({ userEmail, setShowChangePasswordModal, signOutHandler }) {
+export default function ChangePw({ userEmail, setShowChangePasswordModal }) {
 
     // 비밀번호 입력값
     const [password, setPassword] = useState('');
@@ -104,7 +104,7 @@ export default function ChangePw({ userEmail, setShowChangePasswordModal, signOu
 
                 {/* 비밀번호 변경 */}
                 <button type='submit' className={styles.changePw_btn}>확인</button>
-                {changePasswordAlert ? <Alert resultMessage={'비밀번호가 변경되었습니다.'} setChangePasswordAlert={setChangePasswordAlert} signOutHandler={signOutHandler} /> : null}
+                {changePasswordAlert ? <Alert resultMessage={'비밀번호가 변경되었습니다.'} setChangePasswordAlert={setChangePasswordAlert} /> : null}
                 {(changePasswordAlert === true)
                 && <div className={styles.modalBackground} style={{ backgroundColor: 'black' }} />}
             </form>
