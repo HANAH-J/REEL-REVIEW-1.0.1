@@ -177,10 +177,6 @@ public class DetailService {
 
     public CcommentDataDto saveCcommentData(CcommentDataDto dto) {
         CcommentDataDto c = CCDR.save(dto);
-        int commentid = dto.getCommentId();
-        CommentDataDto cdto = CDR.getById(commentid);
-        cdto.setCCommentcount(cdto.getCCommentcount()+1);
-        CDR.save(cdto);
         return c;
     }
 

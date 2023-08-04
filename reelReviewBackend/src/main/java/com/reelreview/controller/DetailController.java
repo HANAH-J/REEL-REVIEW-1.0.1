@@ -265,8 +265,6 @@ public class DetailController {
         int cCommentId = requestBody.get("cCommentId");
         CcommentDataDto cComment = DS.getCcommentById(cCommentId);
         cComment.setCCommentGood(cComment.getCCommentGood()+1);
-        DS.saveCcommentData(cComment);
-
         return DS.saveCcommentData(cComment);
     }
 
