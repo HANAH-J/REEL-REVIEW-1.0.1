@@ -177,6 +177,12 @@ public class DetailService {
 
     public CcommentDataDto saveCcommentData(CcommentDataDto dto) {
         CcommentDataDto c = CCDR.save(dto);
+
+        // 대댓글 수 증가
+        CommentDataDto c2 = CDR.findCommentByCommentId(c.getCommentId());
+        c2.setCCommentcount(c2.getCCommentcount()+1);
+        CDR.save(c2);
+
         return c;
     }
 

@@ -24,10 +24,11 @@ export default function CommentDetail(props) {
   const [isCommentOpen, setIsCommentOpen] = useState(false);
   const commentId = comment.commentId;
   const [commentGood, setCommentGood] = useState(comment.commentGood);
-  const [ccomentCount, setCCommentCount] = useState(comment.ccommentcount);
+  const [ccomentCount, setCcommentCount] = useState(comment.ccommentcount);
   const [loggedIn, setLoggedIn] = useState(false);
   const [cComment, setCcommentData] = useState([]);
-  const [cCommentGood, setCCommentGood] = useState(cComment.cCommentGood);
+  const [cCommentGood, setCCommentGood] = useState(cComment.ccommentGood);
+  console.log('카운트' + ccomentCount);
   const [movieDetail, setMovieDetail] = useState([]);
 
   // 로그인시 헤더에 필요한 부분
@@ -57,10 +58,11 @@ export default function CommentDetail(props) {
   axios.get(`http://localhost:8085/getInfoForThisComment?commentId=${commentId}`)
     .then(response => {
       const responseData = response.data;
-      const updatedCommentGood = responseData.commentInfo.commentGood;
-      const updatedcCommentCount = responseData.commentInfo.ccommentcount;
-      setCommentGood(updatedCommentGood);
-      setCCommentCount(updatedcCommentCount);
+      const loadCommentGood = responseData.commentInfo.commentGood;
+      const loadCcommentCount = responseData.commentInfo.ccommentcount;
+      console.log('콘솔대댓글수: ' + loadCcommentCount);
+      setCommentGood(loadCommentGood);
+      setCcommentCount(loadCcommentCount);
     })
     .catch(error => {
       console.error('Error fetching comment data:', error);
@@ -106,7 +108,7 @@ export default function CommentDetail(props) {
   const commentGoodOneUp = () => {
     axios
       .post("http://localhost:8085/comment/commentGoodUp", { commentId: commentId })
-      .then((response) => {
+      .then(() => {
         // 서버로부터 좋아요 갯수를 증가시킨 데이터를 받아와서 comment 상태를 업데이트
         setCommentGood(commentGood + 1);
       })
@@ -120,7 +122,8 @@ export default function CommentDetail(props) {
       .post("http://localhost:8085/comment/cCommentGoodUp", { cCommentId: cComment.ccommentId })
       .then((response) => {
         // 서버로부터 좋아요 갯수를 증가시킨 데이터를 받아옴
-        const updatedCommentGood = response.data.ccommentGood; // 서버 응답에 맞게 수정해주세요
+        const updatedCommentGood = response.data.ccommentGood;
+        console.log('업데이트 좋아요: ' + updatedCommentGood);
         // 업데이트된 ccommentGood 값을 상태에 반영
         updateCCommentGood(cComment.ccommentId, updatedCommentGood);
       })
@@ -213,6 +216,9 @@ export default function CommentDetail(props) {
         console.log(error);
       });
   }, []);
+
+
+
   return (
     <div className={styles.movieCollection_Wrapper}>
       {cookies.token ? <LoginSuccessHeader profileData={profileData} userData={userData} /> : <Header />}
