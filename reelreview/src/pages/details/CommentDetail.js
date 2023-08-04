@@ -176,6 +176,14 @@ export default function CommentDetail(props) {
       data.append('commentId', comment.commentId);
       axios.post("http://localhost:8085/details/cCommentSave", data, config)
         .then(() => {
+          // 댓글 작성 후 댓글 목록 불러오기
+          axios.get("http://localhost:8085/details/getCcomment", { params: { commentId: commentId } })
+            .then((response) => {
+              setCcommentData(response.data);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         })
         .catch((error) => {
           console.error('Error fetching data:', error);
