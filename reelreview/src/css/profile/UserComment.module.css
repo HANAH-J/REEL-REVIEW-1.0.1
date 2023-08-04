@@ -149,7 +149,7 @@
   text-overflow: ellipsis;
   display: -webkit-box;
   display: -ms-box;
-  display: box;
+  display: flex;
   -webkit-line-clamp: 5;
   -ms-line-clamp: 5;
   line-clamp: 5;
