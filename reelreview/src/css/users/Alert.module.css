@@ -19,8 +19,8 @@
     height: 100%;
     position: fixed;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 50.3%;
+    transform: translate(-50.1%, -50%);
     opacity: 30%;
     box-shadow: 0 2px 10px 1px #707070;
     z-index: 1001;
@@ -39,12 +39,25 @@
     z-index: 1001;
 }
 
+.modalBackground_4 {
+    border-radius: 8px;
+    width: 39.9%;
+    height: 45.5%;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-49.9%, -50%);
+    opacity: 30%;
+    box-shadow: 0 2px 10px 1px #707070;
+    z-index: 1001;
+}
+
 /* 임시 비밀번호 발급 알림창 - 일반 */
 .forgotPw_alert {
     border-radius: 12px;
     width: 250px;
     height: 110px;
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     padding: 15px;

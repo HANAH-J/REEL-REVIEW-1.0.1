@@ -343,7 +343,7 @@ function PFPModal({ setOpenModal, userCd, userEmail, removeUser }) {
 
       {showWithdrawModal && (
         <div>
-          <div className={styles2.modalBackground} style={{ backgroundColor: "black" }} />
+          <div className={styles2.modalBackground_4} style={{ backgroundColor: "black" }} />
           <div className={styles2.forgotPw_alert}>
             <h2 className={styles2.alert_h2}>알림</h2>
             <p className={styles2.alert_p}>다시 한번 생각해보세요!</p>
