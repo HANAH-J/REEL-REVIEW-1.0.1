@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useCookies } from 'react-cookie';
-import { useUserStore } from "../../stores/index.ts";
 import axios from 'axios';
 import SignOutAlert from "../users/SignOutAlert";
 import userPFP from '../../img/profile/userProfile/empty_user.svg';
@@ -14,10 +12,6 @@ export default function LoginSuccess_header({ profileData, userData }) {
   const [movieList, setMovieList] = useState([]);
   const [name, setName] = useState('');
 
-  // [회원] 로그인 JWT 토큰
-  const [cookies, setCookies] = useCookies();
-  const { user, removeUser } = useUserStore();
-
   // [회원] 로그아웃 확인 알림창
   const [showSignOutAlert, setShowSignOutAlert] = useState(false);
 
@@ -29,13 +23,6 @@ export default function LoginSuccess_header({ profileData, userData }) {
       document.body.style.overflow = "auto";    // 스크롤 활성화
     }
   }, [showSignOutAlert]);
-
-  // [회원] 로그아웃 로직
-  const signOutHandler = () => {
-    setCookies('token', '', { expires: new Date() });
-    removeUser();
-    window.location.href = 'http://localhost:3000';
-  }
 
   const navigate = useNavigate();
 
@@ -79,7 +66,7 @@ export default function LoginSuccess_header({ profileData, userData }) {
             </div>
           </li>
           <li className={styles.nameLi} onClick={() => { setShowSignOutAlert(true) }}> 로그아웃 </li>
-          {showSignOutAlert && <SignOutAlert setShowSignOutAlert={setShowSignOutAlert} signOutHandler={signOutHandler} SignOutHeader={'SignOutHeader'} />}
+          {showSignOutAlert && <SignOutAlert setShowSignOutAlert={setShowSignOutAlert} SignOutHeader={'SignOutHeader'} />}
           <Link to="/user/csMain" className={styles.csMainPage} style={{ textDecoration: 'none' }}>
             <li className={styles.nameLi}> 문의하기 </li>
           </Link>

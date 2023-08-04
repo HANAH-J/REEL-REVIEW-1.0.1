@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import userPFP from '../../img/profile/userProfile/empty_user.svg';
 import styles from '../../css/Header/LoginSuccess_header_noneBackground.module.css';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
-import { useUserStore } from "../../stores/index.ts";
 import logo from '../../img/Header/Reel_Review_logo_white.png';
 import SignOutAlert from "../users/SignOutAlert";
 
@@ -13,20 +12,9 @@ export default function LoginSuccess_header_noneBackground({ profileData, userDa
 
   const [movieList, setMovieList] = useState([]);
   const [name, setName] = useState('');
-
-  // 로그인 JWT 토큰
-  const [cookies, setCookies] = useCookies();
-  const { user, removeUser } = useUserStore();
   
   // 로그아웃 확인 알림창
   const [showSignOutAlert, setShowSignOutAlert] = useState(false);
-
-  // 로그아웃 로직
-  const signOutHandler = () => {
-    setCookies('token', '', { expires: new Date() });
-    removeUser();
-    window.location.href = 'http://localhost:3000';
-  }
 
   const navigate = useNavigate();
 
@@ -70,7 +58,7 @@ export default function LoginSuccess_header_noneBackground({ profileData, userDa
             </div>
           </li>
           <li className={styles.nameLi} onClick={() => {setShowSignOutAlert(true)}}> 로그아웃 </li>
-          {showSignOutAlert && <SignOutAlert setShowSignOutAlert={setShowSignOutAlert} signOutHandler={signOutHandler} SignOutHeader={'SignOutHeader'}/>}
+          {showSignOutAlert && <SignOutAlert setShowSignOutAlert={setShowSignOutAlert} SignOutHeader={'SignOutHeader'}/>}
           <Link to="/user/csMain" className={styles.csMainPage} style={{ textDecoration: 'none' }}>
             <li className={styles.nameLi}> 문의하기 </li>
           </Link>

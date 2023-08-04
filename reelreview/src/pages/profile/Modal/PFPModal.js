@@ -53,13 +53,6 @@ function PFPModal({ setOpenModal, userCd, userEmail, removeUser }) {
   // 회원탈퇴 실패 모달창
   const [showWithdrawFailureModal, setShowWithdrawFailureModal] = useState(false);
 
-  // 로그아웃 로직
-  const signOutHandler = () => {
-    setCookies('token', '', { expires: new Date() });
-    removeUser();
-    window.location.href = 'http://localhost:3000';
-  }
-
   // 로그아웃, 회원탈퇴 확인 알림창 스크롤 제어
   useEffect(() => {
     if (showSignOutAlert || showWithdrawModal) {
@@ -275,7 +268,7 @@ function PFPModal({ setOpenModal, userCd, userEmail, removeUser }) {
           <hr className={styles.PFPModal_HR} />
           <p className={styles.PFPModal_Content_P} onClick={checkSignProvider}>비밀번호 변경</p>
           <p className={styles.PFPModal_Content_P} onClick={() => setShowSignOutAlert(true)}>로그아웃</p>
-          {showSignOutAlert && <SignOutAlert setShowSignOutAlert={setShowSignOutAlert} signOutHandler={signOutHandler} />}
+          {showSignOutAlert && <SignOutAlert setShowSignOutAlert={setShowSignOutAlert} />}
           <p className={styles.PFPModal_Content_P} onClick={() => { setShowWithdrawModal(true) }}>탈퇴하기</p>
         </div>
         <div className={styles.PFPModal_Logo}>
@@ -323,7 +316,7 @@ function PFPModal({ setOpenModal, userCd, userEmail, removeUser }) {
       {showChangePasswordModal && (
         <>
           <div className={styles2.modalBackground} style={{ backgroundColor: "black" }} />
-          <ChangePw userEmail={userEmail} setShowChangePasswordModal={setShowChangePasswordModal} signOutHandler={signOutHandler} />
+          <ChangePw userEmail={userEmail} setShowChangePasswordModal={setShowChangePasswordModal} />
         </>
       )}
 
