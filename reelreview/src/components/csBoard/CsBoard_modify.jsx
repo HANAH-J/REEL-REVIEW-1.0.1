@@ -47,7 +47,7 @@ export default function CsBoard_modify() {
             .then((response) => {
                 window.alert('게시글 수정 완료');
                 // 수정이 완료되면 게시판 세부 페이지로 이동
-                navigate(`/CsBoardDetail/${boardCd}`);
+                navigate(`/user/CsBoardDetail/${boardCd}`);
             })
             .catch((error) => {
                 console.log('게시글 수정 실패');

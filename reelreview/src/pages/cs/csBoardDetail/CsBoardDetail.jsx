@@ -85,7 +85,7 @@ function CsBoardDetail() {
         .then((response) => {
           window.alert('게시글이 삭제되었습니다');
           // Optionally, you can navigate to a different page after successful deletion
-          navigate('/CsBoard');
+          navigate('/user/CsBoard');
         })
         .catch((error) => {
           console.log('글 삭제 실패');
@@ -160,7 +160,7 @@ function CsBoardDetail() {
                   </div>
                   <div className={styles.CsBoardDetail_btn_box}>
                     <div className={styles.CsBoardDetail_modify_btn}>
-                      <button onClick={() => navigate(`/csBoard_modify/${boardData.boardCd}`)}>글 수정</button>
+                      <button onClick={() => navigate(`/user/csBoard_modify/${boardData.boardCd}`)}>글 수정</button>
                     </div>
                     <div className={styles.CsBoardDetail_delete_btn}>
                       <button onClick={onDeleteHandler}>글 삭제</button>
