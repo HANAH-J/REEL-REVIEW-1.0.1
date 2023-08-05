@@ -8,7 +8,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
@@ -28,13 +27,6 @@ public class JwtTokenProvider {
 
     @Autowired
     private UserRepository userRepository;
-
-    private final RedisTemplate<String, String> redisTemplate;
-
-    // 생성자를 통해 RedisTemplate 주입
-    public JwtTokenProvider(RedisTemplate<String, String> redisTemplate) {
-        this.redisTemplate = redisTemplate;
-    }
 
     @Value("${jwt.refreshToken.expirationInMs}")
     private long refreshTokenExpirationInMs;
