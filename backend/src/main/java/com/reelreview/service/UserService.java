@@ -135,11 +135,6 @@ public class UserService {
         int exprTime = 3600000; // 엑세스 토큰 만료 시간 (1시간)
         // System.out.println("액세스 토큰 생성!" + accessToken);
 
-        // 리프레시 토큰 생성
-        String refreshToken = jwtTokenProvider.generateRefreshToken();
-        jwtTokenProvider.saveRefreshToken(String.valueOf(userEntity.getUserCd()), refreshToken);
-        // System.out.println("리프레시 토큰!" + refreshToken);
-
         SignInResponseDto signInResponseDto = new SignInResponseDto(accessToken, exprTime, userEntity);
 
         return ResponseDto.setSuccess("로그인 성공", signInResponseDto);

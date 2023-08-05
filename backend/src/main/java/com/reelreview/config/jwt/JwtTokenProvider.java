@@ -87,40 +87,4 @@ public class JwtTokenProvider {
         // 복호화된 토큰의 payload에서 제목 수신
         return claims.get("role").toString();
     }
-
-    // 리프레시 토큰 생성
-    public String generateRefreshToken() {
-        char[] charSet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".toCharArray();
-        StringBuilder refreshTokenBuilder = new StringBuilder();
-
-        for (int i = 0; i < 32; i++) {
-            int randomIdx = (int) (Math.random() * charSet.length);
-            refreshTokenBuilder.append(charSet[randomIdx]);
-        }
-        if (refreshTokenBuilder.toString() != null); // System.out.println("리프레시 토큰 생성!");
-        return refreshTokenBuilder.toString();
-    }
-
-    // 리프레시 토큰 저장
-    public void saveRefreshToken(String userId, String refreshToken) {
-        String key = getRefreshTokenKey(userId);
-        redisTemplate.opsForValue().set(key, refreshToken, refreshTokenExpirationInMs, TimeUnit.MILLISECONDS);
-    }
-
-    // 리프레시 토큰 조회
-    public String getRefreshToken(String userId) {
-        String key = getRefreshTokenKey(userId);
-        return redisTemplate.opsForValue().get(key);
-    }
-
-    // 리프레시 토큰 삭제
-    public void deleteRefreshToken(String userId) {
-        String key = getRefreshTokenKey(userId);
-        redisTemplate.delete(key);
-    }
-
-    // 리프레시 토큰을 저장할 Redis 키 생성
-    private String getRefreshTokenKey(String userId) {
-        return "refresh_token:" + userId;
-    }
 }

@@ -10,7 +10,6 @@ export default function SignOutAlert({ setShowSignOutAlert, SignOutHeader }) {
 
     // 로그아웃 로직
     const signOutHandler = () => {
-        setCookies('token', '', { expires: new Date() });
         removeUser();
         removeCookies('token');
         window.location.href = 'http://localhost:3000';
