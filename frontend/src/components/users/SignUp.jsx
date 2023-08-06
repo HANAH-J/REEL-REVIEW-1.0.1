@@ -132,9 +132,9 @@ export default function SignUp({ setSignInModalState, setSignUpModalState }) {
     useEffect(() => {
         let errorHeight = 460;
         // 전체 에러 메시지
-        if (nameError && emailError && passwordError) { errorHeight = 570; }
+        if (nameError && emailError && passwordError) { errorHeight = 565; }
         // 이름 or 이메일 and 비밀번호 에러 메시지
-        else if ((nameError && passwordError) || (emailError && passwordError)) { errorHeight = 540; }
+        else if ((nameError && passwordError) || (emailError && passwordError)) { errorHeight = 535; }
         // 이름 and 이메일 에러 메시지
         else if (nameError && emailError) { errorHeight = 520; }
         // 이름 or 이메일 에러 메시지
