@@ -13,7 +13,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "profile")
+@Table(name = "tbl_profile")
 public class ProfileDTO {
 
     @Id
