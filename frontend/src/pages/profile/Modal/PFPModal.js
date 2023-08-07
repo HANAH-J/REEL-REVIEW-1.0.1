@@ -6,9 +6,10 @@ import SignOutAlert from "../../../components/users/SignOutAlert";
 import Alert from '../../../components/users/Alert';
 import styles from '../../../css/profile/PFPModal.module.css';
 import styles2 from '../../../css/users/Alert.module.css';
+import apiUrl from '../../../config';
 
 function PFPModal({ setOpenModal, userCd, userEmail, removeUser }) {
-  const baseUrl = "http://localhost:8085";
+  const baseUrl = apiUrl;
   const mainUrl = "http://localhost:3000";
 
   const [inputValue, setInputValue] = useState(''); //변경할 상태메시지

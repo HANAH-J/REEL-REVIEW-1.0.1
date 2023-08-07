@@ -13,10 +13,11 @@ import { useCookies } from 'react-cookie';
 import { useUserStore } from '../../stores/index.ts';
 import { config } from 'react-transition-group';
 import { useNavigate } from 'react-router-dom';
+import apiUrl from '../../config';
 
 
 export default function MainPage() {
-  const baseUrl = "http://localhost:8085";
+  const baseUrl = apiUrl;
   
   const [movieList, setMovieList] = useState([]); 
   const [name, setName] = useState('');

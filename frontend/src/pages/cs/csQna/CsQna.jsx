@@ -7,9 +7,10 @@ import CsFooter from '../../../components/Footer/CsFooter';
 import CsHeader from '../../../components/Header/CsHeader';
 import { BiChevronRight } from "react-icons/bi";
 import { useCookies } from 'react-cookie';
+import apiUrl from '../../../config';
 
 function CsQna() {
-  const baseUrl = "http://localhost:8085";
+  const baseUrl = apiUrl;
 
   const [title, setTitle] = useState('');
   const [writer, setWriter] = useState('');

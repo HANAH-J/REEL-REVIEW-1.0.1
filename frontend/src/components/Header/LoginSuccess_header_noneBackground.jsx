@@ -6,9 +6,10 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import logo from '../../img/Header/Reel_Review_logo_white.png';
 import SignOutAlert from "../users/SignOutAlert";
+import apiUrl from '../../config';
 
 export default function LoginSuccess_header_noneBackground({ profileData, userData }) {
-  const baseUrl = "http://localhost:8085";
+  const baseUrl = apiUrl;
 
   const userCd = userData ? userData.userCd : null;
 

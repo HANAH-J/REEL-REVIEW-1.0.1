@@ -1,7 +1,8 @@
 import { useParams } from "react-router-dom";
+import apiUrl from '../../config';
 
 export default function Imagefileshow(props){
-    const baseUrl = "http://localhost:8085";
+    const baseUrl = apiUrl;
 
     const filepath = useParams();
     const img = baseUrl + "/files/" + filepath.filepath;

@@ -5,9 +5,10 @@ import SignOutAlert from "../users/SignOutAlert";
 import userPFP from '../../img/profile/userProfile/empty_user.svg';
 import styles from '../../css/Header/LoginSuccess_header.module.css';
 import logo from '../../img/Header/Reel_Review_logo.png';
+import apiUrl from '../../config';
 
 export default function LoginSuccess_header({ profileData, userData }) {
-  const baseUrl = "http://localhost:8085";
+  const baseUrl = apiUrl;
 
   const userCd = userData ? userData.userCd : null;
 

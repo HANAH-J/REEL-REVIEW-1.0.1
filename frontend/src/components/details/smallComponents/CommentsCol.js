@@ -6,9 +6,10 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import userPFP from '../../../img/profile/userProfile/empty_user.svg'
 import { Link } from 'react-router-dom';
+import apiUrl from '../../../config';
 
 function CommentsCol(props) {
-  const baseUrl = "http://localhost:8085";
+  const baseUrl = apiUrl;
 
   const comment = props.comment;
   const userCd = comment.userCd;

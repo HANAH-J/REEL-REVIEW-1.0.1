@@ -12,9 +12,10 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import { useUserStore } from '../../stores/index.ts';
 import NumberContext from '../details/NumberContext';
+import apiUrl from '../../config';
 
 export default function MainPage() {
-  const baseUrl = "http://localhost:8085";
+  const baseUrl = apiUrl;
 
   const [name, setName] = useState('');
   const [mainResponse, setMainResponse] = useState('');

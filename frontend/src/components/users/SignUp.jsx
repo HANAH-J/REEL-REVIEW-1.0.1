@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import OAuth2 from './OAuth2';
 import Terms from './Terms';
+import apiUrl from '../../config';
 import styles from '../../css/users/Sign.module.css';
 import logo from '../../img/Header/Reel_Review_logo.png';
 
 // [회원] 회원가입 모달창
 export default function SignUp({ setSignInModalState, setSignUpModalState }) {
-    const baseUrl = "http://localhost:8085";
+    const baseUrl = apiUrl;
 
     // 이름, 이메일, 비밀번호 입력값
     const [name, setName] = useState('');

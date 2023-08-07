@@ -12,9 +12,10 @@ import rateImg from "../../../img/profile/userProfile/rate.svg";
 import { useUserStore } from "../../../stores/index.ts";
 import axios from "axios";
 import { useCookies } from 'react-cookie';
+import apiUrl from "../../../config";
 
 function UserProfile() {
-  const baseUrl = "http://localhost:8085";
+  const baseUrl = apiUrl;
 
   const [openModal, setOpenModal] = useState(false);
   const navigate = useNavigate();

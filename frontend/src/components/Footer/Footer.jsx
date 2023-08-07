@@ -3,8 +3,10 @@ import axios from 'axios';
 import "../../css/Footer/Footer.css";
 import { useState, useEffect, useContext } from 'react';
 import NumberContext from '../../pages/details/NumberContext';
+import apiUrl from '../../config';
+
 export default function Footer() {
-  const baseUrl = "http://localhost:8085";
+  const baseUrl = apiUrl;
 
   // 총 별점 수
   const [movieList, setMovieList] = useState([]);

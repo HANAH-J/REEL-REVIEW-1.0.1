@@ -4,9 +4,10 @@ import styles from '../../../css/csMain/CsMain.module.css';
 import CsFooter from '../../../components/Footer/CsFooter';
 import CsHeader from '../../../components/Header/CsHeader';
 import axios from 'axios';
+import apiUrl from '../../../config';
 
 export default function SearchSuccessWriter() {
-    const baseUrl = "http://localhost:8085";
+    const baseUrl = apiUrl;
 
     const navigate = useNavigate();
     const location = useLocation();

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Alert from './Alert';
+import apiUrl from '../../config';
 import styles from '../../css/users/Password.module.css';
 
 // [회원] 임시 비밀번호 발급 모달창
 export default function ForgotPw({ setForgotPwModalState, setSignInModalState }) {
-    const baseUrl = "http://localhost:8085";
+    const baseUrl = apiUrl;
 
     // 임시 비밀번호 발급 결과 알림창
     const [alertModalState, setAlertModalState] = useState(false);

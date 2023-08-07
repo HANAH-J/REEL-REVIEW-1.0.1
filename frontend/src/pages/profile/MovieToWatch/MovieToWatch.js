@@ -5,9 +5,10 @@ import LoginSuccessHeader from "../../../components/Header/LoginSuccessHeader";
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useCookies } from 'react-cookie';
+import apiUrl from '../../../config';
 
 function MovieToWatch() {
-  const baseUrl = "http://localhost:8085";
+  const baseUrl = apiUrl;
   const IMG_BASE_URL = "https://image.tmdb.org/t/p/original/";
 
   const [userData, setUserData] = useState({});

@@ -8,12 +8,13 @@ import { useCookies } from 'react-cookie';
 import UserContext from '../../pages/details/UserContext';
 import Alert from '../../components/users/Alert'; import styles from '../../css/details/Detail_num2.module.css';
 import styles2 from '../../css/users/Sign.module.css';
+import apiUrl from '../../config';
 
 
 const IMG_BASE_URL = "https://image.tmdb.org/t/p/original/";
 
 function Detailnum2(props) {
-  const baseUrl = "http://localhost:8085";
+  const baseUrl = apiUrl;
 
   const [loading, setLoading] = useState(true);
   const [comment, setComment] = useState([]);

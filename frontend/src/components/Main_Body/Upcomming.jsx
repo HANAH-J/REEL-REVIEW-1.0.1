@@ -5,6 +5,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import styles from '../../css/main/Mainpage.module.css';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import apiUrl from '../../config';
 
 const IMG_BASE_URL = "https://image.tmdb.org/t/p/w500/";
 
@@ -103,7 +104,7 @@ export default function Upcomming() {
   let [upcommingList, setUpcommingList] = useState([]);
 
   useEffect(() => {
-    const baseUrl = "http://localhost:8085";
+    const baseUrl = apiUrl;
 
     axios.get(baseUrl + "/api/upcomming").then((response) => {
       upcommingList = response.data;

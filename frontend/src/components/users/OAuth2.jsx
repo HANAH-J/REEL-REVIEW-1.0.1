@@ -1,4 +1,5 @@
 import React from 'react';
+import apiUrl from '../../config';
 import styles from '../../css/users/Sign.module.css';
 import kakao_icon from '../../img/users/kakao_icon.svg';
 import google_icon from '../../img/users/google_icon.svg';
@@ -6,7 +7,7 @@ import naver_icon from '../../img/users/naver_icon.png';
 
 // [회원] 소셜 로그인, 회원가입 컴포넌트
 export default function OAuth2({ signUpOAuth2 }) {
-    const baseUrl = "http://localhost:8085";
+    const baseUrl = apiUrl;
 
     // 소셜 로그인 로직
     const oAuth2SignInHandler = (provider) => {

@@ -6,9 +6,10 @@ import SignUp from "../../components/users/SignUp";
 import styles from '../../css/users/Sign.module.css';
 import styles2 from '../../css/Header/Nav.module.css';
 import logo from '../../img/Header/Reel_Review_logo.png';
+import apiUrl from "../../config";
 
 export default function Header() {
-    const baseUrl = "http://localhost:8085";
+    const baseUrl = apiUrl;
     const mainUrl = "http://localhost:3000";
 
     // 메인 로고 클릭 이벤트

@@ -4,9 +4,10 @@ import styles from '../../css/csMain/CsMain.module.css';
 import axios from 'axios';
 import CsHeader from '../Header/CsHeader';
 import CsFooter from '../Footer/CsFooter';
+import apiUrl from '../../config';
 
 export default function CsBoard_modify() {
-    const baseUrl = "http://localhost:8085";
+    const baseUrl = apiUrl;
 
     const { boardCd } = useParams();
     const navigate = useNavigate();

@@ -5,12 +5,13 @@ import axios from 'axios';
 import OAuth2 from './OAuth2.jsx';
 import ForgotPw from './ForgotPw';
 import Alert from './Alert.jsx';
+import apiUrl from '../../config.js';
 import styles from '../../css/users/Sign.module.css';
 import logo from '../../img/Header/Reel_Review_logo.png';
 
 // [회원] 로그인 모달창
 export default function SignIn({ setSignInModalState, setSignUpModalState }) {
-    const baseUrl = "http://localhost:8085";
+    const baseUrl = apiUrl;
 
     // JWT 저장소
     const [cookies, setCookies] = useCookies();

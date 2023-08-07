@@ -6,9 +6,10 @@ import SignIn from "../users/SignIn";
 import SignUp from "../users/SignUp";
 import axios from 'axios';
 import reel_review_logo from '../../img/Header/Reel_Review_logo_white.png';
+import apiUrl from "../../config";
 
 export default function Header_noneBackground() {
-    const baseUrl = "http://localhost:8085";
+    const baseUrl = apiUrl;
 
     const [movieList, setMovieList] = useState([]); 
     const [name, setName] = useState('');

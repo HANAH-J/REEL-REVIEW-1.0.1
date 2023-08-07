@@ -13,10 +13,11 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useCookies } from 'react-cookie';
 import userPFP from '../../img/profile/userProfile/empty_user.svg'
 import { useNavigate } from 'react-router-dom';
+import apiUrl from '../../config';
 
 
 export default function CommentDetail(props) {
-  const baseUrl = "http://localhost:8085";
+  const baseUrl = apiUrl;
 
   const IMG_BASE_URL = "https://image.tmdb.org/t/p/original/";
   const navigate = useNavigate();

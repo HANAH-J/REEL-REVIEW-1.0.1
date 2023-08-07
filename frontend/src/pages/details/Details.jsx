@@ -15,10 +15,11 @@ import { useEffect, useState } from "react";
 import { useCookies } from 'react-cookie';
 import axios from "axios";
 import UserContext from './UserContext';
+import apiUrl from "../../config";
 
 
 function Details() {
-  const baseUrl = "http://localhost:8085";
+  const baseUrl = apiUrl;
 
   const [movieData, setMovieData] = useState(null);
   const location = useLocation();

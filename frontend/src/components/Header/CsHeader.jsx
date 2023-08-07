@@ -5,9 +5,10 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import CsHeaderMenu from "./CsHeader_menu";
 import { useCookies } from 'react-cookie';
 import axios from "axios";
+import apiUrl from "../../config";
 
 export default function CsHeader() {
-  const baseUrl = "http://localhost:8085";
+  const baseUrl = apiUrl;
 
   const [userData, setUserData] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);

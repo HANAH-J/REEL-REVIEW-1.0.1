@@ -5,9 +5,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import { useCookies } from 'react-cookie';
 import userPFP from '../../../img/profile/userProfile/empty_user.svg';
+import apiUrl from "../../../config";
 
 function UserComment() {
-  const baseUrl = "http://localhost:8085";
+  const baseUrl = apiUrl;
   const IMG_BASE_URL = "https://image.tmdb.org/t/p/original/";
   const [userData, setUserData] = useState({});
   const [comments, setComments] = useState([]);

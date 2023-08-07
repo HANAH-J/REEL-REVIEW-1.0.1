@@ -7,11 +7,12 @@ import { FaThumbsUp } from "react-icons/fa";
 import { ImBubble } from "react-icons/im";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import apiUrl from '../../config';
 
 
 
 function CommentsCol(props) {
-    const baseUrl = "http://localhost:8085";
+    const baseUrl = apiUrl;
 
     const comment = props.comment;
     const userCd = comment.userCd;

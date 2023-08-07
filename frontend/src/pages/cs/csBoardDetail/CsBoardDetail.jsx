@@ -6,9 +6,10 @@ import CsHeader from '../../../components/Header/CsHeader';
 import { useCookies } from 'react-cookie';
 import axios from 'axios';
 import Imagefileshow from '../../../components/csBoard/Imagefileshow';
+import apiUrl from '../../../config';
 
 function CsBoardDetail() {
-  const baseUrl = "http://localhost:8085";
+  const baseUrl = apiUrl;
 
   function getModifiedFilePath(filepath) {
     return baseUrl + filepath;

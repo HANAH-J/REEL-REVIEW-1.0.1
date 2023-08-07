@@ -4,9 +4,10 @@ import styles from '../../../css/csMain/CsMain.module.css';
 import CsFooter from '../../../components/Footer/CsFooter';
 import CsHeader from '../../../components/Header/CsHeader';
 import axios from 'axios';
+import apiUrl from '../../../config';
 
 function CsBoard() {
-    const baseUrl = "http://localhost:8085";
+    const baseUrl = apiUrl;
 
     const [list, setList] = useState([]);
     const [totalPages, setTotalPages] = useState(0);

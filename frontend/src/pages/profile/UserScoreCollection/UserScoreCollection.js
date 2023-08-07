@@ -6,10 +6,11 @@ import { Link } from 'react-router-dom';
 import axios from "axios";
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom'; 
+import apiUrl from '../../../config';
 
 
 function UserScoreCollection() {
-  const baseUrl = "http://localhost:8085";
+  const baseUrl = apiUrl;
   const IMG_BASE_URL = "https://image.tmdb.org/t/p/original/";
   
   const [userData, setUserData] = useState({});

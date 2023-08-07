@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Alert from './Alert';
+import apiUrl from '../../config';
 import styles from '../../css/users/Password.module.css';
 
 // [회원] 비밀번호 변경 모달창
 export default function ChangePw({ userEmail, setShowChangePasswordModal }) {
-    const baseUrl = "http://localhost:8085";
+    const baseUrl = apiUrl;
 
     // 비밀번호 입력값
     const [password, setPassword] = useState('');

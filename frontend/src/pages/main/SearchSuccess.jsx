@@ -7,9 +7,10 @@ import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import Header from "../../components/Header/Header";
 import MovieList from '../../components/Main_Body/MovieList';
+import apiUrl from '../../config';
 
 export default function SearchSuccess() {
-    const baseUrl = "http://localhost:8085";
+    const baseUrl = apiUrl;
 
     const [userCd, setUserCd] = useState(null);
     const [userData, setUserData] = useState(null);
