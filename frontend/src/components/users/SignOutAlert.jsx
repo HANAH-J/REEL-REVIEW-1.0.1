@@ -5,6 +5,8 @@ import styles from '../../css/users/Alert.module.css';
 
 // [회원] 로그아웃 확인 알림창
 export default function SignOutAlert({ setShowSignOutAlert, SignOutHeader }) {
+    const mainUrl = "http://localhost:3000";
+
     const [cookies, setCookies, removeCookies] = useCookies();
     const { user, removeUser } = useUserStore();
 
@@ -12,7 +14,7 @@ export default function SignOutAlert({ setShowSignOutAlert, SignOutHeader }) {
     const signOutHandler = () => {
         removeUser();
         removeCookies('token');
-        window.location.href = 'http://localhost:3000';
+        window.location.href = mainUrl;
     }
 
     return (

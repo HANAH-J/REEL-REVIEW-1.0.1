@@ -18,168 +18,170 @@ import UserContext from './UserContext';
 
 
 function Details() {
-    const [movieData, setMovieData] = useState(null);
-    const location = useLocation();
-    const { item } = location.state;
-    const[commentss,setCommentss] = useState();
-    const [cookies, setCookie] = useCookies(['token']);
-    const [userCd, setUserCd] = useState(null);
-    const [loggedIn, setLoggedIn] = useState(false);
-    const [userData, setUserData] = useState(null);
-    const [profileData, setProfileData] = useState(null);
-    const [profileImage, setProfileImage] = useState(null);
-    const [userEmail, setUserEmail] = useState('');
+  const baseUrl = "http://localhost:8085";
 
-    const [scrolled, setScrolled] = useState(false);
+  const [movieData, setMovieData] = useState(null);
+  const location = useLocation();
+  const { item } = location.state;
+  const [commentss, setCommentss] = useState();
+  const [cookies, setCookie] = useCookies(['token']);
+  const [userCd, setUserCd] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [userData, setUserData] = useState(null);
+  const [profileData, setProfileData] = useState(null);
+  const [profileImage, setProfileImage] = useState(null);
+  const [userEmail, setUserEmail] = useState('');
 
-    const headerStyle = {
-        opacity: scrolled ? 1 : 0, 
-        transition: "opacity 3s ease-in-out",
-      };
-      
-     
-      const header2Style = {
-        opacity: scrolled ? 0 : 1, 
-        transition: "opacity 3s ease-in-out",
-    
-      };
-      
-      const renderHeader = () => {
-        const transitionDuration = 1000; 
-        const transitionStyle = {
-          transition: `opacity ${transitionDuration}ms ease-in-out`,
-        };
-      
-        if (scrolled) {
-            if (loggedIn) {
-              return (
-                <div style={{ ...headerStyle, ...transitionStyle }}>
-                  <LoginSuccessHeader profileData={profileData} userData={userData} />
-                </div>
-              );
-            } else {
-              return (
-                <div style={{ ...headerStyle, ...transitionStyle }}>
-                  <Header />
-                </div>
-              );
-            }
-          } else {
-            if (loggedIn) {
-              return (
-                <div style={{ ...header2Style, ...transitionStyle }}>
-                  <LoginSuccess_header_noneBackground profileData={profileData} userData={userData} />
-                </div>
-              );
-            } else {
-              return (
-                <div style={{ ...header2Style, ...transitionStyle }}>
-                  <Header_noneBackground />
-                </div>
-              );
-            }
-          }
-        };
-      
+  const [scrolled, setScrolled] = useState(false);
 
-    useEffect(() => {
-        const token = cookies.token;
+  const headerStyle = {
+    opacity: scrolled ? 1 : 0,
+    transition: "opacity 3s ease-in-out",
+  };
 
-        if (token) {
-            setLoggedIn(true);
-            fetchUserData(token); // 토큰이 유효하다면 사용자 데이터를 가져오는 함수 호출
 
-        } else {
-            setLoggedIn(false);
-            //alert('로그인을 해주세요.'); 
-            //navigate('/'); // 토큰이 없을 경우 메인으로 리디렉션
-        }
-    }, [cookies.token]);
+  const header2Style = {
+    opacity: scrolled ? 0 : 1,
+    transition: "opacity 3s ease-in-out",
 
-    const fetchUserData = (token) => {
-        const config = {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                withCredentials: true,
-            },
-        };
+  };
 
-        axios.get('http://localhost:8085/userProfiles', config)
-            .then(response => {
+  const renderHeader = () => {
+    const transitionDuration = 1000;
+    const transitionStyle = {
+      transition: `opacity ${transitionDuration}ms ease-in-out`,
+    };
 
-                const responseData = response.data;
-                setUserCd(responseData.userDTO.userCd); //userCd값 설정 -> Modal에서 사용
-                setProfileImage(responseData.profileDTO.pfImage);
-                setUserEmail(responseData.userDTO.userEmail);
-
-                const userDTO = {
-                    userCd: responseData.userDTO.userCd,
-                    username: responseData.userDTO.username,
-                    userEmail: responseData.userDTO.userEmail,
-                    role: responseData.userDTO.role
-                };
-
-                const profileDTO = {
-                    status: responseData.profileDTO.status,
-                    bgImage: responseData.profileDTO.bgImage,
-                    pfImage: responseData.profileDTO.pfImage
-                };
-
-                setUserData(userDTO);
-                setProfileData(profileDTO);
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
+    if (scrolled) {
+      if (loggedIn) {
+        return (
+          <div style={{ ...headerStyle, ...transitionStyle }}>
+            <LoginSuccessHeader profileData={profileData} userData={userData} />
+          </div>
+        );
+      } else {
+        return (
+          <div style={{ ...headerStyle, ...transitionStyle }}>
+            <Header />
+          </div>
+        );
+      }
+    } else {
+      if (loggedIn) {
+        return (
+          <div style={{ ...header2Style, ...transitionStyle }}>
+            <LoginSuccess_header_noneBackground profileData={profileData} userData={userData} />
+          </div>
+        );
+      } else {
+        return (
+          <div style={{ ...header2Style, ...transitionStyle }}>
+            <Header_noneBackground />
+          </div>
+        );
+      }
     }
+  };
 
-    // console.log(item);
-    useEffect(() => {
-        const movieId = item.movieId;
-        axios.get("http://localhost:8085/api/getMovieFulldata", { params: { movieId: movieId } }).then((response) => {
-            setMovieData(response.data);
-            setCommentss(response.data.comments)
-            // console.log(movieData);
-        }).catch((error) => { console.log(error) })
-    }, [item.movieId]);
 
-    useEffect(() => {
-        const handleScroll = () => {
-          const scrollY = window.scrollY;
-          const scrollThreshold = 50; // 일정 이상 스크롤이 내려간 경우를 판단하는 값
-          if (scrollY > scrollThreshold) {
-            setScrolled(true);
-          } else {
-            setScrolled(false);
-          }
+  useEffect(() => {
+    const token = cookies.token;
+
+    if (token) {
+      setLoggedIn(true);
+      fetchUserData(token); // 토큰이 유효하다면 사용자 데이터를 가져오는 함수 호출
+
+    } else {
+      setLoggedIn(false);
+      //alert('로그인을 해주세요.'); 
+      //navigate('/'); // 토큰이 없을 경우 메인으로 리디렉션
+    }
+  }, [cookies.token]);
+
+  const fetchUserData = (token) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        withCredentials: true,
+      },
+    };
+
+    axios.get(baseUrl + '/userProfiles', config)
+      .then(response => {
+
+        const responseData = response.data;
+        setUserCd(responseData.userDTO.userCd); //userCd값 설정 -> Modal에서 사용
+        setProfileImage(responseData.profileDTO.pfImage);
+        setUserEmail(responseData.userDTO.userEmail);
+
+        const userDTO = {
+          userCd: responseData.userDTO.userCd,
+          username: responseData.userDTO.username,
+          userEmail: responseData.userDTO.userEmail,
+          role: responseData.userDTO.role
         };
-        window.addEventListener("scroll", handleScroll);
-        return () => {
-          // 컴포넌트가 언마운트될 때 스크롤 이벤트 리스너 제거
-          window.removeEventListener("scroll", handleScroll);
+
+        const profileDTO = {
+          status: responseData.profileDTO.status,
+          bgImage: responseData.profileDTO.bgImage,
+          pfImage: responseData.profileDTO.pfImage
         };
-      }, []);
-      
-      
-      
-      return (
-      <UserContext.Provider value={{ commentss , setCommentss}}>
-        <div className={styles.Detail_box}>
-       {renderHeader()}
+
+        setUserData(userDTO);
+        setProfileData(profileDTO);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }
+
+  // console.log(item);
+  useEffect(() => {
+    const movieId = item.movieId;
+    axios.get(baseUrl + "/api/getMovieFulldata", { params: { movieId: movieId } }).then((response) => {
+      setMovieData(response.data);
+      setCommentss(response.data.comments)
+      // console.log(movieData);
+    }).catch((error) => { console.log(error) })
+  }, [item.movieId]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const scrollThreshold = 50; // 일정 이상 스크롤이 내려간 경우를 판단하는 값
+      if (scrollY > scrollThreshold) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      // 컴포넌트가 언마운트될 때 스크롤 이벤트 리스너 제거
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+
+
+  return (
+    <UserContext.Provider value={{ commentss, setCommentss }}>
+      <div className={styles.Detail_box}>
+        {renderHeader()}
         {movieData ? (<>
-          
-            <Detailtop item={item} movieData={movieData} />
-            <Detailnum2 item={item} movieData={movieData} />
-            <Detailnum3 item={item} movieData={movieData} />
-            <Detailnum4 item={item} movieData={movieData} />
-            <Detailnum5 item={item} movieData={movieData} />
-            <Detailnum6 item={item} movieData={movieData} />
-   
+
+          <Detailtop item={item} movieData={movieData} />
+          <Detailnum2 item={item} movieData={movieData} />
+          <Detailnum3 item={item} movieData={movieData} />
+          <Detailnum4 item={item} movieData={movieData} />
+          <Detailnum5 item={item} movieData={movieData} />
+          <Detailnum6 item={item} movieData={movieData} />
+
         </>) : (<></>)}
         <Footer></Footer>
-    </div>
+      </div>
     </UserContext.Provider>
-    );
+  );
 }
 
 

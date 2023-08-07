@@ -6,6 +6,8 @@ import CsHeader from '../../../components/Header/CsHeader';
 import axios from 'axios';
 
 export default function SearchSuccessWriter() {
+    const baseUrl = "http://localhost:8085";
+
     const navigate = useNavigate();
     const location = useLocation();
     const boardList = location.state ? location.state.boardList : [];
@@ -31,7 +33,7 @@ export default function SearchSuccessWriter() {
         formData.append('boardWriter', boardWriter);
 
         axios
-            .get('http://localhost:8085/api/board/searchBoardWriter', {
+            .get(baseUrl + '/api/board/searchBoardWriter', {
                 params: {
                     writer: boardWriter,
                 },

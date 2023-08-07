@@ -13,6 +13,8 @@ import styles2 from '../../css/users/Sign.module.css';
 const IMG_BASE_URL = "https://image.tmdb.org/t/p/original/";
 
 function Detailnum2(props) {
+  const baseUrl = "http://localhost:8085";
+
   const [loading, setLoading] = useState(true);
   const [comment, setComment] = useState([]);
   const { commentss, setCommentss } = useContext(UserContext);
@@ -30,7 +32,7 @@ function Detailnum2(props) {
       data.append('movieId', movie.movieId);
 
       axios
-        .post("http://localhost:8085/details/getWantToSee", data, config)
+        .post(baseUrl + "/details/getWantToSee", data, config)
         .then((response) => {
           if (response.data.want == 'want') {
             setWantTo(true);
@@ -127,7 +129,7 @@ function Detailnum2(props) {
     const data = new URLSearchParams();
     data.append('commentContent', commentValue);
     data.append('movieId', movie.movieId);
-    axios.post("http://localhost:8085/details/commentSave", data, config)
+    axios.post(baseUrl + "/details/commentSave", data, config)
       .then((response) => {
         setCommentss(response.data);
       })
@@ -155,7 +157,7 @@ function Detailnum2(props) {
         const data = new URLSearchParams();
         data.append('movieId', movie.movieId);
         axios
-          .post("http://localhost:8085/details/wantToSee", data, config)
+          .post(baseUrl + "/details/wantToSee", data, config)
           .then((response) => {
             setWantTo(true);
           })
@@ -167,7 +169,7 @@ function Detailnum2(props) {
         const data = new URLSearchParams();
         data.append('movieId', movie.movieId);
         axios
-          .post("http://localhost:8085/details/wantToSeeOut", data, config)
+          .post(baseUrl + "/details/wantToSeeOut", data, config)
           .then(() => {
             setWantTo(false);
           })
@@ -202,7 +204,7 @@ function Detailnum2(props) {
       data.append('rate', rate);
       data.append('movieId', movie.movieId);
       // data.append('config',config)
-      axios.post("http://localhost:8085/details/setRating", data, config)
+      axios.post(baseUrl + "/details/setRating", data, config)
         .then((response) => {
           setRatingData(response.data);
         })

@@ -11,12 +11,14 @@ import axios from 'axios';
 
 
 function CommentsCol(props) {
+    const baseUrl = "http://localhost:8085";
+
     const comment = props.comment;
     const userCd = comment.userCd;
 
     const [userData,setUserData] = useState([]);
     useEffect(()=>{
-        axios.get("http://localhost:8085/details/commentGetUser",userCd)
+        axios.get(baseUrl + "/details/commentGetUser",userCd)
         .then((response)=>{
             setUserData(response.data);
         }).catch((error)=>{

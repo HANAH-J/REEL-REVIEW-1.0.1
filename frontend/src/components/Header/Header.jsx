@@ -8,10 +8,12 @@ import styles2 from '../../css/Header/Nav.module.css';
 import logo from '../../img/Header/Reel_Review_logo.png';
 
 export default function Header() {
+    const baseUrl = "http://localhost:8085";
+    const mainUrl = "http://localhost:3000";
 
     // 메인 로고 클릭 이벤트
     const reload = () => {
-        window.location.href = 'http://localhost:3000';
+        window.location.href = mainUrl;
     }
     
     const [movieList, setMovieList] = useState([]);
@@ -30,7 +32,7 @@ export default function Header() {
     const formData = new FormData();
     formData.append('name', name);
 
-    axios.post("http://localhost:8085/api/movieSearch", formData)
+    axios.post(baseUrl + "/api/movieSearch", formData)
       .then((response) => {
         setMovieList(response.data);
         navigate('/searchSuccess', { state: { movieList: response.data, searchedName: name } });

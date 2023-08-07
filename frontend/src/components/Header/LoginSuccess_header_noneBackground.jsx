@@ -8,6 +8,8 @@ import logo from '../../img/Header/Reel_Review_logo_white.png';
 import SignOutAlert from "../users/SignOutAlert";
 
 export default function LoginSuccess_header_noneBackground({ profileData, userData }) {
+  const baseUrl = "http://localhost:8085";
+
   const userCd = userData ? userData.userCd : null;
 
   const [movieList, setMovieList] = useState([]);
@@ -28,7 +30,7 @@ export default function LoginSuccess_header_noneBackground({ profileData, userDa
     const formData = new FormData();
     formData.append('name', name);
 
-    axios.post("http://localhost:8085/api/movieSearch", formData)
+    axios.post(baseUrl + "/api/movieSearch", formData)
       .then((response) => {
         setMovieList(response.data);
         navigate('/searchSuccess', { state: { movieList: response.data, searchedName: name } });
@@ -65,7 +67,7 @@ export default function LoginSuccess_header_noneBackground({ profileData, userDa
           <Link to={{ pathname: '/user/userProfiles' }} className={styles.userProfile_box}>
             <li>
               {profileData && profileData.pfImage !== 'defaultPfImage' ? (
-                <img alt="profile" src={`http://localhost:8085/userProfiles/getProfilePicture?userCd=${userCd}`} className={styles.icon} />
+                <img alt="profile" src={baseUrl + `/userProfiles/getProfilePicture?userCd=${userCd}`} className={styles.icon} />
               ) : (
                 <img alt="profile" src={userPFP} className={styles.icon} />
               )}

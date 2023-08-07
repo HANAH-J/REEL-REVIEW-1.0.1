@@ -6,15 +6,16 @@ import naver_icon from '../../img/users/naver_icon.png';
 
 // [회원] 소셜 로그인, 회원가입 컴포넌트
 export default function OAuth2({ signUpOAuth2 }) {
+    const baseUrl = "http://localhost:8085";
 
     // 소셜 로그인 로직
     const oAuth2SignInHandler = (provider) => {
         if (provider === 'kakao') {
-            window.location.href = 'http://localhost:8085/oauth2/authorization/kakao';
+            window.location.href = baseUrl + '/oauth2/authorization/kakao';
         } else if (provider === 'google') {
-            window.location.href = 'http://localhost:8085/oauth2/authorization/google';
+            window.location.href = baseUrl + '/oauth2/authorization/google';
         } else if (provider === 'naver') {
-            window.location.href = 'http://localhost:8085/oauth2/authorization/naver';
+            window.location.href = baseUrl + '/oauth2/authorization/naver';
         }
     };
 

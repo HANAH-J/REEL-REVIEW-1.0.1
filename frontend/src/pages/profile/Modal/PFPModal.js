@@ -8,6 +8,9 @@ import styles from '../../../css/profile/PFPModal.module.css';
 import styles2 from '../../../css/users/Alert.module.css';
 
 function PFPModal({ setOpenModal, userCd, userEmail, removeUser }) {
+  const baseUrl = "http://localhost:8085";
+  const mainUrl = "http://localhost:3000";
+
   const [inputValue, setInputValue] = useState(''); //변경할 상태메시지
   const [showEditTextModal, setShowEditTextModal] = useState(false);
   const [showEditPFPModal, setShowEditPFPModal] = useState(false);
@@ -66,7 +69,7 @@ function PFPModal({ setOpenModal, userCd, userEmail, removeUser }) {
   const signOutForeverHandler = (e) => {
     e.preventDefault();
 
-    axios.post('http://localhost:8085/api/auth/signOutForever', {
+    axios.post(baseUrl + '/api/auth/signOutForever', {
       userEmail: userEmail
     }).then((result) => {
       if (result.data === true) {
@@ -83,14 +86,14 @@ function PFPModal({ setOpenModal, userCd, userEmail, removeUser }) {
   const goMain = () => {
     setCookies('token', '', { expires: new Date() });
     removeUser();
-    window.location.href = 'http://localhost:3000';
+    window.location.href = mainUrl;
   }
 
   // 비밀번호 변경 전 로그인 상태 확인 : UserController.java - providerCheck()
   const checkSignProvider = (e) => {
     e.preventDefault();
 
-    axios.post('http://localhost:8085/api/auth/providerCheck', {
+    axios.post(baseUrl + '/api/auth/providerCheck', {
       userEmail: userEmail
     }).then((response) => {
       if (response.data === 'emailProviderPass') {
@@ -133,7 +136,7 @@ function PFPModal({ setOpenModal, userCd, userEmail, removeUser }) {
       status: statusToSave
     };
 
-    axios.put('http://localhost:8085/userProfiles/updateUserStatus', dataToSend)
+    axios.put(baseUrl + '/userProfiles/updateUserStatus', dataToSend)
       .then(response => {
         setShowEditTextModal(false); //모달닫기
         setOpenModal(false); //모달닫기
@@ -164,7 +167,7 @@ function PFPModal({ setOpenModal, userCd, userEmail, removeUser }) {
     formData.append("userCd", userCd);
     formData.append("profilePicture", file);
 
-    axios.put('http://localhost:8085/userProfiles/updateUserPFP', formData, {
+    axios.put(baseUrl + '/userProfiles/updateUserPFP', formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -181,7 +184,7 @@ function PFPModal({ setOpenModal, userCd, userEmail, removeUser }) {
 
   // 프로필 사진 삭제
   const handlePFPDelete = () => {
-    axios.put('http://localhost:8085/userProfiles/updateProfileToDefault', {
+    axios.put(baseUrl + '/userProfiles/updateProfileToDefault', {
       userCd: userCd,
       imageType: "pfImage",
       imageValue: "defaultPfImage",
@@ -217,7 +220,7 @@ function PFPModal({ setOpenModal, userCd, userEmail, removeUser }) {
     formData.append("userCd", userCd);
     formData.append("backgroundImage", file);
 
-    axios.put('http://localhost:8085/userProfiles/updateUserPFB', formData, {
+    axios.put(baseUrl + '/userProfiles/updateUserPFB', formData, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -235,7 +238,7 @@ function PFPModal({ setOpenModal, userCd, userEmail, removeUser }) {
 
   // 배경 사진 삭제
   const handlePFBDelete = () => {
-    axios.put('http://localhost:8085/userProfiles/updateProfileToDefault', {
+    axios.put(baseUrl + '/userProfiles/updateProfileToDefault', {
       userCd: userCd,
       imageType: "bgImage",
       imageValue: "defaultBgImage",

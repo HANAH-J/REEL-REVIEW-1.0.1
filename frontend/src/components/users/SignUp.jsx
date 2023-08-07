@@ -7,6 +7,7 @@ import logo from '../../img/Header/Reel_Review_logo.png';
 
 // [회원] 회원가입 모달창
 export default function SignUp({ setSignInModalState, setSignUpModalState }) {
+    const baseUrl = "http://localhost:8085";
 
     // 이름, 이메일, 비밀번호 입력값
     const [name, setName] = useState('');
@@ -59,7 +60,7 @@ export default function SignUp({ setSignInModalState, setSignUpModalState }) {
         } else {
             // 이메일 중복 검사 API 호출
             axios
-                .post('http://localhost:8085/api/auth/emailCheck', { userEmail: email })
+                .post(baseUrl + '/api/auth/emailCheck', { userEmail: email })
                 .then((response) => {
                     const responseData = response.data;
     
@@ -104,7 +105,7 @@ export default function SignUp({ setSignInModalState, setSignUpModalState }) {
         const data = { username: name, userEmail: email, userPassword: password }
         const config = { headers: { 'Content-Type': 'application/json' } };
 
-        axios.post('http://localhost:8085/api/auth/signUp', data, config)
+        axios.post(baseUrl + '/api/auth/signUp', data, config)
             .then(() => { setName(''); setEmail(''); setPassword(''); })
             .catch((error) => { console.log('회원가입 실패 : ', error); })
     };

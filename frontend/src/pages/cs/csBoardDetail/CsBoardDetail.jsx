@@ -8,9 +8,10 @@ import axios from 'axios';
 import Imagefileshow from '../../../components/csBoard/Imagefileshow';
 
 function CsBoardDetail() {
+  const baseUrl = "http://localhost:8085";
 
   function getModifiedFilePath(filepath) {
-    return `http://localhost:8085` + filepath;
+    return baseUrl + filepath;
   }
 
   function getFileNameFromPath(filepath) {
@@ -54,7 +55,7 @@ function CsBoardDetail() {
       },
     };
 
-    axios.get('http://localhost:8085/userProfiles', config)
+    axios.get(baseUrl + '/userProfiles', config)
       .then(response => {
 
         const responseData = response.data;
@@ -81,7 +82,7 @@ function CsBoardDetail() {
     if (boardData) {
       const boardId = boardData.id;
       axios
-        .get(`http://localhost:8085/api/board/delete`, { params: { boardCd: boardCd } })
+        .get(baseUrl + `/api/board/delete`, { params: { boardCd: boardCd } })
         .then((response) => {
           window.alert('게시글이 삭제되었습니다');
           // Optionally, you can navigate to a different page after successful deletion
@@ -102,7 +103,7 @@ function CsBoardDetail() {
     data.append('boardcd', boardCd);
 
     axios
-      .post('http://localhost:8085/api/board/addComment', data)
+      .post(baseUrl + '/api/board/addComment', data)
       .then((response) => {
         // 전송 성공 시, 받아온 댓글 데이터를 상태에 저장
         fetchData();
@@ -119,7 +120,7 @@ function CsBoardDetail() {
 
   const fetchData = () => {   // 게시글 정보 가져오기
     axios
-      .get(`http://localhost:8085/api/board/boardList`, { params: { boardCd: boardCd } })
+      .get(baseUrl + `/api/board/boardList`, { params: { boardCd: boardCd } })
       .then((response) => {
         setBoardData(response.data);
       })
@@ -128,7 +129,7 @@ function CsBoardDetail() {
       });
 
     axios
-      .get(`http://localhost:8085/api/board/commentList`, { params: { boardCd: boardCd } })
+      .get(baseUrl + `/api/board/commentList`, { params: { boardCd: boardCd } })
       .then((response) => {
         setCommentContent(response.data);
         setCommentWriter(response.data);

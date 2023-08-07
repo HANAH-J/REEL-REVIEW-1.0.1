@@ -5,6 +5,7 @@ import styles from '../../css/users/Password.module.css';
 
 // [회원] 임시 비밀번호 발급 모달창
 export default function ForgotPw({ setForgotPwModalState, setSignInModalState }) {
+    const baseUrl = "http://localhost:8085";
 
     // 임시 비밀번호 발급 결과 알림창
     const [alertModalState, setAlertModalState] = useState(false);
@@ -16,12 +17,12 @@ export default function ForgotPw({ setForgotPwModalState, setSignInModalState })
     const onSubmitHandler = (e) => {
         e.preventDefault();
 
-        axios.post('http://localhost:8085/api/auth/providerCheck', {
+        axios.post(baseUrl + '/api/auth/providerCheck', {
             userEmail: email,
         }).then((response) => {
             // console.log('임시 비밀번호 전송 결과 : ' + response.data);
             if (response.data === 'emailProviderPass') {    // 임시 비밀번호 발급 가능
-                axios.post('http://localhost:8085/api/auth/resetPw/sendEmail', {
+                axios.post(baseUrl + '/api/auth/resetPw/sendEmail', {
                     userEmail: email,
                 }).then(() => {
                     setTempPasswordResult('emailProviderPass');

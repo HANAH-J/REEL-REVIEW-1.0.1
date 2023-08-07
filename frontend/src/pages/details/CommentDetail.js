@@ -16,6 +16,8 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function CommentDetail(props) {
+  const baseUrl = "http://localhost:8085";
+
   const IMG_BASE_URL = "https://image.tmdb.org/t/p/original/";
   const navigate = useNavigate();
   const location = useLocation();
@@ -55,7 +57,7 @@ export default function CommentDetail(props) {
   };
 
 
-  axios.get(`http://localhost:8085/getInfoForThisComment?commentId=${commentId}`)
+  axios.get(baseUrl + `/getInfoForThisComment?commentId=${commentId}`)
     .then(response => {
       const responseData = response.data;
       const loadCommentGood = responseData.commentInfo.commentGood;
@@ -85,7 +87,7 @@ export default function CommentDetail(props) {
         withCredentials: true,
       },
     };
-    axios.get('http://localhost:8085/userProfiles', config)
+    axios.get(baseUrl + '/userProfiles', config)
       .then(response => {
 
         const responseData = response.data;
@@ -107,7 +109,7 @@ export default function CommentDetail(props) {
 
   const commentGoodOneUp = () => {
     axios
-      .post("http://localhost:8085/comment/commentGoodUp", { commentId: commentId })
+      .post(baseUrl + "/comment/commentGoodUp", { commentId: commentId })
       .then(() => {
         // 서버로부터 좋아요 갯수를 증가시킨 데이터를 받아와서 comment 상태를 업데이트
         setCommentGood(commentGood + 1);
@@ -119,7 +121,7 @@ export default function CommentDetail(props) {
 
   const cCommentGoodOneUp = (cComment) => {
     axios
-      .post("http://localhost:8085/comment/cCommentGoodUp", { cCommentId: cComment.ccommentId })
+      .post(baseUrl + "/comment/cCommentGoodUp", { cCommentId: cComment.ccommentId })
       .then((response) => {
         // 서버로부터 좋아요 갯수를 증가시킨 데이터를 받아옴
         const updatedCommentGood = response.data.ccommentGood;
@@ -177,10 +179,10 @@ export default function CommentDetail(props) {
       const data = new URLSearchParams();
       data.append('cCommentContent', commentValue);
       data.append('commentId', comment.commentId);
-      axios.post("http://localhost:8085/details/cCommentSave", data, config)
+      axios.post(baseUrl + "/details/cCommentSave", data, config)
         .then(() => {
           // 댓글 작성 후 댓글 목록 불러오기
-          axios.get("http://localhost:8085/details/getCcomment", { params: { commentId: commentId } })
+          axios.get(baseUrl + "/details/getCcomment", { params: { commentId: commentId } })
             .then((response) => {
               setCcommentData(response.data);
             })
@@ -197,7 +199,7 @@ export default function CommentDetail(props) {
     }
   };
   useEffect(() => {
-    axios.get("http://localhost:8085/details/getCcomment", { params: { commentId: commentId } })
+    axios.get(baseUrl + "/details/getCcomment", { params: { commentId: commentId } })
       .then((response) => {
         setCcommentData(response.data);
 
@@ -205,7 +207,7 @@ export default function CommentDetail(props) {
         console.log(error);
       });
 
-    axios.get("http://localhost:8085/getMovieDetailsForThisComment", { params: { movieId: comment.movieId } })
+    axios.get(baseUrl + "/getMovieDetailsForThisComment", { params: { movieId: comment.movieId } })
       .then((response) => {
         const responseData = response.data;
         const movieDetailsList = responseData.movieDetailsList;
@@ -227,7 +229,7 @@ export default function CommentDetail(props) {
           <div className={styles.commentTitle}>
             <div className={styles.cmImgBox}>
               <div>
-                <img alt="profile" className={styles.cmImg} src={`http://localhost:8085/userProfiles/getProfilePicture?userCd=${commentUserCd}`} onError={onImageErrorComment} />
+                <img alt="profile" className={styles.cmImg} src={baseUrl + `/userProfiles/getProfilePicture?userCd=${commentUserCd}`} onError={onImageErrorComment} />
               </div>
             </div>
             <div className={styles.cmName}>{comment.userName}</div>
@@ -276,7 +278,7 @@ export default function CommentDetail(props) {
                 <React.Fragment key={index}>
                   <div className={styles.ccImgBox}>
                     <div>
-                      <img alt="profile" className={styles.ccimg} src={`http://localhost:8085/userProfiles/getProfilePicture?userCd=${item.userCd}`} onError={onImageErrorCComment} />
+                      <img alt="profile" className={styles.ccimg} src={baseUrl + `/userProfiles/getProfilePicture?userCd=${item.userCd}`} onError={onImageErrorCComment} />
                     </div>
                   </div>
                   <div className={styles.ccDetail}>

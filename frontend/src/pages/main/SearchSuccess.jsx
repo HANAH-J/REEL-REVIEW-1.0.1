@@ -9,6 +9,7 @@ import Header from "../../components/Header/Header";
 import MovieList from '../../components/Main_Body/MovieList';
 
 export default function SearchSuccess() {
+    const baseUrl = "http://localhost:8085";
 
     const [userCd, setUserCd] = useState(null);
     const [userData, setUserData] = useState(null);
@@ -26,7 +27,7 @@ export default function SearchSuccess() {
                 withCredentials: true,
             }
         };
-        await axios.get('http://localhost:8085/userProfiles', requestData)
+        await axios.get(baseUrl + '/userProfiles', requestData)
             .then((response) => {
                 const responseData = response.data;
                 setUserCd(responseData.userDTO.userCd); //userCd값 설정 -> Modal에서 사용

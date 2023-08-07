@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 function UserScoreCollection() {
+  const baseUrl = "http://localhost:8085";
   const IMG_BASE_URL = "https://image.tmdb.org/t/p/original/";
   
   const [userData, setUserData] = useState({});
@@ -42,7 +43,7 @@ function UserScoreCollection() {
       },
     };
 
-    axios.get('http://localhost:8085/userProfiles', config)
+    axios.get(baseUrl + '/userProfiles', config)
            .then(response => {
             const responseData = response.data;
 
@@ -66,7 +67,7 @@ function UserScoreCollection() {
             console.error('Error fetching data:', error);
           });
 
-    axios.get('http://localhost:8085/UserScoreCollection', config)
+    axios.get(baseUrl + '/UserScoreCollection', config)
       .then(response => {
 
         const responseData = response.data;

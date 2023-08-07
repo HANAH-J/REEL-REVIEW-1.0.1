@@ -14,6 +14,8 @@ import { useUserStore } from '../../stores/index.ts';
 import NumberContext from '../details/NumberContext';
 
 export default function MainPage() {
+  const baseUrl = "http://localhost:8085";
+
   const [name, setName] = useState('');
   const [mainResponse, setMainResponse] = useState('');
   const [cookies, setCookie] = useCookies(['token']);
@@ -31,7 +33,7 @@ export default function MainPage() {
       }
     };
 
-    await axios.get('http://localhost:8085/userProfiles', requestData)
+    await axios.get(baseUrl + '/userProfiles', requestData)
       .then((response) => {
         const responseData = response.data;
         setUserCd(responseData.userDTO.userCd); //userCd값 설정 -> Modal에서 사용
@@ -68,7 +70,7 @@ export default function MainPage() {
   useEffect(() => { setNumber(movieList.number); })
 
   useEffect(() => {
-    axios.post("http://localhost:8085/api/directorNactorNgenreSearchByDate")
+    axios.post(baseUrl + "/api/directorNactorNgenreSearchByDate")
       .then((response) => { setMovieList(response.data); })
       .catch((error) => { console.error(error); });
   }, [])

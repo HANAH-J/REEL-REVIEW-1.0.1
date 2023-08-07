@@ -9,6 +9,7 @@ import { BiChevronRight } from "react-icons/bi";
 import { useCookies } from 'react-cookie';
 
 function CsQna() {
+  const baseUrl = "http://localhost:8085";
 
   const [title, setTitle] = useState('');
   const [writer, setWriter] = useState('');
@@ -44,7 +45,7 @@ function CsQna() {
       },
     };
 
-    axios.get('http://localhost:8085/userProfiles', config)
+    axios.get(baseUrl + '/userProfiles', config)
       .then(response => {
 
         const responseData = response.data;
@@ -77,7 +78,7 @@ function CsQna() {
     data.append("writer", userData.username);
 
 
-    axios.post('http://localhost:8085/api/board/writepro', data).then((response) => {
+    axios.post(baseUrl + '/api/board/writepro', data).then((response) => {
       alert('작성 완료!!'); navigate('/user/CsBoard');
     }).catch((error) => {
       console.log('React-axios : 데이터 전송 실패');

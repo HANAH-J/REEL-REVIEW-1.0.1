@@ -13,6 +13,7 @@ export default function Alert({
     setShowWithdrawFailureModal, setShowWithdrawModal,                      // 소셜 회원탈퇴
     setShowNeedSignIn,                                                      // 비 로그인
     alertHeight, navigate, resultMessage }) {
+    const mainUrl = "http://localhost:3000";
 
     const [cookies, setCookies, removeCookies] = useCookies();
     const { user, removeUser } = useUserStore();
@@ -22,7 +23,7 @@ export default function Alert({
         setCookies('token', '', { expires: new Date() });
         removeUser();
         removeCookies('token');
-        window.location.href = 'http://localhost:3000';
+        window.location.href = mainUrl;
     }
 
     const confirmHandler = () => {

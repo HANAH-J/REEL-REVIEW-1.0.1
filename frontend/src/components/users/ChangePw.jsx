@@ -5,6 +5,7 @@ import styles from '../../css/users/Password.module.css';
 
 // [회원] 비밀번호 변경 모달창
 export default function ChangePw({ userEmail, setShowChangePasswordModal }) {
+    const baseUrl = "http://localhost:8085";
 
     // 비밀번호 입력값
     const [password, setPassword] = useState('');
@@ -62,7 +63,7 @@ export default function ChangePw({ userEmail, setShowChangePasswordModal }) {
     const onSubmitHandler = (e) => {
         e.preventDefault();
 
-        axios.post('http://localhost:8085/api/auth/changePw', {
+        axios.post(baseUrl + '/api/auth/changePw', {
             userEmail: userEmail,
             userPassword: password
         }).then((response) => {

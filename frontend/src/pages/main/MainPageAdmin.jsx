@@ -16,6 +16,8 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function MainPage() {
+  const baseUrl = "http://localhost:8085";
+  
   const [movieList, setMovieList] = useState([]); 
   const [name, setName] = useState('');
   const navigate = useNavigate();
@@ -51,7 +53,7 @@ export default function MainPage() {
     formData.append('name', name);
 
     // 데이터 전송
-    axios.post("http://localhost:8085/api/directorSearch", formData)
+    axios.post(baseUrl + "/api/directorSearch", formData)
       .then((response) => {
         // 요청에 대한 성공 처리
         setMovieList(response.data);
@@ -77,7 +79,7 @@ export default function MainPage() {
     formData.append('name', name1);
 
     // 데이터 전송
-    axios.post("http://localhost:8085/api/actorSearch", formData)
+    axios.post(baseUrl + "/api/actorSearch", formData)
       .then((response) => {
         // 요청에 대한 성공 처리
         setMovieListActor(response.data);
@@ -103,7 +105,7 @@ export default function MainPage() {
     formData.append('genre', name2);
 
     // 데이터 전송
-    axios.post("http://localhost:8085/api/genreSearch", formData)
+    axios.post(baseUrl + "/api/genreSearch", formData)
       .then((response) => {
         // 요청에 대한 성공 처리
         setMovieListGenre(response.data);

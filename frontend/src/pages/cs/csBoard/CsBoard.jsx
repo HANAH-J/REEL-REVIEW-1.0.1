@@ -6,6 +6,8 @@ import CsHeader from '../../../components/Header/CsHeader';
 import axios from 'axios';
 
 function CsBoard() {
+    const baseUrl = "http://localhost:8085";
+
     const [list, setList] = useState([]);
     const [totalPages, setTotalPages] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
@@ -26,7 +28,7 @@ function CsBoard() {
         const formData = new FormData();
         formData.append('boardWriter', boardWriter);
       
-        axios.get("http://localhost:8085/api/board/searchBoardWriter", {
+        axios.get(baseUrl + "/api/board/searchBoardWriter", {
             params: {
               writer: boardWriter,
             }
@@ -46,7 +48,7 @@ function CsBoard() {
     }, [currentPage, searchKeyword]);
 
     const fetchData = () => {
-        axios.get('http://localhost:8085/api/board/list', {
+        axios.get(baseUrl + '/api/board/list', {
             params: {
                 page: currentPage,
                 size: 5,

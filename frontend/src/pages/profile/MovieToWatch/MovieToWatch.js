@@ -7,6 +7,7 @@ import axios from "axios";
 import { useCookies } from 'react-cookie';
 
 function MovieToWatch() {
+  const baseUrl = "http://localhost:8085";
   const IMG_BASE_URL = "https://image.tmdb.org/t/p/original/";
 
   const [userData, setUserData] = useState({});
@@ -40,7 +41,7 @@ function MovieToWatch() {
       },
     };
 
-    axios.get('http://localhost:8085/userProfiles', config)
+    axios.get(baseUrl + '/userProfiles', config)
            .then(response => {
             const responseData = response.data;
 
@@ -64,7 +65,7 @@ function MovieToWatch() {
             console.error('Error fetching data:', error);
           });
 
-    axios.get('http://localhost:8085/MovieToWatch', config)
+    axios.get(baseUrl + '/MovieToWatch', config)
       .then(response => {
         const responseData = response.data;
 

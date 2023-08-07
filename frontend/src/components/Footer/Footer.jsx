@@ -4,6 +4,8 @@ import "../../css/Footer/Footer.css";
 import { useState, useEffect, useContext } from 'react';
 import NumberContext from '../../pages/details/NumberContext';
 export default function Footer() {
+  const baseUrl = "http://localhost:8085";
+
   // 총 별점 수
   const [movieList, setMovieList] = useState([]);
   const { number, setNumber } = useContext(NumberContext);
@@ -11,7 +13,7 @@ export default function Footer() {
   useEffect(() => { setNumber(movieList.number); })
 
   useEffect(() => {
-    axios.post("http://localhost:8085/api/directorNactorNgenreSearchByDate")
+    axios.post(baseUrl + "/api/directorNactorNgenreSearchByDate")
       .then((response) => { setMovieList(response.data); })
       .catch((error) => { console.error(error); });
   }, [])

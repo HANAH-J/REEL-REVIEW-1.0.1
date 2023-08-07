@@ -6,6 +6,7 @@ import CsHeader from '../Header/CsHeader';
 import CsFooter from '../Footer/CsFooter';
 
 export default function CsBoard_modify() {
+    const baseUrl = "http://localhost:8085";
 
     const { boardCd } = useParams();
     const navigate = useNavigate();
@@ -21,7 +22,7 @@ export default function CsBoard_modify() {
 
     const fetchData = () => {
         axios
-            .get(`http://localhost:8085/api/board/boardList`, { params: { boardCd: boardCd } })
+            .get(baseUrl + `/api/board/boardList`, { params: { boardCd: boardCd } })
             .then((response) => {
                 const { title, content, writer } = response.data;
                 setTitle(title);
@@ -43,7 +44,7 @@ export default function CsBoard_modify() {
         data.append('file', file);
 
         axios
-            .post(`http://localhost:8085/api/board/update/${boardCd}`, data)
+            .post(baseUrl + `/api/board/update/${boardCd}`, data)
             .then((response) => {
                 window.alert('게시글 수정 완료');
                 // 수정이 완료되면 게시판 세부 페이지로 이동

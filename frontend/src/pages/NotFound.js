@@ -3,10 +3,11 @@ import styles from '../css/NotFound.module.css';
 import logo from '../img/Header/Reel_Review_logo.png';
 
 const NotFound = () => {
+  const mainUrl = "http://localhost:3000";
 
   // 메인 로고 클릭 이벤트
   const reload = () => {
-    window.location.href = 'http://localhost:3000';
+    window.location.href = mainUrl;
   }
 
   return (

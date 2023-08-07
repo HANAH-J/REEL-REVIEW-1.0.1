@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from 'react-router-dom'; 
+import { useNavigate } from 'react-router-dom';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import styles from '../../../css/profile/UserProfile.module.css'
@@ -14,195 +14,199 @@ import axios from "axios";
 import { useCookies } from 'react-cookie';
 
 function UserProfile() {
-    const [openModal, setOpenModal] = useState(false);
-    const navigate = useNavigate();
-    const IMG_BASE_URL = "https://image.tmdb.org/t/p/original/";
+  const baseUrl = "http://localhost:8085";
 
-    const responsive = { //캐러셀 반응형 코드
-        superLargeDesktop: {breakpoint: { max: 4000, min: 3000 }, items: 5},
-        desktop: {breakpoint: { max: 3000, min: 1024 }, items: 3},
-        tablet: {breakpoint: { max: 1024, min: 464 }, items: 2},
-        mobile: {breakpoint: { max: 464, min: 0 },items: 1}
+  const [openModal, setOpenModal] = useState(false);
+  const navigate = useNavigate();
+  const IMG_BASE_URL = "https://image.tmdb.org/t/p/original/";
+
+  const responsive = { //캐러셀 반응형 코드
+    superLargeDesktop: { breakpoint: { max: 4000, min: 3000 }, items: 5 },
+    desktop: { breakpoint: { max: 3000, min: 1024 }, items: 3 },
+    tablet: { breakpoint: { max: 1024, min: 464 }, items: 2 },
+    mobile: { breakpoint: { max: 464, min: 0 }, items: 1 }
+  };
+
+  const userMovieToWatch = () => { navigate('/user/MovieToWatch'); }
+  const userComment = () => { navigate('/user/userComment'); }
+  const userScoreCollection = () => { navigate('/user/UserScoreCollection'); }
+  const goToMain = () => { navigate('/'); }
+
+  const goToMovie = (movieDetails) => {
+    navigate('/details', { state: { "item": movieDetails } })
+  };
+
+  const { user, removeUser } = useUserStore();
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [userData, setUserData] = useState({});
+  const [profileData, setProfileData] = useState({});
+  const [ratings, setRatings] = useState([]);
+  const [movieDetails, setMovieDetails] = useState([]);
+  const [userCd, setUserCd] = useState(null);
+  const [profileImage, setProfileImage] = useState(null);
+  const [userEmail, setUserEmail] = useState('');
+  const [cookies, setCookie, removeCookie] = useCookies(['token']);
+
+  useEffect(() => {
+    const token = cookies.token;
+
+    if (token) {
+      setLoggedIn(true);
+      fetchUserData(token); // 토큰이 유효하다면 사용자 데이터를 가져오는 함수 호출
+    } else {
+      setLoggedIn(false);
+      alert('로그인을 해주세요.');
+      navigate('/'); // 토큰이 없을 경우 메인으로 리디렉션
+    }
+  }, [cookies.token]);
+
+  const fetchUserData = (token) => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        withCredentials: true,
+      },
     };
 
-    const userMovieToWatch = () => { navigate('/user/MovieToWatch'); }
-    const userComment = () => { navigate('/user/userComment'); }
-    const userScoreCollection = () => { navigate('/user/UserScoreCollection'); }
-    const goToMain = () => { navigate('/'); }
+    axios.get(baseUrl + '/userProfiles', config)
+      .then(response => {
 
-    const goToMovie = (movieDetails) => {
-      navigate('/details',{state:{"item":movieDetails}})
-    };
+        const responseData = response.data;
+        setUserCd(responseData.userDTO.userCd); //userCd값 설정 -> Modal에서 사용
+        setProfileImage(responseData.profileDTO.pfImage);
+        setUserEmail(responseData.userDTO.userEmail);
 
-    const { user, removeUser } = useUserStore();
-    const [loggedIn, setLoggedIn] = useState(false);
-    const [userData, setUserData] = useState({});
-    const [profileData, setProfileData] = useState({});
-    const [ratings, setRatings] = useState([]);
-    const [movieDetails, setMovieDetails] = useState([]);
-    const [userCd, setUserCd] = useState(null);
-    const [profileImage, setProfileImage] = useState(null);
-    const [userEmail, setUserEmail] = useState('');
-    const [cookies, setCookie, removeCookie] = useCookies(['token']);
+        const userDTO = {
+          userCd: responseData.userDTO.userCd,
+          username: responseData.userDTO.username,
+          userEmail: responseData.userDTO.userEmail,
+          role: responseData.userDTO.role,
+        };
 
-    useEffect(() => {
-      const token = cookies.token;
-    
-      if (token) {
-        setLoggedIn(true);
-        fetchUserData(token); // 토큰이 유효하다면 사용자 데이터를 가져오는 함수 호출
-      } else {
-        setLoggedIn(false);
-        alert('로그인을 해주세요.'); 
-        navigate('/'); // 토큰이 없을 경우 메인으로 리디렉션
-      }
-    }, [cookies.token]);
-    
-    const fetchUserData = (token) => {
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          withCredentials: true,
-        },
-      };
-    
-      axios.get('http://localhost:8085/userProfiles', config)
-           .then(response => {
+        const profileDTO = {
+          status: responseData.profileDTO.status,
+          bgImage: responseData.profileDTO.bgImage,
+          pfImage: responseData.profileDTO.pfImage
+        };
 
-            const responseData = response.data;
-            setUserCd(responseData.userDTO.userCd); //userCd값 설정 -> Modal에서 사용
-            setProfileImage(responseData.profileDTO.pfImage);
-            setUserEmail(responseData.userDTO.userEmail);
+        const ratings = responseData.ratings;
+        const movieDetails = responseData.movieDetailsList;
 
-            const userDTO = {
-              userCd: responseData.userDTO.userCd,
-              username: responseData.userDTO.username,
-              userEmail: responseData.userDTO.userEmail,
-              role: responseData.userDTO.role,
-            };
+        setUserData(userDTO);
+        setProfileData(profileDTO);
+        setRatings(ratings);
+        setMovieDetails(movieDetails);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+  }
 
-            const profileDTO = {
-              status: responseData.profileDTO.status,
-              bgImage: responseData.profileDTO.bgImage,
-              pfImage: responseData.profileDTO.pfImage
-            };
+  const openPFPModal = () => {
+    setOpenModal(true);
+  }
 
-            const ratings = responseData.ratings;
-            const movieDetails = responseData.movieDetailsList;
+  const recentRatings = ratings ? ratings.slice(0, 5) : [];
 
-            setUserData(userDTO);
-            setProfileData(profileDTO);
-            setRatings(ratings);
-            setMovieDetails(movieDetails);
-          })
-          .catch(error => {
-            console.error('Error fetching data:', error);
-          });
-    }
-
-    const openPFPModal = () => { 
-        setOpenModal(true);
-    }
-
-    const recentRatings = ratings ? ratings.slice(0, 5) : [];
-
-    return (
+  return (
     <div className={styles.UserProfile}>
       <LoginSuccessHeader profileData={profileData} userData={userData} />
       <div className={styles.profileContainer}>
 
-            {profileData.bgImage === 'defaultBgImage' ? (
-              <div className={styles.profileBg}>
-                <div className={styles.profileShadow} />
-              </div>
+        {profileData.bgImage === 'defaultBgImage' ? (
+          <div className={styles.profileBg}>
+            <div className={styles.profileShadow} />
+          </div>
+        ) : (
+          <div className={styles.profileBg}
+            style={{
+              backgroundImage: `url(http://localhost:8085/userProfiles/getBackgroundImage?userCd=${userCd})`,
+              backgroundSize: '100%',
+              backgroundRepeat: 'no-repeat'
+            }}>
+            <div className={styles.profileShadow} />
+          </div>
+        )}
+
+        <div className={styles.userInfo}>
+          <button className={styles.profilePic} onClick={openPFPModal}>
+
+            {profileData.pfImage === 'defaultPfImage' ? (
+              <img alt="profile" src={userPFP} />
             ) : (
-              <div className={styles.profileBg} 
-              style={{ backgroundImage: `url(http://localhost:8085/userProfiles/getBackgroundImage?userCd=${userCd})`,
-                       backgroundSize: '100%',
-                       backgroundRepeat: 'no-repeat' }}>
-                <div className={styles.profileShadow} />
+              <img alt="profile" src={baseUrl + `/userProfiles/getProfilePicture?userCd=${userCd}`} />
+            )}
+            <img alt="profile" src={userPFPHover} className={styles.profilePicHover} />
+
+          </button>
+          <ul>
+            <li>
+              <h2 className={styles.name}> {userData.username} </h2>
+            </li>
+            <li>
+              <div className={styles.msg}> {profileData.status} </div>
+            </li>
+          </ul>
+
+          <div className={styles.movieListText}>
+            <div className={styles.topHR}> <hr className={styles.userProfile_HR} /> </div>
+            <h4>
+              <img alt="" src={rateImg} />
+              {userData.username} 님이 평가한 영화
+            </h4>
+            <div className={styles.bottomHR}> <hr className={styles.userProfile_HR} /> </div>
+          </div>
+
+          <div className={styles.movieList}>
+            {recentRatings && recentRatings.length > 0 ? (
+              <>
+                <Carousel responsive={responsive}>
+                  {recentRatings.map((rating, index) => (
+
+                    <div key={index} className={styles.card}>
+                      <img className={styles.movieListPoster} src={IMG_BASE_URL + movieDetails[index].poster_path} alt="Movie" onClick={() => goToMovie(movieDetails[index])} />
+                      <h4 onClick={() => goToMovie(movieDetails[index])} className={styles.movieListTitle}>{movieDetails[index].title}</h4>
+                      <h5 onClick={() => goToMovie(movieDetails[index])}>평가함 ★ {rating.rate}</h5>
+                    </div>
+                  ))}
+                </Carousel>
+                <div className={styles.movieListMore} onClick={userScoreCollection}>
+                  <p>더보기</p>
+                </div>
+              </>
+            ) : (
+              <div className={styles.noContent}>
+                <p className={styles.noMovie}>평가한 영화가 없습니다.</p>
+                <p className={styles.goRate} onClick={goToMain}>평가하러 가기</p>
               </div>
             )}
-            
-            <div className={styles.userInfo}>
-                <button className={styles.profilePic} onClick={openPFPModal}> 
+          </div>
 
-                    {profileData.pfImage === 'defaultPfImage' ? (
-                      <img alt="profile" src={userPFP} />
-                    ) : (
-                      <img alt="profile" src={`http://localhost:8085/userProfiles/getProfilePicture?userCd=${userCd}`} />
-                    )}
-                    <img alt="profile" src={userPFPHover} className={styles.profilePicHover} />
+          <div className={styles.movieToWatch} onClick={userMovieToWatch}>
+            <div className={styles.topHR}> <hr className={styles.userProfile_HR} /> </div>
+            <h4>
+              보고싶어요
+            </h4>
+            <div className={styles.bottomHR}> <hr className={styles.userProfile_HR} /> </div>
+          </div>
 
-                </button>
-                <ul>
-                    <li>
-                        <h2 className={styles.name}> {userData.username} </h2>
-                    </li> 
-                    <li>
-                        <div className={styles.msg}> {profileData.status} </div>
-                    </li>
-                </ul>
-
-                    <div className={styles.movieListText}>
-                        <div className={styles.topHR}> <hr className={styles.userProfile_HR} /> </div>
-                        <h4>
-                        <img alt="" src= {rateImg}/>
-                        {userData.username} 님이 평가한 영화
-                        </h4>
-                        <div className={styles.bottomHR}> <hr className={styles.userProfile_HR}/> </div>
-                    </div>
-
-                    <div className={styles.movieList}>
-                      {recentRatings && recentRatings.length > 0 ? (
-                        <>
-                          <Carousel responsive={responsive}>
-                            {recentRatings.map((rating, index) => (
-                              
-                              <div key={index} className={styles.card}>
-                                <img className={styles.movieListPoster} src={IMG_BASE_URL+movieDetails[index].poster_path} alt="Movie" onClick={() => goToMovie(movieDetails[index])} />
-                                <h4 onClick={() => goToMovie(movieDetails[index])} className={styles.movieListTitle}>{movieDetails[index].title}</h4>
-                                <h5 onClick={() => goToMovie(movieDetails[index])}>평가함 ★ {rating.rate}</h5>
-                              </div>
-                            ))}
-                          </Carousel>
-                          <div className={styles.movieListMore} onClick={userScoreCollection}> 
-                            <p>더보기</p>
-                          </div>
-                        </>
-                      ) : (
-                        <div className={styles.noContent}>
-                          <p className={styles.noMovie}>평가한 영화가 없습니다.</p>
-                          <p className={styles.goRate} onClick={goToMain}>평가하러 가기</p>
-                        </div>
-                      )}
-                    </div>
-
-                <div className={styles.movieToWatch} onClick={userMovieToWatch}>
-                        <div className={styles.topHR}> <hr className={styles.userProfile_HR}/> </div>
-                        <h4>
-                        보고싶어요
-                        </h4>
-                        <div className={styles.bottomHR}> <hr className={styles.userProfile_HR}/> </div>
-                </div>
-
-                {/* <div className={styles.movieCollection} onClick={movieCollection}>
+          {/* <div className={styles.movieCollection} onClick={movieCollection}>
                         <h4>
                         {userData.username} 님의 컬렉션
                         </h4>
                         <div className={styles.bottomHR}> <hr className={styles.userProfile_HR}/> </div>
                 </div> */}
 
-                <div className={styles.userComment} onClick={userComment}>
-                        <h4>코멘트</h4>
-                </div>
-           </div>
+          <div className={styles.userComment} onClick={userComment}>
+            <h4>코멘트</h4>
+          </div>
         </div>
-        {openModal === true ? <PFPModal setOpenModal={setOpenModal} userCd={userCd} userEmail={userEmail} removeUser={removeUser}/> : null}
-        
-    <Footer/>
-  </div>
-);
+      </div>
+      {openModal === true ? <PFPModal setOpenModal={setOpenModal} userCd={userCd} userEmail={userEmail} removeUser={removeUser} /> : null}
+
+      <Footer />
+    </div>
+  );
 }
 
 export default UserProfile;

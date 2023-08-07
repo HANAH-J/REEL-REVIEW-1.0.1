@@ -7,6 +7,7 @@ import { useCookies } from 'react-cookie';
 import axios from "axios";
 
 export default function CsHeader() {
+  const baseUrl = "http://localhost:8085";
 
   const [userData, setUserData] = useState({});
   const [loggedIn, setLoggedIn] = useState(false);
@@ -40,7 +41,7 @@ export default function CsHeader() {
       },
     };
 
-    axios.get('http://localhost:8085/userProfiles', config)
+    axios.get(baseUrl + '/userProfiles', config)
       .then(response => {
 
         const responseData = response.data;

@@ -26,7 +26,7 @@ function SamplePrevArrow(props) {
   return (
     <div
       className={className}
-      style={{ ...style, display: "block", background: "#ddd", borderRadius: "50%", color: "white", transform: "scale(1.5)"}}
+      style={{ ...style, display: "block", background: "#ddd", borderRadius: "50%", color: "white", transform: "scale(1.5)" }}
       onClick={onClick}
     >
       <i className="fa fa-angle-left" style={{ color: "black" }}></i>
@@ -92,33 +92,33 @@ export default function BoxOffice() {
       },
     ],
   };
-  
-  let [boxofficeList,setBoxofficeList] = useState([]);
-  
-  useEffect(()=>{
-  
-    axios.get("http://localhost:8085/api/popular_movielist").then((response)=>
-    {
+
+  let [boxofficeList, setBoxofficeList] = useState([]);
+
+  useEffect(() => {
+    const baseUrl = "http://localhost:8085";
+
+    axios.get(baseUrl + "/api/popular_movielist").then((response) => {
       setBoxofficeList(response.data);
-      
-    }).catch((error)=>{console.log(error)})
-     
-  },[]);
-  
+
+    }).catch((error) => { console.log(error) })
+
+  }, []);
+
 
   const navigate = useNavigate();
-  
-  const onClickDetailPage = (item) =>{
-    navigate('details',{state:{item}})
+
+  const onClickDetailPage = (item) => {
+    navigate('details', { state: { item } })
   }
 
-  
+
   return (
     <Slider {...settings}>
       {boxofficeList.map((item, index) => (
         <div className={styles.BoxOffice_mainBox} key={item.movieId}>
-          <div className={styles.BoxOffice_poster} onClick={()=>onClickDetailPage(item)}>
-            <span className={styles.BoxOffice_number}>{index+1}</span>
+          <div className={styles.BoxOffice_poster} onClick={() => onClickDetailPage(item)}>
+            <span className={styles.BoxOffice_number}>{index + 1}</span>
             <img src={IMG_BASE_URL + item.poster_path} className={styles.BoxOffice_img} alt="poster" />
           </div>
           <div className={styles.BoxOffice_bottom}>

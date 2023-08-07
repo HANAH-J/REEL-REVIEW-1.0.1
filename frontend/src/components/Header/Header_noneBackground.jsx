@@ -8,6 +8,7 @@ import axios from 'axios';
 import reel_review_logo from '../../img/Header/Reel_Review_logo_white.png';
 
 export default function Header_noneBackground() {
+    const baseUrl = "http://localhost:8085";
 
     const [movieList, setMovieList] = useState([]); 
     const [name, setName] = useState('');
@@ -24,7 +25,7 @@ export default function Header_noneBackground() {
         const formData = new FormData();
         formData.append('name', name);
     
-        axios.post("http://localhost:8085/api/movieSearch", formData)
+        axios.post(baseUrl + "/api/movieSearch", formData)
           .then((response) => {
             setMovieList(response.data);
             navigate('/searchSuccess', { state: { movieList: response.data, searchedName: name } });

@@ -10,6 +10,7 @@ import logo from '../../img/Header/Reel_Review_logo.png';
 
 // [회원] 로그인 모달창
 export default function SignIn({ setSignInModalState, setSignUpModalState }) {
+    const baseUrl = "http://localhost:8085";
 
     // JWT 저장소
     const [cookies, setCookies] = useCookies();
@@ -44,7 +45,7 @@ export default function SignIn({ setSignInModalState, setSignUpModalState }) {
 
     // 이메일 : 유효성 검사 통과 여부 및 에러 메세지 출력값 저장
     useEffect(() => {
-        axios.post('http://localhost:8085/api/auth/emailCheck', { userEmail: email })
+        axios.post(baseUrl + '/api/auth/emailCheck', { userEmail: email })
             .then((response) => {
                 setIsEmailValid(validateField(
                     email, /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
@@ -84,7 +85,7 @@ export default function SignIn({ setSignInModalState, setSignUpModalState }) {
         const data = { userEmail: email, userPassword: password }
         const config = { headers: { 'Content-Type': 'application/json' } };
 
-        axios.post('http://localhost:8085/api/auth/signIn', data, config)
+        axios.post(baseUrl + '/api/auth/signIn', data, config)
             .then((response) => {
                 const responseData = response.data;
                 if (!responseData.result) {

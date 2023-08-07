@@ -7,6 +7,7 @@ import { useCookies } from 'react-cookie';
 import userPFP from '../../../img/profile/userProfile/empty_user.svg';
 
 function UserComment() {
+  const baseUrl = "http://localhost:8085";
   const IMG_BASE_URL = "https://image.tmdb.org/t/p/original/";
   const [userData, setUserData] = useState({});
   const [comments, setComments] = useState([]);
@@ -42,7 +43,7 @@ function UserComment() {
       },
     };
 
-    axios.get('http://localhost:8085/userComment', config)
+    axios.get(baseUrl + '/userComment', config)
       .then(response => {
         const responseData = response.data;
         const userDTO = {
@@ -100,7 +101,7 @@ function UserComment() {
                     {profileData.pfImage === 'defaultPfImage' ? (
                             <img alt="profile" src={userPFP} className={styles.userComment_movieHeader_PFP}/>
                           ) : (
-                            <img alt="profile" className={styles.userComment_movieHeader_PFP} src={`http://localhost:8085/userProfiles/getProfilePicture?userCd=${userCd}`} />
+                            <img alt="profile" className={styles.userComment_movieHeader_PFP} src={baseUrl + `/userProfiles/getProfilePicture?userCd=${userCd}`} />
                     )}
                   </li>
                   <li className={styles.userComment_movieHeader_name}> {userData.username} </li>
