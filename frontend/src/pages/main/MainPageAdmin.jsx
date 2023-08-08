@@ -18,26 +18,52 @@ import apiUrl from '../../config';
 
 export default function MainPage() {
   const baseUrl = apiUrl;
-  
-  const [movieList, setMovieList] = useState([]); 
+
+  const [movieList, setMovieList] = useState([]);
   const [name, setName] = useState('');
   const navigate = useNavigate();
   const [mainResponse, setMainResponse] = useState('');
   const [cookies] = useCookies(['token']);
   const { user } = useUserStore();
+  const [userCd, setUserCd] = useState(null);
+  const [userData, setUserData] = useState(null);
+  const [profileData, setProfileData] = useState(null);
 
   // JWT 토큰
-  const getMain = async(token) => {
+  const getMain = async (token) => {
     const requestData = {
       headers: {
-        Authorization: `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
+        withCredentials: true,
       }
     };
+
+    await axios.get(baseUrl + '/userProfiles', requestData)
+      .then((response) => {
+        const responseData = response.data;
+        setUserCd(responseData.userDTO.userCd); //userCd값 설정 -> Modal에서 사용
+        const userDTO = {
+          userCd: responseData.userDTO.userCd,
+          username: responseData.userDTO.username,
+          userEmail: responseData.userDTO.userEmail,
+          role: responseData.userDTO.role,
+          provider: responseData.userDTO.provider,
+          providerCd: responseData.userDTO.providerCd,
+          createDate: responseData.userDTO.createDate
+        };
+        const profileDTO = {
+          status: responseData.profileDTO.status,
+          pfImage: responseData.profileDTO.pfImage
+        };
+        setUserData(userDTO);
+        setProfileData(profileDTO);
+      })
+      .catch((error) => '');
   }
 
   useEffect(() => {
     const token = cookies.token;
-    if(token) getMain(token);
+    if (token) getMain(token);
     else setMainResponse('');
   }, [cookies.token]);
 
@@ -65,8 +91,8 @@ export default function MainPage() {
         console.error(error);
       });
   };
-  
-  const [movieListActor,setMovieListActor] = useState([]);
+
+  const [movieListActor, setMovieListActor] = useState([]);
   const [name1, setName1] = useState('');
   const handleChange1 = (event) => {
     const { value } = event.target;
@@ -92,7 +118,7 @@ export default function MainPage() {
       });
   };
 
-  const [movieListGenre,setMovieListGenre] = useState([]);
+  const [movieListGenre, setMovieListGenre] = useState([]);
   const [name2, setName2] = useState('');
   const handleChange2 = (event) => {
     const { value } = event.target;
@@ -121,7 +147,7 @@ export default function MainPage() {
   return (
 
     <div className={styles.MainPage_box}>
-      {cookies.token ? <LoginSuccessHeader /> : <Header />}
+      <LoginSuccessHeader profileData={profileData} userData={userData} />
       <div className={styles.DirectorMovie_box_wrapper}>
         <div className={styles.DirectorMovie_box}>
           <div className={styles.DirectorMovie_box_header}>
@@ -129,10 +155,10 @@ export default function MainPage() {
           </div>
           <div className={styles.DirectorMovie_box_info}>
             <form onSubmit={handleSubmit}>
-              <input type="text" name='name' onChange={handleChange} className={styles.search_input} autoComplete='off'/>
+              <input type="text" name='name' onChange={handleChange} className={styles.search_input} autoComplete='off' />
               <button type='submit' className={styles.search_button}>검색</button>
             </form>
-            <DirectorMovie movieList={movieList}/>
+            <DirectorMovie movieList={movieList} />
           </div>
         </div>
       </div>
@@ -142,11 +168,11 @@ export default function MainPage() {
             <h3>배우 작품 검색</h3>
           </div>
           <div className={styles.ActorMovie_box_info}>
-          <form onSubmit={handleSubmit1}>
-              <input type="text" name1='name1' onChange={handleChange1} className={styles.search_input} autoComplete='off'/>
+            <form onSubmit={handleSubmit1}>
+              <input type="text" name1='name1' onChange={handleChange1} className={styles.search_input} autoComplete='off' />
               <button type='submit' className={styles.search_button}>검색</button>
             </form>
-            <ActorMovie movieList={movieListActor}/>
+            <ActorMovie movieList={movieListActor} />
           </div>
         </div>
       </div>
@@ -157,10 +183,10 @@ export default function MainPage() {
           </div>
           <div className={styles.Genre_box_info}>
             <form onSubmit={handleSubmit2}>
-              <input type="text" name2='name2' onChange={handleChange2} className={styles.search_input} autoComplete='off'/>
+              <input type="text" name2='name2' onChange={handleChange2} className={styles.search_input} autoComplete='off' />
               <button type='submit' className={styles.search_button}>검색</button>
             </form>
-            <Genre movieList={movieListGenre}/>
+            <Genre movieList={movieListGenre} />
           </div>
         </div>
       </div>
