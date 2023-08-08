@@ -7,10 +7,11 @@ import Alert from '../../../components/users/Alert';
 import styles from '../../../css/profile/PFPModal.module.css';
 import styles2 from '../../../css/users/Alert.module.css';
 import apiUrl from '../../../config';
+import apiUrl2 from '../../../configMain';
 
 function PFPModal({ setOpenModal, userCd, userEmail, removeUser }) {
   const baseUrl = apiUrl;
-  const mainUrl = "http://localhost:3000";
+  const mainUrl = apiUrl2;
 
   const [inputValue, setInputValue] = useState(''); //변경할 상태메시지
   const [showEditTextModal, setShowEditTextModal] = useState(false);

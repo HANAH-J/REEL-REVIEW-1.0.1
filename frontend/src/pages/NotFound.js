@@ -1,9 +1,10 @@
 import React from "react";
+import apiUrl2 from "../configMain";
 import styles from '../css/NotFound.module.css';
 import logo from '../img/Header/Reel_Review_logo.png';
 
 const NotFound = () => {
-  const mainUrl = "http://localhost:3000";
+  const mainUrl = apiUrl2;
 
   // 메인 로고 클릭 이벤트
   const reload = () => {

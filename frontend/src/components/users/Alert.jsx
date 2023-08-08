@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useCookies } from 'react-cookie';
 import { useUserStore } from "../../stores/index.ts";
+import apiUrl2 from '../../configMain.js';
 import styles from '../../css/users/Alert.module.css';
 
 // [회원] 알림창
@@ -13,7 +14,7 @@ export default function Alert({
     setShowWithdrawFailureModal, setShowWithdrawModal,                      // 소셜 회원탈퇴
     setShowNeedSignIn,                                                      // 비 로그인
     alertHeight, navigate, resultMessage }) {
-    const mainUrl = "http://localhost:3000";
+    const mainUrl = apiUrl2;
 
     const [cookies, setCookies, removeCookies] = useCookies();
     const { user, removeUser } = useUserStore();

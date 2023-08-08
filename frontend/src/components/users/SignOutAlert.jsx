@@ -1,11 +1,12 @@
 import React from 'react';
 import { useCookies } from 'react-cookie';
 import { useUserStore } from "../../stores/index.ts";
+import apiUrl2 from '../../configMain.js';
 import styles from '../../css/users/Alert.module.css';
 
 // [회원] 로그아웃 확인 알림창
 export default function SignOutAlert({ setShowSignOutAlert, SignOutHeader }) {
-    const mainUrl = "http://localhost:3000";
+    const mainUrl = apiUrl2;
 
     const [cookies, setCookies, removeCookies] = useCookies();
     const { user, removeUser } = useUserStore();
