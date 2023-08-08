@@ -119,7 +119,8 @@ public class ProfileService {
     }
 
     public String setProfilePicturePath(int userCd, MultipartFile profilePicture) throws IOException {
-        String uploadDir = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\profilePictures\\";
+//        String uploadDir = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\profilePictures\\";
+        String uploadDir = "/home/ubuntu/REEL-REVIEW-1.0.1/backend/src/main/resources/static/profilePictures";
         String fileName = UUID.randomUUID() + "_" + userCd + "_" + profilePicture.getOriginalFilename();
         String filePath = uploadDir + fileName;
 
@@ -130,7 +131,8 @@ public class ProfileService {
     }
 
     public String setBackgroundPath(int userCd, MultipartFile backgroundImage) throws IOException {
-        String uploadDir = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\backgroundImage\\";
+//        String uploadDir = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\backgroundImage\\";
+        String uploadDir ="/home/ubuntu/REEL-REVIEW-1.0.1/backend/src/main/resources/static/backgroundImage";
         String fileName = UUID.randomUUID() + "_" + userCd + "_" + backgroundImage.getOriginalFilename();
         String filePath = uploadDir + fileName;
 
@@ -172,7 +174,7 @@ public class ProfileService {
         String fileExtension = filePath.substring(filePath.lastIndexOf(".") + 1);
         MediaType mediaType;
         if ("defaultPfImage".equalsIgnoreCase(fileExtension)) {
-            return ResponseEntity.ok().contentType(MediaType.parseMediaType("image/svg+xml")).body(new FileSystemResource("C:/Users/lhana/OneDrive/바탕 화면/REEL-REVIEW/REEL-REVIEW-1.0.1/reelReviewBackend/src/main/resources/static/empty_user.svg"));
+            return ResponseEntity.ok().contentType(MediaType.parseMediaType("image/svg+xml")).body(new FileSystemResource("/home/ubuntu/REEL-REVIEW-1.0.1/backend/src/main/resources/static/empty_user.svg"));
         } else if ("jpg".equalsIgnoreCase(fileExtension) || "jpeg".equalsIgnoreCase(fileExtension)) {
             mediaType = MediaType.IMAGE_JPEG;
         } else if ("png".equalsIgnoreCase(fileExtension)) {
