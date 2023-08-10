@@ -55,6 +55,13 @@
   color: #a5a5a7;
 }
 
+.footerText2 {
+  list-style: none;
+  display: inline-block;
+  margin-right: 20px;
+  color: #848485;
+}
+
 .question-box {
   width: 100%;
   height: 800px;
