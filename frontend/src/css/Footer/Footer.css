@@ -61,43 +61,31 @@
   background-color: aqua;
 }
 
-.github_team {
-  background-image: url("../../img/Footer/github_team.png");
-  width: 18%;
-  height: 20%;
+.github {
+  width: 27px;
+  height: 27px;
   position: relative;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  margin-right: 1%;
-}
-
-.github_personal {
-  background-image: url("../../img/Footer/github_personal.png");
-  width: 18%;
-  height: 25%;
-  position: relative;
-  background-size: 50px;
+  margin-right: 12px;
+  background-image: url("../../img/Footer/github_logo.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-.notion_team {
-  background-image: url("../../img/Footer/notion_team.png");
-  width: 18%;
-  height: 25%;
-  background-size: 30px;
+.notion {
+  width: 27px;;
+  height: 27px;
+  margin-right: 12px;
+  background-image: url("../../img/Footer/notion_logo.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-.notion_personal {
-  background-image: url("../../img/Footer/notion_personal.png");
-  width: 18%;
-  height: 25%;
-  background-size: 30px;
+.tstory {
+  width: 27px;;
+  height: 27px;
+  background-image: url("../../img/Footer/tstory_logo.png");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
