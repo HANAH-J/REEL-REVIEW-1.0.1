@@ -121,7 +121,7 @@ function UserProfile() {
         ) : (
           <div className={styles.profileBg}
             style={{
-              backgroundImage: `url(http://localhost:8085/userProfiles/getBackgroundImage?userCd=${userCd})`,
+              backgroundImage: `url(http://localhost:4040/userProfiles/getBackgroundImage?userCd=${userCd})`,
               backgroundSize: '100%',
               backgroundRepeat: 'no-repeat'
             }}>
