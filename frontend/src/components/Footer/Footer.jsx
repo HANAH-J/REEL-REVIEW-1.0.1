@@ -46,11 +46,11 @@ export default function Footer() {
               주식회사 릴리뷰&nbsp; | &nbsp;경기도 수원시 팔달구 매산로 12-1
             </li>
             <br /><br />
-            <li className="footerText">
+            <li className="footerText2">
               사업자 등록 번호 123-45-6789
             </li>
             <br />
-            <li className="footerText">
+            <li className="footerText2">
               © 2023 by <strong>Reel Review</strong>, Inc. All rights reserved.
             </li>
           </ul>
