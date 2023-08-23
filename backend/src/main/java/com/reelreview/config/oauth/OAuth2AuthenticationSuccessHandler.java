@@ -18,7 +18,6 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
     private static final String TOKEN = "token";
-    private static final String REFRESH_TOKEN = "refreshToken";
     private static final String REDIRECT_URL = "http://localhost:3000";
 
     private final UserRepository userRepository;

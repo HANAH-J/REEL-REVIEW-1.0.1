@@ -34,12 +34,13 @@ function App() {
   const { role } = useUserStore();
   const [cookies] = useCookies(['token']);
   const navigate = useNavigate();
+  const token = cookies.token;
 
   // 토큰 디코딩 함수
   const decodeToken = (token) => {
     try {
-      const parts = token.split('.'); // 토큰을 세 부분으로 나눕니다.
-      const payload = JSON.parse(base64.decode(parts[1])); // 페이로드 부분을 base64 디코딩하고 JSON 파싱합니다.
+      const parts = token.split('.');
+      const payload = JSON.parse(base64.decode(parts[1]));
       return payload;
     } catch (error) {
       console.error('토큰 디코딩 오류:', error);
@@ -47,7 +48,6 @@ function App() {
     }
   };
 
-  const token = cookies.token; // 쿠키에서 토큰을 가져옵니다.
   const decodedToken = token ? decodeToken(token) : null;
 
 

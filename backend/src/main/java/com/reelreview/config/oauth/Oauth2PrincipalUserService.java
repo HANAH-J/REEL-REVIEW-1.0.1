@@ -18,8 +18,6 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
-
 @Service
 public class Oauth2PrincipalUserService extends DefaultOAuth2UserService {
 
@@ -37,7 +35,7 @@ public class Oauth2PrincipalUserService extends DefaultOAuth2UserService {
     @Autowired
     private ProfileRepository profileRepository;
 
-    // 구글로부터 받은 userRequest 데이터에 대한 후처리 진행 함수
+    // 플랫폼으부터 받은 userRequest 데이터에 대한 후처리 진행 함수
     // 함수 종료 시 @AuthenticationPrincipal 어노테이션 생성
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
@@ -90,18 +88,18 @@ public class Oauth2PrincipalUserService extends DefaultOAuth2UserService {
 
             userRepository.save(userEntity);
 
-            // [프로필] ProfileDTO 생성(J)
+            // [프로필] ProfileDTO 생성
             ProfileDTO profileDTO = new ProfileDTO();
             profileDTO.setUserCd(userEntity);
 
-            // [프로필] 프로필 정보 저장 (J)
+            // [프로필] 프로필 정보 저장
             try {
                 profileRepository.save(profileDTO);
             } catch (Exception error) {
                 System.out.println(error);
             }
 
-            // 기존 사용자일 경우, 회원가입 처리 無
+          // 기존 사용자일 경우, 회원가입 처리 無
         } else if(userEntity.getProvider() == null) {
             // System.out.println("일반 회원이며, 해당 계정으로 소셜 회원가입을 진행하지 않았습니다.");
         } else {

@@ -7,7 +7,6 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +15,6 @@ import java.time.temporal.ChronoUnit;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 // JWT : 전자 서명이 된 JSON 형태 토큰 (header).(payload).(signature)
 // header: typ(해당 토큰의 타입), alg(토큰 서명을 위해 사용된 해시 알고리즘)
@@ -27,9 +25,6 @@ public class JwtTokenProvider {
 
     @Autowired
     private UserRepository userRepository;
-
-    @Value("${jwt.refreshToken.expirationInMs}")
-    private long refreshTokenExpirationInMs;
 
     // JWT 생성 및 검증을 위한 키
     private static final String SECURITY_KEY = "reelreviewsecretkey";
