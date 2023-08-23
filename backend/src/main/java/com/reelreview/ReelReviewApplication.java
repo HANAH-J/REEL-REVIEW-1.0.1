@@ -22,7 +22,7 @@ public class ReelReviewApplication {
         SpringApplication.run(ReelReviewApplication.class, args);
     }
 
-    @Scheduled(fixedRate = 24*1000*60*60) // 60분(1시간) 간격으로 실행합니다.
+    @Scheduled(fixedRate = 24*1000*60*60*24*7) // 일주일 간격으로 실행
     public void runMovieDataService() {
         movieDataService.changeRanktoNull();
         try {
